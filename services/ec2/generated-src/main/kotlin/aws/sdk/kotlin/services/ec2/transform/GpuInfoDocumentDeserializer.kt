@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeGpuInfoDocument(deserializer: Deserializer): GpuInfo {
+internal fun deserializeGpuInfoDocument(deserializer: Deserializer): GpuInfo {
     val builder = GpuInfo.builder()
     val GPUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("gpus"), XmlCollectionName("item"))
     val TOTALGPUMEMORYINMIB_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("totalGpuMemoryInMiB"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchTemplateCpuOptionsDocument(deserializer: Deserializer): LaunchTemplateCpuOptions {
+internal fun deserializeLaunchTemplateCpuOptionsDocument(deserializer: Deserializer): LaunchTemplateCpuOptions {
     val builder = LaunchTemplateCpuOptions.builder()
     val CORECOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("coreCount"))
     val THREADSPERCORE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("threadsPerCore"))

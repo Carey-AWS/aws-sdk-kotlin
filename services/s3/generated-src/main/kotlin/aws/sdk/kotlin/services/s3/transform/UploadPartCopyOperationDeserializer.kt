@@ -45,7 +45,7 @@ internal class UploadPartCopyOperationDeserializer: HttpDeserialize<UploadPartCo
     }
 }
 
-private suspend fun deserializeUploadPartCopyOperationBody(builder: UploadPartCopyResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeUploadPartCopyOperationBody(builder: UploadPartCopyResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.copyPartResult = deserializeCopyPartResultDocument(deserializer)
 }

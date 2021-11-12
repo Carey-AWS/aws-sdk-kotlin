@@ -46,7 +46,7 @@ internal class TransactWriteItemsOperationDeserializer: HttpDeserialize<Transact
     }
 }
 
-private suspend fun deserializeTransactWriteItemsOperationBody(builder: TransactWriteItemsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeTransactWriteItemsOperationBody(builder: TransactWriteItemsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val CONSUMEDCAPACITY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("ConsumedCapacity"))
     val ITEMCOLLECTIONMETRICS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Map, JsonSerialName("ItemCollectionMetrics"))

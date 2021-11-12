@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeStoreImageTaskResultDocument(deserializer: Deserializer): StoreImageTaskResult {
+internal fun deserializeStoreImageTaskResultDocument(deserializer: Deserializer): StoreImageTaskResult {
     val builder = StoreImageTaskResult.builder()
     val AMIID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("amiId"))
     val BUCKET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("bucket"))

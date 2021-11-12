@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSourceSelectionCriteriaDocument(deserializer: Deserializer): SourceSelectionCriteria {
+internal fun deserializeSourceSelectionCriteriaDocument(deserializer: Deserializer): SourceSelectionCriteria {
     val builder = SourceSelectionCriteria.builder()
     val REPLICAMODIFICATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("ReplicaModifications"))
     val SSEKMSENCRYPTEDOBJECTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("SseKmsEncryptedObjects"))

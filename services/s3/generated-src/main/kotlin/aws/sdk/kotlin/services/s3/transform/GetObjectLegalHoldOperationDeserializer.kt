@@ -35,7 +35,7 @@ internal class GetObjectLegalHoldOperationDeserializer: HttpDeserialize<GetObjec
     }
 }
 
-private suspend fun deserializeGetObjectLegalHoldOperationBody(builder: GetObjectLegalHoldResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetObjectLegalHoldOperationBody(builder: GetObjectLegalHoldResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.legalHold = deserializeObjectLockLegalHoldDocument(deserializer)
 }

@@ -56,7 +56,7 @@ internal class CompleteMultipartUploadOperationDeserializer: HttpDeserialize<Com
     }
 }
 
-private suspend fun deserializeCompleteMultipartUploadOperationBody(builder: CompleteMultipartUploadResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCompleteMultipartUploadOperationBody(builder: CompleteMultipartUploadResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BUCKET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Bucket"))
     val ETAG_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ETag"))

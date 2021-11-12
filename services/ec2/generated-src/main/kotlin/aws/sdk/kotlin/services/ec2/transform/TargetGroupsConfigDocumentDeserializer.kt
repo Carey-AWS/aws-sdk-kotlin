@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTargetGroupsConfigDocument(deserializer: Deserializer): TargetGroupsConfig {
+internal fun deserializeTargetGroupsConfigDocument(deserializer: Deserializer): TargetGroupsConfig {
     val builder = TargetGroupsConfig.builder()
     val TARGETGROUPS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("targetGroups"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

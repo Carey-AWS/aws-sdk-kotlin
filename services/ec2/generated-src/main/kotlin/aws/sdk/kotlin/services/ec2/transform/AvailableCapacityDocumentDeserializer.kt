@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAvailableCapacityDocument(deserializer: Deserializer): AvailableCapacity {
+internal fun deserializeAvailableCapacityDocument(deserializer: Deserializer): AvailableCapacity {
     val builder = AvailableCapacity.builder()
     val AVAILABLEINSTANCECAPACITY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("availableInstanceCapacity"), XmlCollectionName("item"))
     val AVAILABLEVCPUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("availableVCpus"))

@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceMetadataOptionsResponseDocument(deserializer: Deserializer): InstanceMetadataOptionsResponse {
+internal fun deserializeInstanceMetadataOptionsResponseDocument(deserializer: Deserializer): InstanceMetadataOptionsResponse {
     val builder = InstanceMetadataOptionsResponse.builder()
     val HTTPENDPOINT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("httpEndpoint"))
     val HTTPPROTOCOLIPV6_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("httpProtocolIpv6"))

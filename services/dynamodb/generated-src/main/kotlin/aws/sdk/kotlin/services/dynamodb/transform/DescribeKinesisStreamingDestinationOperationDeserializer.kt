@@ -45,7 +45,7 @@ internal class DescribeKinesisStreamingDestinationOperationDeserializer: HttpDes
     }
 }
 
-private suspend fun deserializeDescribeKinesisStreamingDestinationOperationBody(builder: DescribeKinesisStreamingDestinationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeKinesisStreamingDestinationOperationBody(builder: DescribeKinesisStreamingDestinationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val KINESISDATASTREAMDESTINATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("KinesisDataStreamDestinations"))
     val TABLENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("TableName"))

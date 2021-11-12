@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeSourceTableDetailsDocument(deserializer: Deserializer): SourceTableDetails {
+internal fun deserializeSourceTableDetailsDocument(deserializer: Deserializer): SourceTableDetails {
     val builder = SourceTableDetails.builder()
     val BILLINGMODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("BillingMode"))
     val ITEMCOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, JsonSerialName("ItemCount"))

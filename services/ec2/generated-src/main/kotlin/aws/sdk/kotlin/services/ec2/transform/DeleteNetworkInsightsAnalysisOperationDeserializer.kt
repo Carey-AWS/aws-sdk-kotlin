@@ -45,7 +45,7 @@ internal class DeleteNetworkInsightsAnalysisOperationDeserializer: HttpDeseriali
     }
 }
 
-private suspend fun deserializeDeleteNetworkInsightsAnalysisOperationBody(builder: DeleteNetworkInsightsAnalysisResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteNetworkInsightsAnalysisOperationBody(builder: DeleteNetworkInsightsAnalysisResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NETWORKINSIGHTSANALYSISID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("networkInsightsAnalysisId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

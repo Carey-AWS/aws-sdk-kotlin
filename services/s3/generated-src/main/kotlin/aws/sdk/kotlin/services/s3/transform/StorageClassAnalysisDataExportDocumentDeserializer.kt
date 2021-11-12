@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeStorageClassAnalysisDataExportDocument(deserializer: Deserializer): StorageClassAnalysisDataExport {
+internal fun deserializeStorageClassAnalysisDataExportDocument(deserializer: Deserializer): StorageClassAnalysisDataExport {
     val builder = StorageClassAnalysisDataExport.builder()
     val DESTINATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Destination"))
     val OUTPUTSCHEMAVERSION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("OutputSchemaVersion"))

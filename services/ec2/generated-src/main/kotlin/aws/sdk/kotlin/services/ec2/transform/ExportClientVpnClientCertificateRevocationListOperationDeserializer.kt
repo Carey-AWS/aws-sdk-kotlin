@@ -45,7 +45,7 @@ internal class ExportClientVpnClientCertificateRevocationListOperationDeserializ
     }
 }
 
-private suspend fun deserializeExportClientVpnClientCertificateRevocationListOperationBody(builder: ExportClientVpnClientCertificateRevocationListResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeExportClientVpnClientCertificateRevocationListOperationBody(builder: ExportClientVpnClientCertificateRevocationListResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CERTIFICATEREVOCATIONLIST_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("certificateRevocationList"))
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("status"))

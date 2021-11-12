@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchTemplateAndOverridesResponseDocument(deserializer: Deserializer): LaunchTemplateAndOverridesResponse {
+internal fun deserializeLaunchTemplateAndOverridesResponseDocument(deserializer: Deserializer): LaunchTemplateAndOverridesResponse {
     val builder = LaunchTemplateAndOverridesResponse.builder()
     val LAUNCHTEMPLATESPECIFICATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("launchTemplateSpecification"))
     val OVERRIDES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("overrides"))

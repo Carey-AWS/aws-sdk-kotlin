@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeExportImageTaskDocument(deserializer: Deserializer): ExportImageTask {
+internal fun deserializeExportImageTaskDocument(deserializer: Deserializer): ExportImageTask {
     val builder = ExportImageTask.builder()
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val EXPORTIMAGETASKID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("exportImageTaskId"))

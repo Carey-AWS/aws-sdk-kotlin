@@ -45,7 +45,7 @@ internal class DeleteItemOperationDeserializer: HttpDeserialize<DeleteItemRespon
     }
 }
 
-private suspend fun deserializeDeleteItemOperationBody(builder: DeleteItemResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteItemOperationBody(builder: DeleteItemResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val ATTRIBUTES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Map, JsonSerialName("Attributes"))
     val CONSUMEDCAPACITY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("ConsumedCapacity"))

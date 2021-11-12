@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeObjectLockLegalHoldDocument(deserializer: Deserializer): ObjectLockLegalHold {
+internal fun deserializeObjectLockLegalHoldDocument(deserializer: Deserializer): ObjectLockLegalHold {
     val builder = ObjectLockLegalHold.builder()
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Status"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

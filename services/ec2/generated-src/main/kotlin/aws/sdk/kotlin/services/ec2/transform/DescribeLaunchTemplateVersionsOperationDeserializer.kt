@@ -47,7 +47,7 @@ internal class DescribeLaunchTemplateVersionsOperationDeserializer: HttpDeserial
     }
 }
 
-private suspend fun deserializeDescribeLaunchTemplateVersionsOperationBody(builder: DescribeLaunchTemplateVersionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeLaunchTemplateVersionsOperationBody(builder: DescribeLaunchTemplateVersionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val LAUNCHTEMPLATEVERSIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("launchTemplateVersionSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeTransitGatewayMulticastDomainDocument(deserializer: Deserializer): TransitGatewayMulticastDomain {
+internal fun deserializeTransitGatewayMulticastDomainDocument(deserializer: Deserializer): TransitGatewayMulticastDomain {
     val builder = TransitGatewayMulticastDomain.builder()
     val CREATIONTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("creationTime"))
     val OPTIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("options"))

@@ -47,7 +47,7 @@ internal class DescribeFleetsOperationDeserializer: HttpDeserialize<DescribeFlee
     }
 }
 
-private suspend fun deserializeDescribeFleetsOperationBody(builder: DescribeFleetsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeFleetsOperationBody(builder: DescribeFleetsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val FLEETS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("fleetSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

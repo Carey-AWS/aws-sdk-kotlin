@@ -47,7 +47,7 @@ internal class DeleteVpcEndpointServiceConfigurationsOperationDeserializer: Http
     }
 }
 
-private suspend fun deserializeDeleteVpcEndpointServiceConfigurationsOperationBody(builder: DeleteVpcEndpointServiceConfigurationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteVpcEndpointServiceConfigurationsOperationBody(builder: DeleteVpcEndpointServiceConfigurationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val UNSUCCESSFUL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("unsuccessful"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

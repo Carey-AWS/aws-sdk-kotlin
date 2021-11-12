@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeServiceConfigurationDocument(deserializer: Deserializer): ServiceConfiguration {
+internal fun deserializeServiceConfigurationDocument(deserializer: Deserializer): ServiceConfiguration {
     val builder = ServiceConfiguration.builder()
     val ACCEPTANCEREQUIRED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("acceptanceRequired"))
     val AVAILABILITYZONES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("availabilityZoneSet"), XmlCollectionName("item"))

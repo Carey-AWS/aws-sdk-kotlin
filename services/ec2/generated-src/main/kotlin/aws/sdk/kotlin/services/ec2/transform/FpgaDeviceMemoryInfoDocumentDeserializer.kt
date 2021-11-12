@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeFpgaDeviceMemoryInfoDocument(deserializer: Deserializer): FpgaDeviceMemoryInfo {
+internal fun deserializeFpgaDeviceMemoryInfoDocument(deserializer: Deserializer): FpgaDeviceMemoryInfo {
     val builder = FpgaDeviceMemoryInfo.builder()
     val SIZEINMIB_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("sizeInMiB"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

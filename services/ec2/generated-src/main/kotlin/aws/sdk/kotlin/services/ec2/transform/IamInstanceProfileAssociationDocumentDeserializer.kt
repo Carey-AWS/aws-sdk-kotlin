@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeIamInstanceProfileAssociationDocument(deserializer: Deserializer): IamInstanceProfileAssociation {
+internal fun deserializeIamInstanceProfileAssociationDocument(deserializer: Deserializer): IamInstanceProfileAssociation {
     val builder = IamInstanceProfileAssociation.builder()
     val ASSOCIATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("associationId"))
     val IAMINSTANCEPROFILE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("iamInstanceProfile"))

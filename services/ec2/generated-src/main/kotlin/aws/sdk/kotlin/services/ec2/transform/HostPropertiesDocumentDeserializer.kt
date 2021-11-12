@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeHostPropertiesDocument(deserializer: Deserializer): HostProperties {
+internal fun deserializeHostPropertiesDocument(deserializer: Deserializer): HostProperties {
     val builder = HostProperties.builder()
     val CORES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("cores"))
     val INSTANCEFAMILY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceFamily"))

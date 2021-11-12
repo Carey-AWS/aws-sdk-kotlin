@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePlacementGroupInfoDocument(deserializer: Deserializer): PlacementGroupInfo {
+internal fun deserializePlacementGroupInfoDocument(deserializer: Deserializer): PlacementGroupInfo {
     val builder = PlacementGroupInfo.builder()
     val SUPPORTEDSTRATEGIES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("supportedStrategies"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

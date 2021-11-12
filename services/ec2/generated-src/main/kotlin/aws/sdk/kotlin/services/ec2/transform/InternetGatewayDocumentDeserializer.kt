@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInternetGatewayDocument(deserializer: Deserializer): InternetGateway {
+internal fun deserializeInternetGatewayDocument(deserializer: Deserializer): InternetGateway {
     val builder = InternetGateway.builder()
     val ATTACHMENTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("attachmentSet"), XmlCollectionName("item"))
     val INTERNETGATEWAYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("internetGatewayId"))

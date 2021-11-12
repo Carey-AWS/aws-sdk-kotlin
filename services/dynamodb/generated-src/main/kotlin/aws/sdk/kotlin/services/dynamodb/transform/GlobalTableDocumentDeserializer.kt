@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeGlobalTableDocument(deserializer: Deserializer): GlobalTable {
+internal fun deserializeGlobalTableDocument(deserializer: Deserializer): GlobalTable {
     val builder = GlobalTable.builder()
     val GLOBALTABLENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("GlobalTableName"))
     val REPLICATIONGROUP_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("ReplicationGroup"))

@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeEbsInfoDocument(deserializer: Deserializer): EbsInfo {
+internal fun deserializeEbsInfoDocument(deserializer: Deserializer): EbsInfo {
     val builder = EbsInfo.builder()
     val EBSOPTIMIZEDINFO_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("ebsOptimizedInfo"))
     val EBSOPTIMIZEDSUPPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ebsOptimizedSupport"))

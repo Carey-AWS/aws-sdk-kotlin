@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAnalysisLoadBalancerTargetDocument(deserializer: Deserializer): AnalysisLoadBalancerTarget {
+internal fun deserializeAnalysisLoadBalancerTargetDocument(deserializer: Deserializer): AnalysisLoadBalancerTarget {
     val builder = AnalysisLoadBalancerTarget.builder()
     val ADDRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("address"))
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))

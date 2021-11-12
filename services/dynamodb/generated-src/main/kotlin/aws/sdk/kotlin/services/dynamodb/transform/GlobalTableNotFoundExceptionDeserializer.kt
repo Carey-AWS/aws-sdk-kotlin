@@ -35,7 +35,7 @@ internal class GlobalTableNotFoundExceptionDeserializer: HttpDeserialize<GlobalT
     }
 }
 
-private suspend fun deserializeGlobalTableNotFoundExceptionError(builder: GlobalTableNotFoundException.DslBuilder, payload: ByteArray) {
+private fun deserializeGlobalTableNotFoundExceptionError(builder: GlobalTableNotFoundException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

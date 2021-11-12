@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeExportSummaryDocument(deserializer: Deserializer): ExportSummary {
+internal fun deserializeExportSummaryDocument(deserializer: Deserializer): ExportSummary {
     val builder = ExportSummary.builder()
     val EXPORTARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("ExportArn"))
     val EXPORTSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("ExportStatus"))

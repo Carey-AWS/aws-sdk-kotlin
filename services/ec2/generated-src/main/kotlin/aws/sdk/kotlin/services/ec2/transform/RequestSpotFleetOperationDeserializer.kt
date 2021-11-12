@@ -45,7 +45,7 @@ internal class RequestSpotFleetOperationDeserializer: HttpDeserialize<RequestSpo
     }
 }
 
-private suspend fun deserializeRequestSpotFleetOperationBody(builder: RequestSpotFleetResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRequestSpotFleetOperationBody(builder: RequestSpotFleetResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SPOTFLEETREQUESTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("spotFleetRequestId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

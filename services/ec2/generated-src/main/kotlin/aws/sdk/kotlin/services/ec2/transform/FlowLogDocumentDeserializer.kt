@@ -25,7 +25,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeFlowLogDocument(deserializer: Deserializer): FlowLog {
+internal fun deserializeFlowLogDocument(deserializer: Deserializer): FlowLog {
     val builder = FlowLog.builder()
     val CREATIONTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("creationTime"))
     val DELIVERLOGSERRORMESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("deliverLogsErrorMessage"))

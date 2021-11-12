@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTargetGrantDocument(deserializer: Deserializer): TargetGrant {
+internal fun deserializeTargetGrantDocument(deserializer: Deserializer): TargetGrant {
     val builder = TargetGrant.builder()
     val GRANTEE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Grantee"), XmlNamespace("http://www.w3.org/2001/XMLSchema-instance", "xsi"))
     val PERMISSION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Permission"))

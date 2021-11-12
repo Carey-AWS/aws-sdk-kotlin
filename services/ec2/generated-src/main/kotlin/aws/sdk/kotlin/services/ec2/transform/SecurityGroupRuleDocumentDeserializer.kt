@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSecurityGroupRuleDocument(deserializer: Deserializer): SecurityGroupRule {
+internal fun deserializeSecurityGroupRuleDocument(deserializer: Deserializer): SecurityGroupRule {
     val builder = SecurityGroupRule.builder()
     val CIDRIPV4_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("cidrIpv4"))
     val CIDRIPV6_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("cidrIpv6"))

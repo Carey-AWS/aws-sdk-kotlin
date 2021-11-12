@@ -47,7 +47,7 @@ internal class StopInstancesOperationDeserializer: HttpDeserialize<StopInstances
     }
 }
 
-private suspend fun deserializeStopInstancesOperationBody(builder: StopInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeStopInstancesOperationBody(builder: StopInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val STOPPINGINSTANCES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instancesSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

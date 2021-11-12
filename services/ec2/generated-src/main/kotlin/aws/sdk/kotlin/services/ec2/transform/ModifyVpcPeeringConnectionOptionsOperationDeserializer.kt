@@ -45,7 +45,7 @@ internal class ModifyVpcPeeringConnectionOptionsOperationDeserializer: HttpDeser
     }
 }
 
-private suspend fun deserializeModifyVpcPeeringConnectionOptionsOperationBody(builder: ModifyVpcPeeringConnectionOptionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyVpcPeeringConnectionOptionsOperationBody(builder: ModifyVpcPeeringConnectionOptionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ACCEPTERPEERINGCONNECTIONOPTIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("accepterPeeringConnectionOptions"))
     val REQUESTERPEERINGCONNECTIONOPTIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("requesterPeeringConnectionOptions"))

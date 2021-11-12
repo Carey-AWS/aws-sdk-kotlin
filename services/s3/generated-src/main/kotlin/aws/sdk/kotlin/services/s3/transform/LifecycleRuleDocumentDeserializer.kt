@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLifecycleRuleDocument(deserializer: Deserializer): LifecycleRule {
+internal fun deserializeLifecycleRuleDocument(deserializer: Deserializer): LifecycleRule {
     val builder = LifecycleRule.builder()
     val ABORTINCOMPLETEMULTIPARTUPLOAD_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("AbortIncompleteMultipartUpload"))
     val EXPIRATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Expiration"))

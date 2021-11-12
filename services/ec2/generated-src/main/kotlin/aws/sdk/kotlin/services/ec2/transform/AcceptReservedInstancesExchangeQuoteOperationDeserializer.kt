@@ -45,7 +45,7 @@ internal class AcceptReservedInstancesExchangeQuoteOperationDeserializer: HttpDe
     }
 }
 
-private suspend fun deserializeAcceptReservedInstancesExchangeQuoteOperationBody(builder: AcceptReservedInstancesExchangeQuoteResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAcceptReservedInstancesExchangeQuoteOperationBody(builder: AcceptReservedInstancesExchangeQuoteResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val EXCHANGEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("exchangeId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

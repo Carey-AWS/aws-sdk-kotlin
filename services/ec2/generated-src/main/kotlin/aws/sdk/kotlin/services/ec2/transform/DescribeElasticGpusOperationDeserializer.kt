@@ -47,7 +47,7 @@ internal class DescribeElasticGpusOperationDeserializer: HttpDeserialize<Describ
     }
 }
 
-private suspend fun deserializeDescribeElasticGpusOperationBody(builder: DescribeElasticGpusResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeElasticGpusOperationBody(builder: DescribeElasticGpusResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ELASTICGPUSET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("elasticGpuSet"), XmlCollectionName("item"))
     val MAXRESULTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("maxResults"))

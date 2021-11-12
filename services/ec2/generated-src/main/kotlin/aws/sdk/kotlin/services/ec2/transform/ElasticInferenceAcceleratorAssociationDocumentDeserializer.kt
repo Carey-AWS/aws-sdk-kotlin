@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeElasticInferenceAcceleratorAssociationDocument(deserializer: Deserializer): ElasticInferenceAcceleratorAssociation {
+internal fun deserializeElasticInferenceAcceleratorAssociationDocument(deserializer: Deserializer): ElasticInferenceAcceleratorAssociation {
     val builder = ElasticInferenceAcceleratorAssociation.builder()
     val ELASTICINFERENCEACCELERATORARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("elasticInferenceAcceleratorArn"))
     val ELASTICINFERENCEACCELERATORASSOCIATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("elasticInferenceAcceleratorAssociationId"))

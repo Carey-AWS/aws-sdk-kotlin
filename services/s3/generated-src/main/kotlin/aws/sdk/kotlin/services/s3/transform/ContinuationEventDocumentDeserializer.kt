@@ -10,7 +10,7 @@ import aws.smithy.kotlin.runtime.serde.SerialKind
 import aws.smithy.kotlin.runtime.serde.deserializeStruct
 
 
-internal suspend fun deserializeContinuationEventDocument(deserializer: Deserializer): ContinuationEvent {
+internal fun deserializeContinuationEventDocument(deserializer: Deserializer): ContinuationEvent {
     val builder = ContinuationEvent.builder()
     deserializer.deserializeStruct(SdkObjectDescriptor.build {}) {
         loop@while (true) {

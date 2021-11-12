@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDhcpConfigurationDocument(deserializer: Deserializer): DhcpConfiguration {
+internal fun deserializeDhcpConfigurationDocument(deserializer: Deserializer): DhcpConfiguration {
     val builder = DhcpConfiguration.builder()
     val KEY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("key"))
     val VALUES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("valueSet"), XmlCollectionName("item"))

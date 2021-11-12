@@ -45,7 +45,7 @@ internal class AuthorizeClientVpnIngressOperationDeserializer: HttpDeserialize<A
     }
 }
 
-private suspend fun deserializeAuthorizeClientVpnIngressOperationBody(builder: AuthorizeClientVpnIngressResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAuthorizeClientVpnIngressOperationBody(builder: AuthorizeClientVpnIngressResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("status"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

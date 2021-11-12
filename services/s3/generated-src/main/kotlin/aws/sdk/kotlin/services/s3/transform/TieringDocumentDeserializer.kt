@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTieringDocument(deserializer: Deserializer): Tiering {
+internal fun deserializeTieringDocument(deserializer: Deserializer): Tiering {
     val builder = Tiering.builder()
     val ACCESSTIER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("AccessTier"))
     val DAYS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("Days"))

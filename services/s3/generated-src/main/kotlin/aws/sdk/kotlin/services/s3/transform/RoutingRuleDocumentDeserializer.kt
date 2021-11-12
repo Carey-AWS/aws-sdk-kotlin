@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeRoutingRuleDocument(deserializer: Deserializer): RoutingRule {
+internal fun deserializeRoutingRuleDocument(deserializer: Deserializer): RoutingRule {
     val builder = RoutingRule.builder()
     val CONDITION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Condition"))
     val REDIRECT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Redirect"))

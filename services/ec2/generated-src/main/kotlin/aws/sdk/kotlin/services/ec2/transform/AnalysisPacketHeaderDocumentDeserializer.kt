@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAnalysisPacketHeaderDocument(deserializer: Deserializer): AnalysisPacketHeader {
+internal fun deserializeAnalysisPacketHeaderDocument(deserializer: Deserializer): AnalysisPacketHeader {
     val builder = AnalysisPacketHeader.builder()
     val DESTINATIONADDRESSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("destinationAddressSet"), XmlCollectionName("item"))
     val DESTINATIONPORTRANGES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("destinationPortRangeSet"), XmlCollectionName("item"))

@@ -44,7 +44,7 @@ internal class UpdateTableReplicaAutoScalingOperationDeserializer: HttpDeseriali
     }
 }
 
-private suspend fun deserializeUpdateTableReplicaAutoScalingOperationBody(builder: UpdateTableReplicaAutoScalingResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeUpdateTableReplicaAutoScalingOperationBody(builder: UpdateTableReplicaAutoScalingResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val TABLEAUTOSCALINGDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("TableAutoScalingDescription"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

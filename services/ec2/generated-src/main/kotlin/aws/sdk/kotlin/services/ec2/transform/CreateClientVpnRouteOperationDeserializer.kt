@@ -45,7 +45,7 @@ internal class CreateClientVpnRouteOperationDeserializer: HttpDeserialize<Create
     }
 }
 
-private suspend fun deserializeCreateClientVpnRouteOperationBody(builder: CreateClientVpnRouteResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateClientVpnRouteOperationBody(builder: CreateClientVpnRouteResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("status"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

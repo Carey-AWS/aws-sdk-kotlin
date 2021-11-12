@@ -48,7 +48,7 @@ internal class AssignPrivateIpAddressesOperationDeserializer: HttpDeserialize<As
     }
 }
 
-private suspend fun deserializeAssignPrivateIpAddressesOperationBody(builder: AssignPrivateIpAddressesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAssignPrivateIpAddressesOperationBody(builder: AssignPrivateIpAddressesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ASSIGNEDIPV4PREFIXES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("assignedIpv4PrefixSet"), XmlCollectionName("item"))
     val ASSIGNEDPRIVATEIPADDRESSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("assignedPrivateIpAddressesSet"), XmlCollectionName("item"))

@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeVgwTelemetryDocument(deserializer: Deserializer): VgwTelemetry {
+internal fun deserializeVgwTelemetryDocument(deserializer: Deserializer): VgwTelemetry {
     val builder = VgwTelemetry.builder()
     val ACCEPTEDROUTECOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("acceptedRouteCount"))
     val CERTIFICATEARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("certificateArn"))

@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceStatusDocument(deserializer: Deserializer): InstanceStatus {
+internal fun deserializeInstanceStatusDocument(deserializer: Deserializer): InstanceStatus {
     val builder = InstanceStatus.builder()
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))
     val EVENTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("eventsSet"), XmlCollectionName("item"))

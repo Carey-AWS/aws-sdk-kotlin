@@ -47,7 +47,7 @@ internal class GetTransitGatewayAttachmentPropagationsOperationDeserializer: Htt
     }
 }
 
-private suspend fun deserializeGetTransitGatewayAttachmentPropagationsOperationBody(builder: GetTransitGatewayAttachmentPropagationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetTransitGatewayAttachmentPropagationsOperationBody(builder: GetTransitGatewayAttachmentPropagationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val TRANSITGATEWAYATTACHMENTPROPAGATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("transitGatewayAttachmentPropagations"), XmlCollectionName("item"))

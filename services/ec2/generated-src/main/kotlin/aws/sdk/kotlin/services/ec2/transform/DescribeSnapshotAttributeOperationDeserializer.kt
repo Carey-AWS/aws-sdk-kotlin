@@ -48,7 +48,7 @@ internal class DescribeSnapshotAttributeOperationDeserializer: HttpDeserialize<D
     }
 }
 
-private suspend fun deserializeDescribeSnapshotAttributeOperationBody(builder: DescribeSnapshotAttributeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeSnapshotAttributeOperationBody(builder: DescribeSnapshotAttributeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CREATEVOLUMEPERMISSIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("createVolumePermission"), XmlCollectionName("item"))
     val PRODUCTCODES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("productCodes"), XmlCollectionName("item"))

@@ -35,7 +35,7 @@ internal class ReplicaAlreadyExistsExceptionDeserializer: HttpDeserialize<Replic
     }
 }
 
-private suspend fun deserializeReplicaAlreadyExistsExceptionError(builder: ReplicaAlreadyExistsException.DslBuilder, payload: ByteArray) {
+private fun deserializeReplicaAlreadyExistsExceptionError(builder: ReplicaAlreadyExistsException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

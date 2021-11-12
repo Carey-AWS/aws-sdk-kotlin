@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeRecurringChargeDocument(deserializer: Deserializer): RecurringCharge {
+internal fun deserializeRecurringChargeDocument(deserializer: Deserializer): RecurringCharge {
     val builder = RecurringCharge.builder()
     val AMOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Double, XmlSerialName("amount"))
     val FREQUENCY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("frequency"))

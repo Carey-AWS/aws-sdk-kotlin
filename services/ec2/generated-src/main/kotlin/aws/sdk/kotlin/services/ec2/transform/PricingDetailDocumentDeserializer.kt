@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePricingDetailDocument(deserializer: Deserializer): PricingDetail {
+internal fun deserializePricingDetailDocument(deserializer: Deserializer): PricingDetail {
     val builder = PricingDetail.builder()
     val COUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("count"))
     val PRICE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Double, XmlSerialName("price"))

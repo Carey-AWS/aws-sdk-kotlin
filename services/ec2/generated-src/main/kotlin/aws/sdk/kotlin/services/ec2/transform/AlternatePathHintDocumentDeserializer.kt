@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAlternatePathHintDocument(deserializer: Deserializer): AlternatePathHint {
+internal fun deserializeAlternatePathHintDocument(deserializer: Deserializer): AlternatePathHint {
     val builder = AlternatePathHint.builder()
     val COMPONENTARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("componentArn"))
     val COMPONENTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("componentId"))

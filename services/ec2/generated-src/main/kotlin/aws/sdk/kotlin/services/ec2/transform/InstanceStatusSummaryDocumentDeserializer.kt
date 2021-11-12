@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceStatusSummaryDocument(deserializer: Deserializer): InstanceStatusSummary {
+internal fun deserializeInstanceStatusSummaryDocument(deserializer: Deserializer): InstanceStatusSummary {
     val builder = InstanceStatusSummary.builder()
     val DETAILS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("details"), XmlCollectionName("item"))
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("status"))

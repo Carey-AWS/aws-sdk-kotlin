@@ -48,7 +48,7 @@ internal class RunInstancesOperationDeserializer: HttpDeserialize<RunInstancesRe
     }
 }
 
-private suspend fun deserializeRunInstancesOperationBody(builder: RunInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRunInstancesOperationBody(builder: RunInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val GROUPS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("groupSet"), XmlCollectionName("item"))
     val INSTANCES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instancesSet"), XmlCollectionName("item"))

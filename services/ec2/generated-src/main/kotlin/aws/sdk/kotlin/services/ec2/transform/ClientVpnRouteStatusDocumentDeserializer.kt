@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeClientVpnRouteStatusDocument(deserializer: Deserializer): ClientVpnRouteStatus {
+internal fun deserializeClientVpnRouteStatusDocument(deserializer: Deserializer): ClientVpnRouteStatus {
     val builder = ClientVpnRouteStatus.builder()
     val CODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("code"))
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))

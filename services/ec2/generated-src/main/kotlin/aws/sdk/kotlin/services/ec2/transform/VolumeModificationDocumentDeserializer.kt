@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeVolumeModificationDocument(deserializer: Deserializer): VolumeModification {
+internal fun deserializeVolumeModificationDocument(deserializer: Deserializer): VolumeModification {
     val builder = VolumeModification.builder()
     val ENDTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("endTime"))
     val MODIFICATIONSTATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("modificationState"))

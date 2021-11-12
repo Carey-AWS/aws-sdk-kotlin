@@ -30,7 +30,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeSpotFleetRequestConfigDataDocument(deserializer: Deserializer): SpotFleetRequestConfigData {
+internal fun deserializeSpotFleetRequestConfigDataDocument(deserializer: Deserializer): SpotFleetRequestConfigData {
     val builder = SpotFleetRequestConfigData.builder()
     val ALLOCATIONSTRATEGY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allocationStrategy"))
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientToken"))

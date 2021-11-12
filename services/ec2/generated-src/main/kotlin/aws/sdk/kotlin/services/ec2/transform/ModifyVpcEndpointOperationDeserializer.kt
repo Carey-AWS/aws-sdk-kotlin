@@ -45,7 +45,7 @@ internal class ModifyVpcEndpointOperationDeserializer: HttpDeserialize<ModifyVpc
     }
 }
 
-private suspend fun deserializeModifyVpcEndpointOperationBody(builder: ModifyVpcEndpointResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyVpcEndpointOperationBody(builder: ModifyVpcEndpointResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

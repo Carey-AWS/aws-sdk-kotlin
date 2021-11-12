@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeRegionDocument(deserializer: Deserializer): Region {
+internal fun deserializeRegionDocument(deserializer: Deserializer): Region {
     val builder = Region.builder()
     val ENDPOINT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("regionEndpoint"))
     val OPTINSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("optInStatus"))

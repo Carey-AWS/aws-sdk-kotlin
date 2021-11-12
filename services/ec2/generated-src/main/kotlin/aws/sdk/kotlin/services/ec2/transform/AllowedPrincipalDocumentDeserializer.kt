@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAllowedPrincipalDocument(deserializer: Deserializer): AllowedPrincipal {
+internal fun deserializeAllowedPrincipalDocument(deserializer: Deserializer): AllowedPrincipal {
     val builder = AllowedPrincipal.builder()
     val PRINCIPAL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("principal"))
     val PRINCIPALTYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("principalType"))

@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchTemplateInstanceMarketOptionsDocument(deserializer: Deserializer): LaunchTemplateInstanceMarketOptions {
+internal fun deserializeLaunchTemplateInstanceMarketOptionsDocument(deserializer: Deserializer): LaunchTemplateInstanceMarketOptions {
     val builder = LaunchTemplateInstanceMarketOptions.builder()
     val MARKETTYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("marketType"))
     val SPOTOPTIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("spotOptions"))

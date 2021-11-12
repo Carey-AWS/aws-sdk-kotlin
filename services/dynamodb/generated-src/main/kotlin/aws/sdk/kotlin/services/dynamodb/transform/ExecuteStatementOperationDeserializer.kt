@@ -45,7 +45,7 @@ internal class ExecuteStatementOperationDeserializer: HttpDeserialize<ExecuteSta
     }
 }
 
-private suspend fun deserializeExecuteStatementOperationBody(builder: ExecuteStatementResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeExecuteStatementOperationBody(builder: ExecuteStatementResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val ITEMS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("Items"))
     val ITEMS_C0_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Map)

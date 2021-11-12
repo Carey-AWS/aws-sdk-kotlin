@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAbortIncompleteMultipartUploadDocument(deserializer: Deserializer): AbortIncompleteMultipartUpload {
+internal fun deserializeAbortIncompleteMultipartUploadDocument(deserializer: Deserializer): AbortIncompleteMultipartUpload {
     val builder = AbortIncompleteMultipartUpload.builder()
     val DAYSAFTERINITIATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("DaysAfterInitiation"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

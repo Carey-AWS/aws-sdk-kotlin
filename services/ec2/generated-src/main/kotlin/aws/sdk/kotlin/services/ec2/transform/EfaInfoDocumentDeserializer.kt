@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeEfaInfoDocument(deserializer: Deserializer): EfaInfo {
+internal fun deserializeEfaInfoDocument(deserializer: Deserializer): EfaInfo {
     val builder = EfaInfo.builder()
     val MAXIMUMEFAINTERFACES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("maximumEfaInterfaces"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -35,7 +35,7 @@ internal class InvalidEndpointExceptionDeserializer: HttpDeserialize<InvalidEndp
     }
 }
 
-private suspend fun deserializeInvalidEndpointExceptionError(builder: InvalidEndpointException.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidEndpointExceptionError(builder: InvalidEndpointException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

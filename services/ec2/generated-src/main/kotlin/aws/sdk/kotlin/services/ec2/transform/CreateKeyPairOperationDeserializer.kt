@@ -47,7 +47,7 @@ internal class CreateKeyPairOperationDeserializer: HttpDeserialize<CreateKeyPair
     }
 }
 
-private suspend fun deserializeCreateKeyPairOperationBody(builder: CreateKeyPairResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateKeyPairOperationBody(builder: CreateKeyPairResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val KEYFINGERPRINT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("keyFingerprint"))
     val KEYMATERIAL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("keyMaterial"))

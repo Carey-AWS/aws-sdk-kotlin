@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePriceScheduleDocument(deserializer: Deserializer): PriceSchedule {
+internal fun deserializePriceScheduleDocument(deserializer: Deserializer): PriceSchedule {
     val builder = PriceSchedule.builder()
     val ACTIVE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("active"))
     val CURRENCYCODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("currencyCode"))

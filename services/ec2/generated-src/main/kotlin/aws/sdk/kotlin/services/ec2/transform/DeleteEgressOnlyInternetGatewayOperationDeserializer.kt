@@ -45,7 +45,7 @@ internal class DeleteEgressOnlyInternetGatewayOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeDeleteEgressOnlyInternetGatewayOperationBody(builder: DeleteEgressOnlyInternetGatewayResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteEgressOnlyInternetGatewayOperationBody(builder: DeleteEgressOnlyInternetGatewayResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURNCODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("returnCode"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -47,7 +47,7 @@ internal class GetVpnConnectionDeviceTypesOperationDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeGetVpnConnectionDeviceTypesOperationBody(builder: GetVpnConnectionDeviceTypesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetVpnConnectionDeviceTypesOperationBody(builder: GetVpnConnectionDeviceTypesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val VPNCONNECTIONDEVICETYPES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("vpnConnectionDeviceTypeSet"), XmlCollectionName("item"))

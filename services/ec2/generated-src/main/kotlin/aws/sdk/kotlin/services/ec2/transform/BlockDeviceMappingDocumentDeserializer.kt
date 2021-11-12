@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeBlockDeviceMappingDocument(deserializer: Deserializer): BlockDeviceMapping {
+internal fun deserializeBlockDeviceMappingDocument(deserializer: Deserializer): BlockDeviceMapping {
     val builder = BlockDeviceMapping.builder()
     val DEVICENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("deviceName"))
     val EBS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("ebs"))

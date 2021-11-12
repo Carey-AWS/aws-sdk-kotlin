@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeNetworkInsightsPathDocument(deserializer: Deserializer): NetworkInsightsPath {
+internal fun deserializeNetworkInsightsPathDocument(deserializer: Deserializer): NetworkInsightsPath {
     val builder = NetworkInsightsPath.builder()
     val CREATEDDATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("createdDate"))
     val DESTINATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("destination"))

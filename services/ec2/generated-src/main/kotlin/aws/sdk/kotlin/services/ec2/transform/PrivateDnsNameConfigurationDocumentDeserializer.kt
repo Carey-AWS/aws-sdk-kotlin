@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePrivateDnsNameConfigurationDocument(deserializer: Deserializer): PrivateDnsNameConfiguration {
+internal fun deserializePrivateDnsNameConfigurationDocument(deserializer: Deserializer): PrivateDnsNameConfiguration {
     val builder = PrivateDnsNameConfiguration.builder()
     val NAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("name"))
     val STATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("state"))

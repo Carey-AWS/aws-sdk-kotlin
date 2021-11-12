@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAuthorizationRuleDocument(deserializer: Deserializer): AuthorizationRule {
+internal fun deserializeAuthorizationRuleDocument(deserializer: Deserializer): AuthorizationRule {
     val builder = AuthorizationRule.builder()
     val ACCESSALL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("accessAll"))
     val CLIENTVPNENDPOINTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientVpnEndpointId"))

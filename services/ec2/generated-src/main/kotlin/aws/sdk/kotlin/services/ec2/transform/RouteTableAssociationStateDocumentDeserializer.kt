@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeRouteTableAssociationStateDocument(deserializer: Deserializer): RouteTableAssociationState {
+internal fun deserializeRouteTableAssociationStateDocument(deserializer: Deserializer): RouteTableAssociationState {
     val builder = RouteTableAssociationState.builder()
     val STATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("state"))
     val STATUSMESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("statusMessage"))

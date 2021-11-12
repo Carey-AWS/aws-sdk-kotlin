@@ -45,7 +45,7 @@ internal class DisableKinesisStreamingDestinationOperationDeserializer: HttpDese
     }
 }
 
-private suspend fun deserializeDisableKinesisStreamingDestinationOperationBody(builder: DisableKinesisStreamingDestinationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisableKinesisStreamingDestinationOperationBody(builder: DisableKinesisStreamingDestinationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val DESTINATIONSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("DestinationStatus"))
     val STREAMARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("StreamArn"))

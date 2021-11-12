@@ -47,7 +47,7 @@ internal class CreateSnapshotsOperationDeserializer: HttpDeserialize<CreateSnaps
     }
 }
 
-private suspend fun deserializeCreateSnapshotsOperationBody(builder: CreateSnapshotsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateSnapshotsOperationBody(builder: CreateSnapshotsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SNAPSHOTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("snapshotSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

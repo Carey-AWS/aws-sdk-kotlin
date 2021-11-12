@@ -49,7 +49,7 @@ internal class ListBucketIntelligentTieringConfigurationsOperationDeserializer: 
     }
 }
 
-private suspend fun deserializeListBucketIntelligentTieringConfigurationsOperationBody(builder: ListBucketIntelligentTieringConfigurationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListBucketIntelligentTieringConfigurationsOperationBody(builder: ListBucketIntelligentTieringConfigurationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CONTINUATIONTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ContinuationToken"))
     val INTELLIGENTTIERINGCONFIGURATIONLIST_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("IntelligentTieringConfiguration"), Flattened)

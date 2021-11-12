@@ -28,7 +28,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeCapacityReservationDocument(deserializer: Deserializer): CapacityReservation {
+internal fun deserializeCapacityReservationDocument(deserializer: Deserializer): CapacityReservation {
     val builder = CapacityReservation.builder()
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))
     val AVAILABILITYZONEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZoneId"))

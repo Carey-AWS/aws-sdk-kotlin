@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeNetworkInterfacePermissionDocument(deserializer: Deserializer): NetworkInterfacePermission {
+internal fun deserializeNetworkInterfacePermissionDocument(deserializer: Deserializer): NetworkInterfacePermission {
     val builder = NetworkInterfacePermission.builder()
     val AWSACCOUNTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("awsAccountId"))
     val AWSSERVICE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("awsService"))

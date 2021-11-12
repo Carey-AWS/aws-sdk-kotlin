@@ -45,7 +45,7 @@ internal class CreateSubnetOperationDeserializer: HttpDeserialize<CreateSubnetRe
     }
 }
 
-private suspend fun deserializeCreateSubnetOperationBody(builder: CreateSubnetResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateSubnetOperationBody(builder: CreateSubnetResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SUBNET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("subnet"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

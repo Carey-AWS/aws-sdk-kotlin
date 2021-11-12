@@ -47,7 +47,7 @@ internal class ReleaseHostsOperationDeserializer: HttpDeserialize<ReleaseHostsRe
     }
 }
 
-private suspend fun deserializeReleaseHostsOperationBody(builder: ReleaseHostsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeReleaseHostsOperationBody(builder: ReleaseHostsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SUCCESSFUL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("successful"), XmlCollectionName("item"))
     val UNSUCCESSFUL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("unsuccessful"), XmlCollectionName("item"))

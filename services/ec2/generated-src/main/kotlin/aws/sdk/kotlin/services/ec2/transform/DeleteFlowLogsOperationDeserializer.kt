@@ -47,7 +47,7 @@ internal class DeleteFlowLogsOperationDeserializer: HttpDeserialize<DeleteFlowLo
     }
 }
 
-private suspend fun deserializeDeleteFlowLogsOperationBody(builder: DeleteFlowLogsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteFlowLogsOperationBody(builder: DeleteFlowLogsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val UNSUCCESSFUL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("unsuccessful"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeClassicLoadBalancersConfigDocument(deserializer: Deserializer): ClassicLoadBalancersConfig {
+internal fun deserializeClassicLoadBalancersConfigDocument(deserializer: Deserializer): ClassicLoadBalancersConfig {
     val builder = ClassicLoadBalancersConfig.builder()
     val CLASSICLOADBALANCERS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("classicLoadBalancers"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

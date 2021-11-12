@@ -45,7 +45,7 @@ internal class ModifyInstanceMetadataOptionsOperationDeserializer: HttpDeseriali
     }
 }
 
-private suspend fun deserializeModifyInstanceMetadataOptionsOperationBody(builder: ModifyInstanceMetadataOptionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyInstanceMetadataOptionsOperationBody(builder: ModifyInstanceMetadataOptionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceId"))
     val INSTANCEMETADATAOPTIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("instanceMetadataOptions"))

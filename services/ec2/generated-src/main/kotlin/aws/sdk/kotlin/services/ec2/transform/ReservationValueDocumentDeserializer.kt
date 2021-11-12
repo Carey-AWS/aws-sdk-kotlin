@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeReservationValueDocument(deserializer: Deserializer): ReservationValue {
+internal fun deserializeReservationValueDocument(deserializer: Deserializer): ReservationValue {
     val builder = ReservationValue.builder()
     val HOURLYPRICE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("hourlyPrice"))
     val REMAININGTOTALVALUE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("remainingTotalValue"))

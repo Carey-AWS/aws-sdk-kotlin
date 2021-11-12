@@ -47,7 +47,7 @@ internal class DescribeImagesOperationDeserializer: HttpDeserialize<DescribeImag
     }
 }
 
-private suspend fun deserializeDescribeImagesOperationBody(builder: DescribeImagesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeImagesOperationBody(builder: DescribeImagesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IMAGES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("imagesSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

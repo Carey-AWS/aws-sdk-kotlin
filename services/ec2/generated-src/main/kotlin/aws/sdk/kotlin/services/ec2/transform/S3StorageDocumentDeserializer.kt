@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.util.decodeBase64Bytes
 
 
-internal suspend fun deserializeS3StorageDocument(deserializer: Deserializer): S3Storage {
+internal fun deserializeS3StorageDocument(deserializer: Deserializer): S3Storage {
     val builder = S3Storage.builder()
     val AWSACCESSKEYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("AWSAccessKeyId"))
     val BUCKET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("bucket"))

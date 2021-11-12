@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializePointInTimeRecoveryDescriptionDocument(deserializer: Deserializer): PointInTimeRecoveryDescription {
+internal fun deserializePointInTimeRecoveryDescriptionDocument(deserializer: Deserializer): PointInTimeRecoveryDescription {
     val builder = PointInTimeRecoveryDescription.builder()
     val EARLIESTRESTORABLEDATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, JsonSerialName("EarliestRestorableDateTime"))
     val LATESTRESTORABLEDATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, JsonSerialName("LatestRestorableDateTime"))

@@ -48,7 +48,7 @@ internal class GetBucketRequestPaymentOperationDeserializer: HttpDeserialize<Get
     }
 }
 
-private suspend fun deserializeGetBucketRequestPaymentOperationBody(builder: GetBucketRequestPaymentResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketRequestPaymentOperationBody(builder: GetBucketRequestPaymentResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val PAYER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Payer"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -35,7 +35,7 @@ internal class ResourceNotFoundExceptionDeserializer: HttpDeserialize<ResourceNo
     }
 }
 
-private suspend fun deserializeResourceNotFoundExceptionError(builder: ResourceNotFoundException.DslBuilder, payload: ByteArray) {
+private fun deserializeResourceNotFoundExceptionError(builder: ResourceNotFoundException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

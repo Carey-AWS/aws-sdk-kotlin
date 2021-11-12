@@ -45,7 +45,7 @@ internal class AssociateRouteTableOperationDeserializer: HttpDeserialize<Associa
     }
 }
 
-private suspend fun deserializeAssociateRouteTableOperationBody(builder: AssociateRouteTableResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAssociateRouteTableOperationBody(builder: AssociateRouteTableResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ASSOCIATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("associationId"))
     val ASSOCIATIONSTATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("associationState"))

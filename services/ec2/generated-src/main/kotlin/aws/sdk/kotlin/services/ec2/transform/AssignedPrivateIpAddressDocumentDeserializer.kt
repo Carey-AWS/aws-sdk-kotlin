@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAssignedPrivateIpAddressDocument(deserializer: Deserializer): AssignedPrivateIpAddress {
+internal fun deserializeAssignedPrivateIpAddressDocument(deserializer: Deserializer): AssignedPrivateIpAddress {
     val builder = AssignedPrivateIpAddress.builder()
     val PRIVATEIPADDRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("privateIpAddress"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -47,7 +47,7 @@ internal class DescribeConversionTasksOperationDeserializer: HttpDeserialize<Des
     }
 }
 
-private suspend fun deserializeDescribeConversionTasksOperationBody(builder: DescribeConversionTasksResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeConversionTasksOperationBody(builder: DescribeConversionTasksResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CONVERSIONTASKS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("conversionTasks"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

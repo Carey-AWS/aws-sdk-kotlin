@@ -45,7 +45,7 @@ internal class ModifyTrafficMirrorFilterNetworkServicesOperationDeserializer: Ht
     }
 }
 
-private suspend fun deserializeModifyTrafficMirrorFilterNetworkServicesOperationBody(builder: ModifyTrafficMirrorFilterNetworkServicesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyTrafficMirrorFilterNetworkServicesOperationBody(builder: ModifyTrafficMirrorFilterNetworkServicesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val TRAFFICMIRRORFILTER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("trafficMirrorFilter"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

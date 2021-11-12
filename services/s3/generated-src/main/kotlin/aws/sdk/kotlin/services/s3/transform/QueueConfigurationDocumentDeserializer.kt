@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeQueueConfigurationDocument(deserializer: Deserializer): QueueConfiguration {
+internal fun deserializeQueueConfigurationDocument(deserializer: Deserializer): QueueConfiguration {
     val builder = QueueConfiguration.builder()
     val EVENTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("Event"), Flattened)
     val FILTER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Filter"))

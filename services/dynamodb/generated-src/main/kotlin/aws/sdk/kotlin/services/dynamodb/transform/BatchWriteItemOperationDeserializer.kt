@@ -47,7 +47,7 @@ internal class BatchWriteItemOperationDeserializer: HttpDeserialize<BatchWriteIt
     }
 }
 
-private suspend fun deserializeBatchWriteItemOperationBody(builder: BatchWriteItemResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeBatchWriteItemOperationBody(builder: BatchWriteItemResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val CONSUMEDCAPACITY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("ConsumedCapacity"))
     val ITEMCOLLECTIONMETRICS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Map, JsonSerialName("ItemCollectionMetrics"))

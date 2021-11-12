@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAnalysisLoadBalancerListenerDocument(deserializer: Deserializer): AnalysisLoadBalancerListener {
+internal fun deserializeAnalysisLoadBalancerListenerDocument(deserializer: Deserializer): AnalysisLoadBalancerListener {
     val builder = AnalysisLoadBalancerListener.builder()
     val INSTANCEPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("instancePort"))
     val LOADBALANCERPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("loadBalancerPort"))

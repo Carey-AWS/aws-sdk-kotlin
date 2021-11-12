@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDiskInfoDocument(deserializer: Deserializer): DiskInfo {
+internal fun deserializeDiskInfoDocument(deserializer: Deserializer): DiskInfo {
     val builder = DiskInfo.builder()
     val COUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("count"))
     val SIZEINGB_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, XmlSerialName("sizeInGB"))

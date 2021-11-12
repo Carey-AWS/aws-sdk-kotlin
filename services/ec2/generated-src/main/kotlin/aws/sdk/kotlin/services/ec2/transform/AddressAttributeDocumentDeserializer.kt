@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAddressAttributeDocument(deserializer: Deserializer): AddressAttribute {
+internal fun deserializeAddressAttributeDocument(deserializer: Deserializer): AddressAttribute {
     val builder = AddressAttribute.builder()
     val ALLOCATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allocationId"))
     val PTRRECORD_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ptrRecord"))

@@ -27,7 +27,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceTypeInfoDocument(deserializer: Deserializer): InstanceTypeInfo {
+internal fun deserializeInstanceTypeInfoDocument(deserializer: Deserializer): InstanceTypeInfo {
     val builder = InstanceTypeInfo.builder()
     val AUTORECOVERYSUPPORTED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("autoRecoverySupported"))
     val BAREMETAL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("bareMetal"))

@@ -48,7 +48,7 @@ internal class GetCapacityReservationUsageOperationDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeGetCapacityReservationUsageOperationBody(builder: GetCapacityReservationUsageResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetCapacityReservationUsageOperationBody(builder: GetCapacityReservationUsageResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val AVAILABLEINSTANCECOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("availableInstanceCount"))
     val CAPACITYRESERVATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("capacityReservationId"))

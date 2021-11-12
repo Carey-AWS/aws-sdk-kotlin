@@ -47,7 +47,7 @@ internal class CancelSpotInstanceRequestsOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeCancelSpotInstanceRequestsOperationBody(builder: CancelSpotInstanceRequestsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCancelSpotInstanceRequestsOperationBody(builder: CancelSpotInstanceRequestsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CANCELLEDSPOTINSTANCEREQUESTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("spotInstanceRequestSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInventoryDestinationDocument(deserializer: Deserializer): InventoryDestination {
+internal fun deserializeInventoryDestinationDocument(deserializer: Deserializer): InventoryDestination {
     val builder = InventoryDestination.builder()
     val S3BUCKETDESTINATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("S3BucketDestination"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

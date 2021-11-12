@@ -2,15 +2,23 @@
 
 package aws.sdk.kotlin.services.ec2
 
+import aws.sdk.kotlin.runtime.auth.signing.AwsSigV4SigningMiddleware
 import aws.sdk.kotlin.runtime.client.AwsClientOption
 import aws.sdk.kotlin.runtime.execution.AuthAttributes
+import aws.sdk.kotlin.runtime.http.ApiMetadata
+import aws.sdk.kotlin.runtime.http.AwsUserAgentMetadata
 import aws.sdk.kotlin.runtime.http.engine.crt.CrtHttpEngine
+import aws.sdk.kotlin.runtime.http.middleware.ResolveAwsEndpoint
+import aws.sdk.kotlin.runtime.http.middleware.UserAgent
+import aws.sdk.kotlin.runtime.http.retries.AwsDefaultRetryPolicy
 import aws.sdk.kotlin.services.ec2.model.*
 import aws.sdk.kotlin.services.ec2.transform.*
 import aws.smithy.kotlin.runtime.client.ExecutionContext
 import aws.smithy.kotlin.runtime.client.SdkClientOption
 import aws.smithy.kotlin.runtime.client.idempotencyTokenProvider
 import aws.smithy.kotlin.runtime.http.SdkHttpClient
+import aws.smithy.kotlin.runtime.http.middleware.MutateHeaders
+import aws.smithy.kotlin.runtime.http.middleware.RetryFeature
 import aws.smithy.kotlin.runtime.http.operation.SdkHttpOperation
 import aws.smithy.kotlin.runtime.http.operation.context
 import aws.smithy.kotlin.runtime.http.operation.roundTrip
@@ -28,6 +36,7 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
         val httpClientEngine = config.httpClientEngine ?: CrtHttpEngine()
         client = sdkHttpClient(httpClientEngine, manageEngine = config.httpClientEngine == null)
     }
+    private val awsUserAgentMetadata = AwsUserAgentMetadata.fromEnvironment(ApiMetadata(ServiceId, SdkVersion))
 
     /**
      * Accepts the Convertible Reserved Instance exchange quote described in the GetReservedInstancesExchangeQuote call.
@@ -42,8 +51,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AcceptReservedInstancesExchangeQuote"
             }
         }
-        registerAcceptReservedInstancesExchangeQuoteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -60,8 +86,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AcceptTransitGatewayMulticastDomainAssociations"
             }
         }
-        registerAcceptTransitGatewayMulticastDomainAssociationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -79,8 +122,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AcceptTransitGatewayPeeringAttachment"
             }
         }
-        registerAcceptTransitGatewayPeeringAttachmentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -100,8 +160,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AcceptTransitGatewayVpcAttachment"
             }
         }
-        registerAcceptTransitGatewayVpcAttachmentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -119,8 +196,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AcceptVpcEndpointConnections"
             }
         }
-        registerAcceptVpcEndpointConnectionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -142,8 +236,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AcceptVpcPeeringConnection"
             }
         }
-        registerAcceptVpcPeeringConnectionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -170,8 +281,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AdvertiseByoipCidr"
             }
         }
-        registerAdvertiseByoipCidrMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -200,8 +328,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AllocateAddress"
             }
         }
-        registerAllocateAddressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -220,8 +365,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AllocateHosts"
             }
         }
-        registerAllocateHostsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -239,8 +401,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ApplySecurityGroupsToClientVpnTargetNetwork"
             }
         }
-        registerApplySecurityGroupsToClientVpnTargetNetworkMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -267,8 +446,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssignIpv6Addresses"
             }
         }
-        registerAssignIpv6AddressesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -300,8 +496,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssignPrivateIpAddresses"
             }
         }
-        registerAssignPrivateIpAddressesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -340,8 +553,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateAddress"
             }
         }
-        registerAssociateAddressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -359,8 +589,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateClientVpnTargetNetwork"
             }
         }
-        registerAssociateClientVpnTargetNetworkMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -380,8 +627,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateDhcpOptions"
             }
         }
-        registerAssociateDhcpOptionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -410,8 +674,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateEnclaveCertificateIamRole"
             }
         }
-        registerAssociateEnclaveCertificateIamRoleMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -429,8 +710,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateIamInstanceProfile"
             }
         }
-        registerAssociateIamInstanceProfileMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -450,8 +748,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateInstanceEventWindow"
             }
         }
-        registerAssociateInstanceEventWindowMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -474,8 +789,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateRouteTable"
             }
         }
-        registerAssociateRouteTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -493,8 +825,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateSubnetCidrBlock"
             }
         }
-        registerAssociateSubnetCidrBlockMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -513,8 +862,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateTransitGatewayMulticastDomain"
             }
         }
-        registerAssociateTransitGatewayMulticastDomainMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -532,8 +898,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateTransitGatewayRouteTable"
             }
         }
-        registerAssociateTransitGatewayRouteTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -554,8 +937,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateTrunkInterface"
             }
         }
-        registerAssociateTrunkInterfaceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -580,8 +980,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AssociateVpcCidrBlock"
             }
         }
-        registerAssociateVpcCidrBlockMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -604,8 +1021,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AttachClassicLinkVpc"
             }
         }
-        registerAttachClassicLinkVpcMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -623,8 +1057,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AttachInternetGateway"
             }
         }
-        registerAttachInternetGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -641,8 +1092,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AttachNetworkInterface"
             }
         }
-        registerAttachNetworkInterfaceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -673,8 +1141,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AttachVolume"
             }
         }
-        registerAttachVolumeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -694,8 +1179,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AttachVpnGateway"
             }
         }
-        registerAttachVpnGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -714,8 +1216,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AuthorizeClientVpnIngress"
             }
         }
-        registerAuthorizeClientVpnIngressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -740,8 +1259,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AuthorizeSecurityGroupEgress"
             }
         }
-        registerAuthorizeSecurityGroupEgressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -768,8 +1304,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "AuthorizeSecurityGroupIngress"
             }
         }
-        registerAuthorizeSecurityGroupIngressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -788,8 +1341,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "BundleInstance"
             }
         }
-        registerBundleInstanceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -806,8 +1376,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CancelBundleTask"
             }
         }
-        registerCancelBundleTaskMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -829,8 +1416,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CancelCapacityReservation"
             }
         }
-        registerCancelCapacityReservationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -853,8 +1457,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CancelCapacityReservationFleets"
             }
         }
-        registerCancelCapacityReservationFleetsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -875,8 +1496,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CancelConversionTask"
             }
         }
-        registerCancelConversionTaskMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -895,8 +1533,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CancelExportTask"
             }
         }
-        registerCancelExportTaskMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -913,8 +1568,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CancelImportTask"
             }
         }
-        registerCancelImportTaskMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -934,8 +1606,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CancelReservedInstancesListing"
             }
         }
-        registerCancelReservedInstancesListingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -958,8 +1647,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CancelSpotFleetRequests"
             }
         }
-        registerCancelSpotFleetRequestsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -978,8 +1684,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CancelSpotInstanceRequests"
             }
         }
-        registerCancelSpotInstanceRequestsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -998,8 +1721,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ConfirmProductInstance"
             }
         }
-        registerConfirmProductInstanceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1016,8 +1756,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CopyFpgaImage"
             }
         }
-        registerCopyFpgaImageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1052,8 +1809,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CopyImage"
             }
         }
-        registerCopyImageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1089,8 +1863,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CopySnapshot"
             }
         }
-        registerCopySnapshotMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1121,8 +1912,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateCapacityReservation"
             }
         }
-        registerCreateCapacityReservationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1140,8 +1948,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateCapacityReservationFleet"
             }
         }
-        registerCreateCapacityReservationFleetMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1158,8 +1983,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateCarrierGateway"
             }
         }
-        registerCreateCarrierGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1178,8 +2020,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateClientVpnEndpoint"
             }
         }
-        registerCreateClientVpnEndpointMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1197,8 +2056,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateClientVpnRoute"
             }
         }
-        registerCreateClientVpnRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1236,8 +2112,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateCustomerGateway"
             }
         }
-        registerCreateCustomerGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1257,8 +2150,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateDefaultSubnet"
             }
         }
-        registerCreateDefaultSubnetMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1286,8 +2196,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateDefaultVpc"
             }
         }
-        registerCreateDefaultVpcMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1338,8 +2265,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateDhcpOptions"
             }
         }
-        registerCreateDhcpOptionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1359,8 +2303,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateEgressOnlyInternetGateway"
             }
         }
-        registerCreateEgressOnlyInternetGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1380,8 +2341,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateFleet"
             }
         }
-        registerCreateFleetMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1408,8 +2386,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateFlowLogs"
             }
         }
-        registerCreateFlowLogsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1431,8 +2426,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateFpgaImage"
             }
         }
-        registerCreateFpgaImageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1455,8 +2467,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateImage"
             }
         }
-        registerCreateImageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1487,8 +2516,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateInstanceEventWindow"
             }
         }
-        registerCreateInstanceEventWindowMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1508,8 +2554,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateInstanceExportTask"
             }
         }
-        registerCreateInstanceExportTaskMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1528,8 +2591,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateInternetGateway"
             }
         }
-        registerCreateInternetGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1555,8 +2635,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateKeyPair"
             }
         }
-        registerCreateKeyPairMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1577,8 +2674,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateLaunchTemplate"
             }
         }
-        registerCreateLaunchTemplateMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1600,8 +2714,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateLaunchTemplateVersion"
             }
         }
-        registerCreateLaunchTemplateVersionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1618,8 +2749,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateLocalGatewayRoute"
             }
         }
-        registerCreateLocalGatewayRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1636,8 +2784,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateLocalGatewayRouteTableVpcAssociation"
             }
         }
-        registerCreateLocalGatewayRouteTableVpcAssociationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1655,8 +2820,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateManagedPrefixList"
             }
         }
-        registerCreateManagedPrefixListMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1682,8 +2864,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateNatGateway"
             }
         }
-        registerCreateNatGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1702,8 +2901,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateNetworkAcl"
             }
         }
-        registerCreateNetworkAclMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1727,8 +2943,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateNetworkAclEntry"
             }
         }
-        registerCreateNetworkAclEntryMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1748,8 +2981,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateNetworkInsightsPath"
             }
         }
-        registerCreateNetworkInsightsPathMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1768,8 +3018,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateNetworkInterface"
             }
         }
-        registerCreateNetworkInterfaceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1788,8 +3055,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateNetworkInterfacePermission"
             }
         }
-        registerCreateNetworkInterfacePermissionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1815,8 +3099,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreatePlacementGroup"
             }
         }
-        registerCreatePlacementGroupMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1836,8 +3137,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateReplaceRootVolumeTask"
             }
         }
-        registerCreateReplaceRootVolumeTaskMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1867,8 +3185,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateReservedInstancesListing"
             }
         }
-        registerCreateReservedInstancesListingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1890,8 +3225,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateRestoreImageTask"
             }
         }
-        registerCreateRestoreImageTaskMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1920,8 +3272,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateRoute"
             }
         }
-        registerCreateRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1940,8 +3309,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateRouteTable"
             }
         }
-        registerCreateRouteTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1972,8 +3358,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateSecurityGroup"
             }
         }
-        registerCreateSecurityGroupMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2014,8 +3417,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateSnapshot"
             }
         }
-        registerCreateSnapshotMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2040,8 +3460,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateSnapshots"
             }
         }
-        registerCreateSnapshotsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2061,8 +3498,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateSpotDatafeedSubscription"
             }
         }
-        registerCreateSpotDatafeedSubscriptionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2083,8 +3537,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateStoreImageTask"
             }
         }
-        registerCreateStoreImageTaskMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2116,8 +3587,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateSubnet"
             }
         }
-        registerCreateSubnetMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2134,8 +3622,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateSubnetCidrReservation"
             }
         }
-        registerCreateSubnetCidrReservationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2160,8 +3665,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTags"
             }
         }
-        registerCreateTagsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2181,8 +3703,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTrafficMirrorFilter"
             }
         }
-        registerCreateTrafficMirrorFilterMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2201,8 +3740,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTrafficMirrorFilterRule"
             }
         }
-        registerCreateTrafficMirrorFilterRuleMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2225,8 +3781,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTrafficMirrorSession"
             }
         }
-        registerCreateTrafficMirrorSessionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2248,8 +3821,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTrafficMirrorTarget"
             }
         }
-        registerCreateTrafficMirrorTargetMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2278,8 +3868,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTransitGateway"
             }
         }
-        registerCreateTransitGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2297,8 +3904,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTransitGatewayConnect"
             }
         }
-        registerCreateTransitGatewayConnectMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2318,8 +3942,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTransitGatewayConnectPeer"
             }
         }
-        registerCreateTransitGatewayConnectPeerMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2337,8 +3978,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTransitGatewayMulticastDomain"
             }
         }
-        registerCreateTransitGatewayMulticastDomainMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2360,8 +4018,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTransitGatewayPeeringAttachment"
             }
         }
-        registerCreateTransitGatewayPeeringAttachmentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2378,8 +4053,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTransitGatewayPrefixListReference"
             }
         }
-        registerCreateTransitGatewayPrefixListReferenceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2396,8 +4088,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTransitGatewayRoute"
             }
         }
-        registerCreateTransitGatewayRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2414,8 +4123,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTransitGatewayRouteTable"
             }
         }
-        registerCreateTransitGatewayRouteTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2435,8 +4161,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateTransitGatewayVpcAttachment"
             }
         }
-        registerCreateTransitGatewayVpcAttachmentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2463,8 +4206,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateVolume"
             }
         }
-        registerCreateVolumeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2493,8 +4253,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateVpc"
             }
         }
-        registerCreateVpcMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2526,8 +4303,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateVpcEndpoint"
             }
         }
-        registerCreateVpcEndpointMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2548,8 +4342,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateVpcEndpointConnectionNotification"
             }
         }
-        registerCreateVpcEndpointConnectionNotificationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2579,8 +4390,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateVpcEndpointServiceConfiguration"
             }
         }
-        registerCreateVpcEndpointServiceConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2607,8 +4435,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateVpcPeeringConnection"
             }
         }
-        registerCreateVpcPeeringConnectionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2639,8 +4484,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateVpnConnection"
             }
         }
-        registerCreateVpnConnectionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2661,8 +4523,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateVpnConnectionRoute"
             }
         }
-        registerCreateVpnConnectionRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2683,8 +4562,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "CreateVpnGateway"
             }
         }
-        registerCreateVpnGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2704,8 +4600,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteCarrierGateway"
             }
         }
-        registerDeleteCarrierGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2723,8 +4636,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteClientVpnEndpoint"
             }
         }
-        registerDeleteClientVpnEndpointMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2744,8 +4674,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteClientVpnRoute"
             }
         }
-        registerDeleteClientVpnRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2763,8 +4710,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteCustomerGateway"
             }
         }
-        registerDeleteCustomerGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2781,8 +4745,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteDhcpOptions"
             }
         }
-        registerDeleteDhcpOptionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2799,8 +4780,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteEgressOnlyInternetGateway"
             }
         }
-        registerDeleteEgressOnlyInternetGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2835,8 +4833,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteFleets"
             }
         }
-        registerDeleteFleetsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2853,8 +4868,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteFlowLogs"
             }
         }
-        registerDeleteFlowLogsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2871,8 +4903,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteFpgaImage"
             }
         }
-        registerDeleteFpgaImageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2891,8 +4940,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteInstanceEventWindow"
             }
         }
-        registerDeleteInstanceEventWindowMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2910,8 +4976,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteInternetGateway"
             }
         }
-        registerDeleteInternetGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2928,8 +5011,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteKeyPair"
             }
         }
-        registerDeleteKeyPairMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2946,8 +5046,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteLaunchTemplate"
             }
         }
-        registerDeleteLaunchTemplateMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2967,8 +5084,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteLaunchTemplateVersions"
             }
         }
-        registerDeleteLaunchTemplateVersionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2985,8 +5119,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteLocalGatewayRoute"
             }
         }
-        registerDeleteLocalGatewayRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3003,8 +5154,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteLocalGatewayRouteTableVpcAssociation"
             }
         }
-        registerDeleteLocalGatewayRouteTableVpcAssociationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3021,8 +5189,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteManagedPrefixList"
             }
         }
-        registerDeleteManagedPrefixListMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3041,8 +5226,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteNatGateway"
             }
         }
-        registerDeleteNatGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3059,8 +5261,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteNetworkAcl"
             }
         }
-        registerDeleteNetworkAclMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3077,8 +5296,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteNetworkAclEntry"
             }
         }
-        registerDeleteNetworkAclEntryMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3095,8 +5331,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteNetworkInsightsAnalysis"
             }
         }
-        registerDeleteNetworkInsightsAnalysisMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3113,8 +5366,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteNetworkInsightsPath"
             }
         }
-        registerDeleteNetworkInsightsPathMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3131,8 +5401,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteNetworkInterface"
             }
         }
-        registerDeleteNetworkInterfaceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3152,8 +5439,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteNetworkInterfacePermission"
             }
         }
-        registerDeleteNetworkInterfacePermissionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3172,8 +5476,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeletePlacementGroup"
             }
         }
-        registerDeletePlacementGroupMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3190,8 +5511,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteQueuedReservedInstances"
             }
         }
-        registerDeleteQueuedReservedInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3208,8 +5546,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteRoute"
             }
         }
-        registerDeleteRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3226,8 +5581,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteRouteTable"
             }
         }
-        registerDeleteRouteTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3248,8 +5620,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteSecurityGroup"
             }
         }
-        registerDeleteSecurityGroupMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3275,8 +5664,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteSnapshot"
             }
         }
-        registerDeleteSnapshotMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3293,8 +5699,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteSpotDatafeedSubscription"
             }
         }
-        registerDeleteSpotDatafeedSubscriptionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3311,8 +5734,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteSubnet"
             }
         }
-        registerDeleteSubnetMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3329,8 +5769,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteSubnetCidrReservation"
             }
         }
-        registerDeleteSubnetCidrReservationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3350,8 +5807,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTags"
             }
         }
-        registerDeleteTagsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3369,8 +5843,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTrafficMirrorFilter"
             }
         }
-        registerDeleteTrafficMirrorFilterMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3387,8 +5878,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTrafficMirrorFilterRule"
             }
         }
-        registerDeleteTrafficMirrorFilterRuleMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3405,8 +5913,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTrafficMirrorSession"
             }
         }
-        registerDeleteTrafficMirrorSessionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3424,8 +5949,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTrafficMirrorTarget"
             }
         }
-        registerDeleteTrafficMirrorTargetMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3442,8 +5984,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTransitGateway"
             }
         }
-        registerDeleteTransitGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3461,8 +6020,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTransitGatewayConnect"
             }
         }
-        registerDeleteTransitGatewayConnectMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3479,8 +6055,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTransitGatewayConnectPeer"
             }
         }
-        registerDeleteTransitGatewayConnectPeerMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3497,8 +6090,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTransitGatewayMulticastDomain"
             }
         }
-        registerDeleteTransitGatewayMulticastDomainMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3515,8 +6125,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTransitGatewayPeeringAttachment"
             }
         }
-        registerDeleteTransitGatewayPeeringAttachmentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3533,8 +6160,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTransitGatewayPrefixListReference"
             }
         }
-        registerDeleteTransitGatewayPrefixListReferenceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3551,8 +6195,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTransitGatewayRoute"
             }
         }
-        registerDeleteTransitGatewayRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3570,8 +6231,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTransitGatewayRouteTable"
             }
         }
-        registerDeleteTransitGatewayRouteTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3588,8 +6266,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteTransitGatewayVpcAttachment"
             }
         }
-        registerDeleteTransitGatewayVpcAttachmentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3610,8 +6305,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteVolume"
             }
         }
-        registerDeleteVolumeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3628,8 +6340,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteVpc"
             }
         }
-        registerDeleteVpcMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3646,8 +6375,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteVpcEndpointConnectionNotifications"
             }
         }
-        registerDeleteVpcEndpointConnectionNotificationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3667,8 +6413,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteVpcEndpointServiceConfigurations"
             }
         }
-        registerDeleteVpcEndpointServiceConfigurationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3693,8 +6456,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteVpcEndpoints"
             }
         }
-        registerDeleteVpcEndpointsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3715,8 +6495,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteVpcPeeringConnection"
             }
         }
-        registerDeleteVpcPeeringConnectionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3743,8 +6540,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteVpnConnection"
             }
         }
-        registerDeleteVpnConnectionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3764,8 +6578,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteVpnConnectionRoute"
             }
         }
-        registerDeleteVpnConnectionRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3785,8 +6616,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeleteVpnGateway"
             }
         }
-        registerDeleteVpnGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3806,8 +6654,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeprovisionByoipCidr"
             }
         }
-        registerDeprovisionByoipCidrMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3831,8 +6696,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeregisterImage"
             }
         }
-        registerDeregisterImageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3851,8 +6733,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeregisterInstanceEventNotificationAttributes"
             }
         }
-        registerDeregisterInstanceEventNotificationAttributesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3869,8 +6768,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeregisterTransitGatewayMulticastGroupMembers"
             }
         }
-        registerDeregisterTransitGatewayMulticastGroupMembersMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3887,8 +6803,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DeregisterTransitGatewayMulticastGroupSources"
             }
         }
-        registerDeregisterTransitGatewayMulticastGroupSourcesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3919,8 +6852,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeAccountAttributes"
             }
         }
-        registerDescribeAccountAttributesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3939,8 +6889,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeAddresses"
             }
         }
-        registerDescribeAddressesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3957,8 +6924,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeAddressesAttribute"
             }
         }
-        registerDescribeAddressesAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3991,8 +6975,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeAggregateIdFormat"
             }
         }
-        registerDescribeAggregateIdFormatMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4014,8 +7015,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeAvailabilityZones"
             }
         }
-        registerDescribeAvailabilityZonesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4033,8 +7051,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeBundleTasks"
             }
         }
-        registerDescribeBundleTasksMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4053,8 +7088,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeByoipCidrs"
             }
         }
-        registerDescribeByoipCidrsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4071,8 +7123,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeCapacityReservationFleets"
             }
         }
-        registerDescribeCapacityReservationFleetsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4090,8 +7159,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeCapacityReservations"
             }
         }
-        registerDescribeCapacityReservationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4108,8 +7194,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeCarrierGateways"
             }
         }
-        registerDescribeCarrierGatewaysMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4128,8 +7231,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeClassicLinkInstances"
             }
         }
-        registerDescribeClassicLinkInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4146,8 +7266,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeClientVpnAuthorizationRules"
             }
         }
-        registerDescribeClientVpnAuthorizationRulesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4165,8 +7302,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeClientVpnConnections"
             }
         }
-        registerDescribeClientVpnConnectionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4183,8 +7337,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeClientVpnEndpoints"
             }
         }
-        registerDescribeClientVpnEndpointsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4201,8 +7372,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeClientVpnRoutes"
             }
         }
-        registerDescribeClientVpnRoutesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4219,8 +7407,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeClientVpnTargetNetworks"
             }
         }
-        registerDescribeClientVpnTargetNetworksMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4237,8 +7442,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeCoipPools"
             }
         }
-        registerDescribeCoipPoolsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4257,8 +7479,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeConversionTasks"
             }
         }
-        registerDescribeConversionTasksMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4277,8 +7516,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeCustomerGateways"
             }
         }
-        registerDescribeCustomerGatewaysMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4297,8 +7553,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeDhcpOptions"
             }
         }
-        registerDescribeDhcpOptionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4315,8 +7588,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeEgressOnlyInternetGateways"
             }
         }
-        registerDescribeEgressOnlyInternetGatewaysMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4334,8 +7624,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeElasticGpus"
             }
         }
-        registerDescribeElasticGpusMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4352,8 +7659,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeExportImageTasks"
             }
         }
-        registerDescribeExportImageTasksMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4370,8 +7694,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeExportTasks"
             }
         }
-        registerDescribeExportTasksMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4388,8 +7729,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeFastSnapshotRestores"
             }
         }
-        registerDescribeFastSnapshotRestoresMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4411,8 +7769,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeFleetHistory"
             }
         }
-        registerDescribeFleetHistoryMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4430,8 +7805,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeFleetInstances"
             }
         }
-        registerDescribeFleetInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4449,8 +7841,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeFleets"
             }
         }
-        registerDescribeFleetsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4469,8 +7878,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeFlowLogs"
             }
         }
-        registerDescribeFlowLogsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4487,8 +7913,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeFpgaImageAttribute"
             }
         }
-        registerDescribeFpgaImageAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4507,8 +7950,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeFpgaImages"
             }
         }
-        registerDescribeFpgaImagesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4531,8 +7991,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeHostReservationOfferings"
             }
         }
-        registerDescribeHostReservationOfferingsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4550,8 +8027,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeHostReservations"
             }
         }
-        registerDescribeHostReservationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4571,8 +8065,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeHosts"
             }
         }
-        registerDescribeHostsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4589,8 +8100,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeIamInstanceProfileAssociations"
             }
         }
-        registerDescribeIamInstanceProfileAssociationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4626,8 +8154,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeIdFormat"
             }
         }
-        registerDescribeIdFormatMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4662,8 +8207,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeIdentityIdFormat"
             }
         }
-        registerDescribeIdentityIdFormatMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4680,8 +8242,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeImageAttribute"
             }
         }
-        registerDescribeImageAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4704,8 +8283,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeImages"
             }
         }
-        registerDescribeImagesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4722,8 +8318,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeImportImageTasks"
             }
         }
-        registerDescribeImportImageTasksMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4740,8 +8353,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeImportSnapshotTasks"
             }
         }
-        registerDescribeImportSnapshotTasksMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4764,8 +8394,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeInstanceAttribute"
             }
         }
-        registerDescribeInstanceAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4801,8 +8448,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeInstanceCreditSpecifications"
             }
         }
-        registerDescribeInstanceCreditSpecificationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4820,8 +8484,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeInstanceEventNotificationAttributes"
             }
         }
-        registerDescribeInstanceEventNotificationAttributesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4846,8 +8527,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeInstanceEventWindows"
             }
         }
-        registerDescribeInstanceEventWindowsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4879,8 +8577,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeInstanceStatus"
             }
         }
-        registerDescribeInstanceStatusMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4898,8 +8613,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeInstanceTypeOfferings"
             }
         }
-        registerDescribeInstanceTypeOfferingsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4917,8 +8649,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeInstanceTypes"
             }
         }
-        registerDescribeInstanceTypesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4949,8 +8698,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeInstances"
             }
         }
-        registerDescribeInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4967,8 +8733,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeInternetGateways"
             }
         }
-        registerDescribeInternetGatewaysMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -4985,8 +8768,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeIpv6Pools"
             }
         }
-        registerDescribeIpv6PoolsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5005,8 +8805,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeKeyPairs"
             }
         }
-        registerDescribeKeyPairsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5026,8 +8843,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeLaunchTemplateVersions"
             }
         }
-        registerDescribeLaunchTemplateVersionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5044,8 +8878,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeLaunchTemplates"
             }
         }
-        registerDescribeLaunchTemplatesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5062,8 +8913,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociations"
             }
         }
-        registerDescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5080,8 +8948,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeLocalGatewayRouteTableVpcAssociations"
             }
         }
-        registerDescribeLocalGatewayRouteTableVpcAssociationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5099,8 +8984,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeLocalGatewayRouteTables"
             }
         }
-        registerDescribeLocalGatewayRouteTablesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5117,8 +9019,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeLocalGatewayVirtualInterfaceGroups"
             }
         }
-        registerDescribeLocalGatewayVirtualInterfaceGroupsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5135,8 +9054,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeLocalGatewayVirtualInterfaces"
             }
         }
-        registerDescribeLocalGatewayVirtualInterfacesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5154,8 +9090,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeLocalGateways"
             }
         }
-        registerDescribeLocalGatewaysMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5173,8 +9126,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeManagedPrefixLists"
             }
         }
-        registerDescribeManagedPrefixListsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5191,8 +9161,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeMovingAddresses"
             }
         }
-        registerDescribeMovingAddressesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5209,8 +9196,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeNatGateways"
             }
         }
-        registerDescribeNatGatewaysMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5229,8 +9233,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeNetworkAcls"
             }
         }
-        registerDescribeNetworkAclsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5247,8 +9268,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeNetworkInsightsAnalyses"
             }
         }
-        registerDescribeNetworkInsightsAnalysesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5265,8 +9303,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeNetworkInsightsPaths"
             }
         }
-        registerDescribeNetworkInsightsPathsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5283,8 +9338,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeNetworkInterfaceAttribute"
             }
         }
-        registerDescribeNetworkInterfaceAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5301,8 +9373,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeNetworkInterfacePermissions"
             }
         }
-        registerDescribeNetworkInterfacePermissionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5319,8 +9408,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeNetworkInterfaces"
             }
         }
-        registerDescribeNetworkInterfacesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5339,8 +9445,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribePlacementGroups"
             }
         }
-        registerDescribePlacementGroupsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5359,8 +9482,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribePrefixLists"
             }
         }
-        registerDescribePrefixListsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5394,8 +9534,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribePrincipalIdFormat"
             }
         }
-        registerDescribePrincipalIdFormatMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5412,8 +9569,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribePublicIpv4Pools"
             }
         }
-        registerDescribePublicIpv4PoolsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5433,8 +9607,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeRegions"
             }
         }
-        registerDescribeRegionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5452,8 +9643,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeReplaceRootVolumeTasks"
             }
         }
-        registerDescribeReplaceRootVolumeTasksMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5472,8 +9680,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeReservedInstances"
             }
         }
-        registerDescribeReservedInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5495,8 +9720,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeReservedInstancesListings"
             }
         }
-        registerDescribeReservedInstancesListingsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5514,8 +9756,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeReservedInstancesModifications"
             }
         }
-        registerDescribeReservedInstancesModificationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5535,8 +9794,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeReservedInstancesOfferings"
             }
         }
-        registerDescribeReservedInstancesOfferingsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5556,8 +9832,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeRouteTables"
             }
         }
-        registerDescribeRouteTablesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5577,8 +9870,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeScheduledInstanceAvailability"
             }
         }
-        registerDescribeScheduledInstanceAvailabilityMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5595,8 +9905,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeScheduledInstances"
             }
         }
-        registerDescribeScheduledInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5613,8 +9940,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSecurityGroupReferences"
             }
         }
-        registerDescribeSecurityGroupReferencesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5631,8 +9975,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSecurityGroupRules"
             }
         }
-        registerDescribeSecurityGroupRulesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5655,8 +10016,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSecurityGroups"
             }
         }
-        registerDescribeSecurityGroupsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5675,8 +10053,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSnapshotAttribute"
             }
         }
-        registerDescribeSnapshotAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5728,8 +10123,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSnapshots"
             }
         }
-        registerDescribeSnapshotsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5747,8 +10159,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSpotDatafeedSubscription"
             }
         }
-        registerDescribeSpotDatafeedSubscriptionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5765,8 +10194,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSpotFleetInstances"
             }
         }
-        registerDescribeSpotFleetInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5789,8 +10235,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSpotFleetRequestHistory"
             }
         }
-        registerDescribeSpotFleetRequestHistoryMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5809,8 +10272,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSpotFleetRequests"
             }
         }
-        registerDescribeSpotFleetRequestsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5842,8 +10322,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSpotInstanceRequests"
             }
         }
-        registerDescribeSpotInstanceRequestsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5864,8 +10361,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSpotPriceHistory"
             }
         }
-        registerDescribeSpotPriceHistoryMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5882,8 +10396,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeStaleSecurityGroups"
             }
         }
-        registerDescribeStaleSecurityGroupsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5911,8 +10442,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeStoreImageTasks"
             }
         }
-        registerDescribeStoreImageTasksMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5931,8 +10479,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeSubnets"
             }
         }
-        registerDescribeSubnetsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5951,8 +10516,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTags"
             }
         }
-        registerDescribeTagsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5969,8 +10551,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTrafficMirrorFilters"
             }
         }
-        registerDescribeTrafficMirrorFiltersMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -5987,8 +10586,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTrafficMirrorSessions"
             }
         }
-        registerDescribeTrafficMirrorSessionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6005,8 +10621,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTrafficMirrorTargets"
             }
         }
-        registerDescribeTrafficMirrorTargetsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6024,8 +10657,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTransitGatewayAttachments"
             }
         }
-        registerDescribeTransitGatewayAttachmentsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6042,8 +10692,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTransitGatewayConnectPeers"
             }
         }
-        registerDescribeTransitGatewayConnectPeersMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6060,8 +10727,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTransitGatewayConnects"
             }
         }
-        registerDescribeTransitGatewayConnectsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6078,8 +10762,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTransitGatewayMulticastDomains"
             }
         }
-        registerDescribeTransitGatewayMulticastDomainsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6096,8 +10797,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTransitGatewayPeeringAttachments"
             }
         }
-        registerDescribeTransitGatewayPeeringAttachmentsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6115,8 +10833,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTransitGatewayRouteTables"
             }
         }
-        registerDescribeTransitGatewayRouteTablesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6134,8 +10869,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTransitGatewayVpcAttachments"
             }
         }
-        registerDescribeTransitGatewayVpcAttachmentsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6153,8 +10905,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTransitGateways"
             }
         }
-        registerDescribeTransitGatewaysMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6173,8 +10942,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeTrunkInterfaceAssociations"
             }
         }
-        registerDescribeTrunkInterfaceAssociationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6193,8 +10979,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVolumeAttribute"
             }
         }
-        registerDescribeVolumeAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6241,8 +11044,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVolumeStatus"
             }
         }
-        registerDescribeVolumeStatusMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6266,8 +11086,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVolumes"
             }
         }
-        registerDescribeVolumesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6290,8 +11127,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVolumesModifications"
             }
         }
-        registerDescribeVolumesModificationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6308,8 +11162,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpcAttribute"
             }
         }
-        registerDescribeVpcAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6326,8 +11197,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpcClassicLink"
             }
         }
-        registerDescribeVpcClassicLinkMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6348,8 +11236,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpcClassicLinkDnsSupport"
             }
         }
-        registerDescribeVpcClassicLinkDnsSupportMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6367,8 +11272,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpcEndpointConnectionNotifications"
             }
         }
-        registerDescribeVpcEndpointConnectionNotificationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6386,8 +11308,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpcEndpointConnections"
             }
         }
-        registerDescribeVpcEndpointConnectionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6404,8 +11343,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpcEndpointServiceConfigurations"
             }
         }
-        registerDescribeVpcEndpointServiceConfigurationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6423,8 +11379,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpcEndpointServicePermissions"
             }
         }
-        registerDescribeVpcEndpointServicePermissionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6448,8 +11421,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpcEndpointServices"
             }
         }
-        registerDescribeVpcEndpointServicesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6466,8 +11456,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpcEndpoints"
             }
         }
-        registerDescribeVpcEndpointsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6484,8 +11491,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpcPeeringConnections"
             }
         }
-        registerDescribeVpcPeeringConnectionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6502,8 +11526,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpcs"
             }
         }
-        registerDescribeVpcsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6522,8 +11563,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpnConnections"
             }
         }
-        registerDescribeVpnConnectionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6542,8 +11600,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DescribeVpnGateways"
             }
         }
-        registerDescribeVpnGatewaysMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6560,8 +11635,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DetachClassicLinkVpc"
             }
         }
-        registerDetachClassicLinkVpcMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6580,8 +11672,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DetachInternetGateway"
             }
         }
-        registerDetachInternetGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6598,8 +11707,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DetachNetworkInterface"
             }
         }
-        registerDetachNetworkInterfaceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6626,8 +11752,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DetachVolume"
             }
         }
-        registerDetachVolumeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6649,8 +11792,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DetachVpnGateway"
             }
         }
-        registerDetachVpnGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6673,8 +11833,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisableEbsEncryptionByDefault"
             }
         }
-        registerDisableEbsEncryptionByDefaultMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6691,8 +11868,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisableFastSnapshotRestores"
             }
         }
-        registerDisableFastSnapshotRestoresMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6711,8 +11905,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisableImageDeprecation"
             }
         }
-        registerDisableImageDeprecationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6732,8 +11943,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisableSerialConsoleAccess"
             }
         }
-        registerDisableSerialConsoleAccessMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6751,8 +11979,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisableTransitGatewayRouteTablePropagation"
             }
         }
-        registerDisableTransitGatewayRouteTablePropagationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6770,8 +12015,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisableVgwRoutePropagation"
             }
         }
-        registerDisableVgwRoutePropagationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6788,8 +12050,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisableVpcClassicLink"
             }
         }
-        registerDisableVpcClassicLinkMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6810,8 +12089,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisableVpcClassicLinkDnsSupport"
             }
         }
-        registerDisableVpcClassicLinkDnsSupportMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6832,8 +12128,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisassociateAddress"
             }
         }
-        registerDisassociateAddressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6855,8 +12168,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisassociateClientVpnTargetNetwork"
             }
         }
-        registerDisassociateClientVpnTargetNetworkMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6877,8 +12207,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisassociateEnclaveCertificateIamRole"
             }
         }
-        registerDisassociateEnclaveCertificateIamRoleMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6897,8 +12244,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisassociateIamInstanceProfile"
             }
         }
-        registerDisassociateIamInstanceProfileMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6917,8 +12281,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisassociateInstanceEventWindow"
             }
         }
-        registerDisassociateInstanceEventWindowMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6939,8 +12320,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisassociateRouteTable"
             }
         }
-        registerDisassociateRouteTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6957,8 +12355,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisassociateSubnetCidrBlock"
             }
         }
-        registerDisassociateSubnetCidrBlockMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6975,8 +12390,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisassociateTransitGatewayMulticastDomain"
             }
         }
-        registerDisassociateTransitGatewayMulticastDomainMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -6993,8 +12425,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisassociateTransitGatewayRouteTable"
             }
         }
-        registerDisassociateTransitGatewayRouteTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7013,8 +12462,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisassociateTrunkInterface"
             }
         }
-        registerDisassociateTrunkInterfaceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7036,8 +12502,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "DisassociateVpcCidrBlock"
             }
         }
-        registerDisassociateVpcCidrBlockMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7065,8 +12548,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "EnableEbsEncryptionByDefault"
             }
         }
-        registerEnableEbsEncryptionByDefaultMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7088,8 +12588,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "EnableFastSnapshotRestores"
             }
         }
-        registerEnableFastSnapshotRestoresMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7107,8 +12624,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "EnableImageDeprecation"
             }
         }
-        registerEnableImageDeprecationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7127,8 +12661,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "EnableSerialConsoleAccess"
             }
         }
-        registerEnableSerialConsoleAccessMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7146,8 +12697,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "EnableTransitGatewayRouteTablePropagation"
             }
         }
-        registerEnableTransitGatewayRouteTablePropagationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7165,8 +12733,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "EnableVgwRoutePropagation"
             }
         }
-        registerEnableVgwRoutePropagationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7184,8 +12769,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "EnableVolumeIO"
             }
         }
-        registerEnableVolumeIoMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7208,8 +12810,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "EnableVpcClassicLink"
             }
         }
-        registerEnableVpcClassicLinkMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7232,8 +12851,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "EnableVpcClassicLinkDnsSupport"
             }
         }
-        registerEnableVpcClassicLinkDnsSupportMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7250,8 +12886,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ExportClientVpnClientCertificateRevocationList"
             }
         }
-        registerExportClientVpnClientCertificateRevocationListMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7270,8 +12923,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ExportClientVpnClientConfiguration"
             }
         }
-        registerExportClientVpnClientConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7290,8 +12960,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ExportImage"
             }
         }
-        registerExportImageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7312,8 +12999,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ExportTransitGatewayRoutes"
             }
         }
-        registerExportTransitGatewayRoutesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7333,8 +13037,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetAssociatedEnclaveCertificateIamRoles"
             }
         }
-        registerGetAssociatedEnclaveCertificateIamRolesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7351,8 +13072,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetAssociatedIpv6PoolCidrs"
             }
         }
-        registerGetAssociatedIpv6PoolCidrsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7371,8 +13109,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetCapacityReservationUsage"
             }
         }
-        registerGetCapacityReservationUsageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7389,8 +13144,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetCoipPoolUsage"
             }
         }
-        registerGetCoipPoolUsageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7419,8 +13191,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetConsoleOutput"
             }
         }
-        registerGetConsoleOutputMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7439,8 +13228,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetConsoleScreenshot"
             }
         }
-        registerGetConsoleScreenshotMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7459,8 +13265,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetDefaultCreditSpecification"
             }
         }
-        registerGetDefaultCreditSpecificationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7481,8 +13304,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetEbsDefaultKmsKeyId"
             }
         }
-        registerGetEbsDefaultKmsKeyIdMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7502,8 +13342,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetEbsEncryptionByDefault"
             }
         }
-        registerGetEbsEncryptionByDefaultMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7527,8 +13384,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetFlowLogsIntegrationTemplate"
             }
         }
-        registerGetFlowLogsIntegrationTemplateMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7545,8 +13419,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetGroupsForCapacityReservation"
             }
         }
-        registerGetGroupsForCapacityReservationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7567,8 +13458,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetHostReservationPurchasePreview"
             }
         }
-        registerGetHostReservationPurchasePreviewMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7589,8 +13497,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetLaunchTemplateData"
             }
         }
-        registerGetLaunchTemplateDataMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7607,8 +13532,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetManagedPrefixListAssociations"
             }
         }
-        registerGetManagedPrefixListAssociationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7625,8 +13567,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetManagedPrefixListEntries"
             }
         }
-        registerGetManagedPrefixListEntriesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7655,8 +13614,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetPasswordData"
             }
         }
-        registerGetPasswordDataMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7675,8 +13651,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetReservedInstancesExchangeQuote"
             }
         }
-        registerGetReservedInstancesExchangeQuoteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7696,8 +13689,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetSerialConsoleAccessStatus"
             }
         }
-        registerGetSerialConsoleAccessStatusMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7714,8 +13724,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetSubnetCidrReservations"
             }
         }
-        registerGetSubnetCidrReservationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7732,8 +13759,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetTransitGatewayAttachmentPropagations"
             }
         }
-        registerGetTransitGatewayAttachmentPropagationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7750,8 +13794,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetTransitGatewayMulticastDomainAssociations"
             }
         }
-        registerGetTransitGatewayMulticastDomainAssociationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7768,8 +13829,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetTransitGatewayPrefixListReferences"
             }
         }
-        registerGetTransitGatewayPrefixListReferencesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7786,8 +13864,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetTransitGatewayRouteTableAssociations"
             }
         }
-        registerGetTransitGatewayRouteTableAssociationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7804,8 +13899,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetTransitGatewayRouteTablePropagations"
             }
         }
-        registerGetTransitGatewayRouteTablePropagationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7823,8 +13935,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetVpnConnectionDeviceSampleConfiguration"
             }
         }
-        registerGetVpnConnectionDeviceSampleConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7844,8 +13973,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "GetVpnConnectionDeviceTypes"
             }
         }
-        registerGetVpnConnectionDeviceTypesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7863,8 +14009,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ImportClientVpnClientCertificateRevocationList"
             }
         }
-        registerImportClientVpnClientCertificateRevocationListMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7883,8 +14046,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ImportImage"
             }
         }
-        registerImportImageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7907,8 +14087,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ImportInstance"
             }
         }
-        registerImportInstanceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7930,8 +14127,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ImportKeyPair"
             }
         }
-        registerImportKeyPairMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7950,8 +14164,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ImportSnapshot"
             }
         }
-        registerImportSnapshotMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7974,8 +14205,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ImportVolume"
             }
         }
-        registerImportVolumeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -7992,8 +14240,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyAddressAttribute"
             }
         }
-        registerModifyAddressAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8013,8 +14278,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyAvailabilityZoneGroup"
             }
         }
-        registerModifyAvailabilityZoneGroupMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8035,8 +14317,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyCapacityReservation"
             }
         }
-        registerModifyCapacityReservationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8057,8 +14356,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyCapacityReservationFleet"
             }
         }
-        registerModifyCapacityReservationFleetMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8075,8 +14391,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyClientVpnEndpoint"
             }
         }
-        registerModifyClientVpnEndpointMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8104,8 +14437,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyDefaultCreditSpecification"
             }
         }
-        registerModifyDefaultCreditSpecificationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8129,8 +14479,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyEbsDefaultKmsKeyId"
             }
         }
-        registerModifyEbsDefaultKmsKeyIdMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8168,8 +14535,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyFleet"
             }
         }
-        registerModifyFleetMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8186,8 +14570,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyFpgaImageAttribute"
             }
         }
-        registerModifyFpgaImageAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8211,8 +14612,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyHosts"
             }
         }
-        registerModifyHostsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8252,8 +14670,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyIdFormat"
             }
         }
-        registerModifyIdFormatMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8291,8 +14726,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyIdentityIdFormat"
             }
         }
-        registerModifyIdentityIdFormatMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8314,8 +14766,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyImageAttribute"
             }
         }
-        registerModifyImageAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8340,8 +14809,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyInstanceAttribute"
             }
         }
-        registerModifyInstanceAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8360,8 +14846,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyInstanceCapacityReservationAttributes"
             }
         }
-        registerModifyInstanceCapacityReservationAttributesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8382,8 +14885,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyInstanceCreditSpecification"
             }
         }
-        registerModifyInstanceCreditSpecificationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8400,8 +14920,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyInstanceEventStartTime"
             }
         }
-        registerModifyInstanceEventStartTimeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8425,8 +14962,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyInstanceEventWindow"
             }
         }
-        registerModifyInstanceEventWindowMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8449,8 +15003,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyInstanceMetadataOptions"
             }
         }
-        registerModifyInstanceMetadataOptionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8482,8 +15053,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyInstancePlacement"
             }
         }
-        registerModifyInstancePlacementMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8502,8 +15090,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyLaunchTemplate"
             }
         }
-        registerModifyLaunchTemplateMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8524,8 +15129,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyManagedPrefixList"
             }
         }
-        registerModifyManagedPrefixListMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8544,8 +15166,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyNetworkInterfaceAttribute"
             }
         }
-        registerModifyNetworkInterfaceAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8567,8 +15206,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyReservedInstances"
             }
         }
-        registerModifyReservedInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8585,8 +15241,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifySecurityGroupRules"
             }
         }
-        registerModifySecurityGroupRulesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8610,8 +15283,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifySnapshotAttribute"
             }
         }
-        registerModifySnapshotAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8652,8 +15342,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifySpotFleetRequest"
             }
         }
-        registerModifySpotFleetRequestMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8670,8 +15377,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifySubnetAttribute"
             }
         }
-        registerModifySubnetAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8690,8 +15414,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyTrafficMirrorFilterNetworkServices"
             }
         }
-        registerModifyTrafficMirrorFilterNetworkServicesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8710,8 +15451,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyTrafficMirrorFilterRule"
             }
         }
-        registerModifyTrafficMirrorFilterRuleMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8728,8 +15486,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyTrafficMirrorSession"
             }
         }
-        registerModifyTrafficMirrorSessionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8746,8 +15521,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyTransitGateway"
             }
         }
-        registerModifyTransitGatewayMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8764,8 +15556,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyTransitGatewayPrefixListReference"
             }
         }
-        registerModifyTransitGatewayPrefixListReferenceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8782,8 +15591,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyTransitGatewayVpcAttachment"
             }
         }
-        registerModifyTransitGatewayVpcAttachmentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8815,8 +15641,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVolume"
             }
         }
-        registerModifyVolumeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8839,8 +15682,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVolumeAttribute"
             }
         }
-        registerModifyVolumeAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8857,8 +15717,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVpcAttribute"
             }
         }
-        registerModifyVpcAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8878,8 +15755,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVpcEndpoint"
             }
         }
-        registerModifyVpcEndpointMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8897,8 +15791,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVpcEndpointConnectionNotification"
             }
         }
-        registerModifyVpcEndpointConnectionNotificationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8922,8 +15833,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVpcEndpointServiceConfiguration"
             }
         }
-        registerModifyVpcEndpointServiceConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8944,8 +15872,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVpcEndpointServicePermissions"
             }
         }
-        registerModifyVpcEndpointServicePermissionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -8975,8 +15920,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVpcPeeringConnectionOptions"
             }
         }
-        registerModifyVpcPeeringConnectionOptionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9000,8 +15962,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVpcTenancy"
             }
         }
-        registerModifyVpcTenancyMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9043,8 +16022,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVpnConnection"
             }
         }
-        registerModifyVpnConnectionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9065,8 +16061,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVpnConnectionOptions"
             }
         }
-        registerModifyVpnConnectionOptionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9083,8 +16096,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVpnTunnelCertificate"
             }
         }
-        registerModifyVpnTunnelCertificateMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9104,8 +16134,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ModifyVpnTunnelOptions"
             }
         }
-        registerModifyVpnTunnelOptionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9125,8 +16172,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "MonitorInstances"
             }
         }
-        registerMonitorInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9148,8 +16212,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "MoveAddressToVpc"
             }
         }
-        registerMoveAddressToVpcMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9177,8 +16258,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ProvisionByoipCidr"
             }
         }
-        registerProvisionByoipCidrMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9198,8 +16296,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "PurchaseHostReservation"
             }
         }
-        registerPurchaseHostReservationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9225,8 +16340,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "PurchaseReservedInstancesOffering"
             }
         }
-        registerPurchaseReservedInstancesOfferingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9248,8 +16380,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "PurchaseScheduledInstances"
             }
         }
-        registerPurchaseScheduledInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9273,8 +16422,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RebootInstances"
             }
         }
-        registerRebootInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9325,8 +16491,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RegisterImage"
             }
         }
-        registerRegisterImageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9344,8 +16527,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RegisterInstanceEventNotificationAttributes"
             }
         }
-        registerRegisterInstanceEventNotificationAttributesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9367,8 +16567,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RegisterTransitGatewayMulticastGroupMembers"
             }
         }
-        registerRegisterTransitGatewayMulticastGroupMembersMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9390,8 +16607,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RegisterTransitGatewayMulticastGroupSources"
             }
         }
-        registerRegisterTransitGatewayMulticastGroupSourcesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9408,8 +16642,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RejectTransitGatewayMulticastDomainAssociations"
             }
         }
-        registerRejectTransitGatewayMulticastDomainAssociationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9426,8 +16677,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RejectTransitGatewayPeeringAttachment"
             }
         }
-        registerRejectTransitGatewayPeeringAttachmentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9447,8 +16715,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RejectTransitGatewayVpcAttachment"
             }
         }
-        registerRejectTransitGatewayVpcAttachmentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9466,8 +16751,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RejectVpcEndpointConnections"
             }
         }
-        registerRejectVpcEndpointConnectionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9487,8 +16789,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RejectVpcPeeringConnection"
             }
         }
-        registerRejectVpcPeeringConnectionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9516,8 +16835,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ReleaseAddress"
             }
         }
-        registerReleaseAddressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9542,8 +16878,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ReleaseHosts"
             }
         }
-        registerReleaseHostsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9564,8 +16917,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ReplaceIamInstanceProfileAssociation"
             }
         }
-        registerReplaceIamInstanceProfileAssociationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9586,8 +16956,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ReplaceNetworkAclAssociation"
             }
         }
-        registerReplaceNetworkAclAssociationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9605,8 +16992,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ReplaceNetworkAclEntry"
             }
         }
-        registerReplaceNetworkAclEntryMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9628,8 +17032,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ReplaceRoute"
             }
         }
-        registerReplaceRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9650,8 +17071,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ReplaceRouteTableAssociation"
             }
         }
-        registerReplaceRouteTableAssociationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9668,8 +17106,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ReplaceTransitGatewayRoute"
             }
         }
-        registerReplaceTransitGatewayRouteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9690,8 +17145,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ReportInstanceStatus"
             }
         }
-        registerReportInstanceStatusMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9727,8 +17199,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RequestSpotFleet"
             }
         }
-        registerRequestSpotFleetMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9747,8 +17236,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RequestSpotInstances"
             }
         }
-        registerRequestSpotInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9765,8 +17271,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ResetAddressAttribute"
             }
         }
-        registerResetAddressAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9788,8 +17311,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ResetEbsDefaultKmsKeyId"
             }
         }
-        registerResetEbsDefaultKmsKeyIdMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9807,8 +17347,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ResetFpgaImageAttribute"
             }
         }
-        registerResetFpgaImageAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9825,8 +17382,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ResetImageAttribute"
             }
         }
-        registerResetImageAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9851,8 +17425,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ResetInstanceAttribute"
             }
         }
-        registerResetInstanceAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9869,8 +17460,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ResetNetworkInterfaceAttribute"
             }
         }
-        registerResetNetworkInterfaceAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9889,8 +17497,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "ResetSnapshotAttribute"
             }
         }
-        registerResetSnapshotAttributeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9907,8 +17532,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RestoreAddressToClassic"
             }
         }
-        registerRestoreAddressToClassicMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9925,8 +17567,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RestoreManagedPrefixListVersion"
             }
         }
-        registerRestoreManagedPrefixListVersionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9943,8 +17602,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RevokeClientVpnIngress"
             }
         }
-        registerRevokeClientVpnIngressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -9974,8 +17650,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RevokeSecurityGroupEgress"
             }
         }
-        registerRevokeSecurityGroupEgressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10003,8 +17696,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RevokeSecurityGroupIngress"
             }
         }
-        registerRevokeSecurityGroupIngressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10061,8 +17771,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RunInstances"
             }
         }
-        registerRunInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10084,8 +17811,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "RunScheduledInstances"
             }
         }
-        registerRunScheduledInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10102,8 +17846,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "SearchLocalGatewayRoutes"
             }
         }
-        registerSearchLocalGatewayRoutesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10120,8 +17881,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "SearchTransitGatewayMulticastGroups"
             }
         }
-        registerSearchTransitGatewayMulticastGroupsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10138,8 +17916,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "SearchTransitGatewayRoutes"
             }
         }
-        registerSearchTransitGatewayRoutesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10168,8 +17963,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "SendDiagnosticInterrupt"
             }
         }
-        registerSendDiagnosticInterruptMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10203,8 +18015,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "StartInstances"
             }
         }
-        registerStartInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10222,8 +18051,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "StartNetworkInsightsAnalysis"
             }
         }
-        registerStartNetworkInsightsAnalysisMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10243,8 +18089,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "StartVpcEndpointServicePrivateDnsVerification"
             }
         }
-        registerStartVpcEndpointServicePrivateDnsVerificationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10289,8 +18152,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "StopInstances"
             }
         }
-        registerStopInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10307,8 +18187,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "TerminateClientVpnConnections"
             }
         }
-        registerTerminateClientVpnConnectionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10359,8 +18256,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "TerminateInstances"
             }
         }
-        registerTerminateInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10377,8 +18291,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "UnassignIpv6Addresses"
             }
         }
-        registerUnassignIpv6AddressesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10395,8 +18326,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "UnassignPrivateIpAddresses"
             }
         }
-        registerUnassignPrivateIpAddressesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10414,8 +18362,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "UnmonitorInstances"
             }
         }
-        registerUnmonitorInstancesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10435,8 +18400,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "UpdateSecurityGroupRuleDescriptionsEgress"
             }
         }
-        registerUpdateSecurityGroupRuleDescriptionsEgressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10456,8 +18438,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "UpdateSecurityGroupRuleDescriptionsIngress"
             }
         }
-        registerUpdateSecurityGroupRuleDescriptionsIngressMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -10478,8 +18477,25 @@ internal class DefaultEc2Client(override val config: Ec2Client.Config) : Ec2Clie
                 operationName = "WithdrawByoipCidr"
             }
         }
-        registerWithdrawByoipCidrMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "ec2"
+        }
         return op.roundTrip(client, input)
     }
 

@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeExplanationDocument(deserializer: Deserializer): Explanation {
+internal fun deserializeExplanationDocument(deserializer: Deserializer): Explanation {
     val builder = Explanation.builder()
     val ACL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("acl"))
     val ACLRULE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("aclRule"))

@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeMetricsDocument(deserializer: Deserializer): Metrics {
+internal fun deserializeMetricsDocument(deserializer: Deserializer): Metrics {
     val builder = Metrics.builder()
     val EVENTTHRESHOLD_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("EventThreshold"))
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Status"))

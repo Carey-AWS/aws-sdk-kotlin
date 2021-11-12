@@ -44,7 +44,7 @@ internal class DescribeLimitsOperationDeserializer: HttpDeserialize<DescribeLimi
     }
 }
 
-private suspend fun deserializeDescribeLimitsOperationBody(builder: DescribeLimitsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeLimitsOperationBody(builder: DescribeLimitsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val ACCOUNTMAXREADCAPACITYUNITS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, JsonSerialName("AccountMaxReadCapacityUnits"))
     val ACCOUNTMAXWRITECAPACITYUNITS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, JsonSerialName("AccountMaxWriteCapacityUnits"))

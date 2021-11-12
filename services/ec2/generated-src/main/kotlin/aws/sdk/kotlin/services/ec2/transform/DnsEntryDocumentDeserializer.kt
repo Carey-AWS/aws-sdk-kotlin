@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDnsEntryDocument(deserializer: Deserializer): DnsEntry {
+internal fun deserializeDnsEntryDocument(deserializer: Deserializer): DnsEntry {
     val builder = DnsEntry.builder()
     val DNSNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("dnsName"))
     val HOSTEDZONEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("hostedZoneId"))

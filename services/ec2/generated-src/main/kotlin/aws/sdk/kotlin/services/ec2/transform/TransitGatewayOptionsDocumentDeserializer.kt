@@ -27,7 +27,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayOptionsDocument(deserializer: Deserializer): TransitGatewayOptions {
+internal fun deserializeTransitGatewayOptionsDocument(deserializer: Deserializer): TransitGatewayOptions {
     val builder = TransitGatewayOptions.builder()
     val AMAZONSIDEASN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, XmlSerialName("amazonSideAsn"))
     val ASSOCIATIONDEFAULTROUTETABLEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("associationDefaultRouteTableId"))

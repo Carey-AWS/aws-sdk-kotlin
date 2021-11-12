@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDeleteFleetSuccessItemDocument(deserializer: Deserializer): DeleteFleetSuccessItem {
+internal fun deserializeDeleteFleetSuccessItemDocument(deserializer: Deserializer): DeleteFleetSuccessItem {
     val builder = DeleteFleetSuccessItem.builder()
     val CURRENTFLEETSTATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("currentFleetState"))
     val FLEETID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("fleetId"))

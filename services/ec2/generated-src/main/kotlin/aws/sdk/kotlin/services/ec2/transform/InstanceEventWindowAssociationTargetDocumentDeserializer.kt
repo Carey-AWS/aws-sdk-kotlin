@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceEventWindowAssociationTargetDocument(deserializer: Deserializer): InstanceEventWindowAssociationTarget {
+internal fun deserializeInstanceEventWindowAssociationTargetDocument(deserializer: Deserializer): InstanceEventWindowAssociationTarget {
     val builder = InstanceEventWindowAssociationTarget.builder()
     val DEDICATEDHOSTIDS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("dedicatedHostIdSet"), XmlCollectionName("item"))
     val INSTANCEIDS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instanceIdSet"), XmlCollectionName("item"))

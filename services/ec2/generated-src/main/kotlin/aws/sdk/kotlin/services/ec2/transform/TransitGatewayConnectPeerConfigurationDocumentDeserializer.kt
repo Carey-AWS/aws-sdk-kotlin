@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayConnectPeerConfigurationDocument(deserializer: Deserializer): TransitGatewayConnectPeerConfiguration {
+internal fun deserializeTransitGatewayConnectPeerConfigurationDocument(deserializer: Deserializer): TransitGatewayConnectPeerConfiguration {
     val builder = TransitGatewayConnectPeerConfiguration.builder()
     val BGPCONFIGURATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("bgpConfigurations"), XmlCollectionName("item"))
     val INSIDECIDRBLOCKS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("insideCidrBlocks"), XmlCollectionName("item"))

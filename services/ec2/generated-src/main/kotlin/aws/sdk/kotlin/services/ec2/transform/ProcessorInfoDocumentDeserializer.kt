@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeProcessorInfoDocument(deserializer: Deserializer): ProcessorInfo {
+internal fun deserializeProcessorInfoDocument(deserializer: Deserializer): ProcessorInfo {
     val builder = ProcessorInfo.builder()
     val SUPPORTEDARCHITECTURES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("supportedArchitectures"), XmlCollectionName("item"))
     val SUSTAINEDCLOCKSPEEDINGHZ_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Double, XmlSerialName("sustainedClockSpeedInGhz"))

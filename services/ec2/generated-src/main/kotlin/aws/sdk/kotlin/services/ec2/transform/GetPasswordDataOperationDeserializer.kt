@@ -46,7 +46,7 @@ internal class GetPasswordDataOperationDeserializer: HttpDeserialize<GetPassword
     }
 }
 
-private suspend fun deserializeGetPasswordDataOperationBody(builder: GetPasswordDataResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetPasswordDataOperationBody(builder: GetPasswordDataResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceId"))
     val PASSWORDDATA_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("passwordData"))

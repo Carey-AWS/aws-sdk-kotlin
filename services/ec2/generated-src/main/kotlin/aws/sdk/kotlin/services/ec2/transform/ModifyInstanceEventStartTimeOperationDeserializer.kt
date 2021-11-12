@@ -45,7 +45,7 @@ internal class ModifyInstanceEventStartTimeOperationDeserializer: HttpDeserializ
     }
 }
 
-private suspend fun deserializeModifyInstanceEventStartTimeOperationBody(builder: ModifyInstanceEventStartTimeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyInstanceEventStartTimeOperationBody(builder: ModifyInstanceEventStartTimeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val EVENT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("event"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

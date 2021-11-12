@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchTemplatePlacementDocument(deserializer: Deserializer): LaunchTemplatePlacement {
+internal fun deserializeLaunchTemplatePlacementDocument(deserializer: Deserializer): LaunchTemplatePlacement {
     val builder = LaunchTemplatePlacement.builder()
     val AFFINITY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("affinity"))
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))

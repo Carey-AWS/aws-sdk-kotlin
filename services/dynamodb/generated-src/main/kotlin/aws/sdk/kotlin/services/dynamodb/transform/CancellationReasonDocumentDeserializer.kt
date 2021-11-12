@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeCancellationReasonDocument(deserializer: Deserializer): CancellationReason {
+internal fun deserializeCancellationReasonDocument(deserializer: Deserializer): CancellationReason {
     val builder = CancellationReason.builder()
     val CODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Code"))
     val ITEM_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Map, JsonSerialName("Item"))

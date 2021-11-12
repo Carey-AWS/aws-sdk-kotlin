@@ -47,7 +47,7 @@ internal class DescribeInstanceTypeOfferingsOperationDeserializer: HttpDeseriali
     }
 }
 
-private suspend fun deserializeDescribeInstanceTypeOfferingsOperationBody(builder: DescribeInstanceTypeOfferingsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeInstanceTypeOfferingsOperationBody(builder: DescribeInstanceTypeOfferingsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCETYPEOFFERINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instanceTypeOfferingSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

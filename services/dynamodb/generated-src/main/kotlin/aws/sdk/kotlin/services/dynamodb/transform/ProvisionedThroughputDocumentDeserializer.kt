@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeProvisionedThroughputDocument(deserializer: Deserializer): ProvisionedThroughput {
+internal fun deserializeProvisionedThroughputDocument(deserializer: Deserializer): ProvisionedThroughput {
     val builder = ProvisionedThroughput.builder()
     val READCAPACITYUNITS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, JsonSerialName("ReadCapacityUnits"))
     val WRITECAPACITYUNITS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, JsonSerialName("WriteCapacityUnits"))

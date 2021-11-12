@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeStreamSpecificationDocument(deserializer: Deserializer): StreamSpecification {
+internal fun deserializeStreamSpecificationDocument(deserializer: Deserializer): StreamSpecification {
     val builder = StreamSpecification.builder()
     val STREAMENABLED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, JsonSerialName("StreamEnabled"))
     val STREAMVIEWTYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("StreamViewType"))

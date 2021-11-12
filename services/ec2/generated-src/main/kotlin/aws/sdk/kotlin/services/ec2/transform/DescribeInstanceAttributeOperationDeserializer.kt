@@ -49,7 +49,7 @@ internal class DescribeInstanceAttributeOperationDeserializer: HttpDeserialize<D
     }
 }
 
-private suspend fun deserializeDescribeInstanceAttributeOperationBody(builder: DescribeInstanceAttributeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeInstanceAttributeOperationBody(builder: DescribeInstanceAttributeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BLOCKDEVICEMAPPINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("blockDeviceMapping"), XmlCollectionName("item"))
     val DISABLEAPITERMINATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("disableApiTermination"))

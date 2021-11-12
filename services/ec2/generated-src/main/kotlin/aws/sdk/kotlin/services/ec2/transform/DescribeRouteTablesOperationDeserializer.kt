@@ -47,7 +47,7 @@ internal class DescribeRouteTablesOperationDeserializer: HttpDeserialize<Describ
     }
 }
 
-private suspend fun deserializeDescribeRouteTablesOperationBody(builder: DescribeRouteTablesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeRouteTablesOperationBody(builder: DescribeRouteTablesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val ROUTETABLES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("routeTableSet"), XmlCollectionName("item"))

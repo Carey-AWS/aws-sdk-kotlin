@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSseKmsEncryptedObjectsDocument(deserializer: Deserializer): SseKmsEncryptedObjects {
+internal fun deserializeSseKmsEncryptedObjectsDocument(deserializer: Deserializer): SseKmsEncryptedObjects {
     val builder = SseKmsEncryptedObjects.builder()
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Status"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

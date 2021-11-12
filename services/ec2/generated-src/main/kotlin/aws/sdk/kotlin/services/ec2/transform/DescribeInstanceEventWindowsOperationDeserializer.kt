@@ -47,7 +47,7 @@ internal class DescribeInstanceEventWindowsOperationDeserializer: HttpDeserializ
     }
 }
 
-private suspend fun deserializeDescribeInstanceEventWindowsOperationBody(builder: DescribeInstanceEventWindowsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeInstanceEventWindowsOperationBody(builder: DescribeInstanceEventWindowsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCEEVENTWINDOWS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instanceEventWindowSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

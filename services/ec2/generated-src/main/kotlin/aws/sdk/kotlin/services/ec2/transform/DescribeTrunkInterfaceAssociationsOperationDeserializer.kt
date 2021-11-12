@@ -47,7 +47,7 @@ internal class DescribeTrunkInterfaceAssociationsOperationDeserializer: HttpDese
     }
 }
 
-private suspend fun deserializeDescribeTrunkInterfaceAssociationsOperationBody(builder: DescribeTrunkInterfaceAssociationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeTrunkInterfaceAssociationsOperationBody(builder: DescribeTrunkInterfaceAssociationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INTERFACEASSOCIATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("interfaceAssociationSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

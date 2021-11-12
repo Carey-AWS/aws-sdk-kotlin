@@ -37,7 +37,7 @@ internal class InvalidAuthorizationMessageExceptionDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeInvalidAuthorizationMessageExceptionError(builder: InvalidAuthorizationMessageException.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidAuthorizationMessageExceptionError(builder: InvalidAuthorizationMessageException.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

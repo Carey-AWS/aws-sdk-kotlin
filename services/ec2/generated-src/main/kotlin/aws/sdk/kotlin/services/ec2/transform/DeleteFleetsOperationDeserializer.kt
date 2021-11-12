@@ -48,7 +48,7 @@ internal class DeleteFleetsOperationDeserializer: HttpDeserialize<DeleteFleetsRe
     }
 }
 
-private suspend fun deserializeDeleteFleetsOperationBody(builder: DeleteFleetsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteFleetsOperationBody(builder: DeleteFleetsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SUCCESSFULFLEETDELETIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("successfulFleetDeletionSet"), XmlCollectionName("item"))
     val UNSUCCESSFULFLEETDELETIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("unsuccessfulFleetDeletionSet"), XmlCollectionName("item"))

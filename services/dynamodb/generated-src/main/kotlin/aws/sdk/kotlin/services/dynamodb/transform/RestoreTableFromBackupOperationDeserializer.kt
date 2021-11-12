@@ -44,7 +44,7 @@ internal class RestoreTableFromBackupOperationDeserializer: HttpDeserialize<Rest
     }
 }
 
-private suspend fun deserializeRestoreTableFromBackupOperationBody(builder: RestoreTableFromBackupResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRestoreTableFromBackupOperationBody(builder: RestoreTableFromBackupResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val TABLEDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("TableDescription"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

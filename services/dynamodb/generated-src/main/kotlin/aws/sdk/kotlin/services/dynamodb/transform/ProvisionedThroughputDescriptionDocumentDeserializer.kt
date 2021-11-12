@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeProvisionedThroughputDescriptionDocument(deserializer: Deserializer): ProvisionedThroughputDescription {
+internal fun deserializeProvisionedThroughputDescriptionDocument(deserializer: Deserializer): ProvisionedThroughputDescription {
     val builder = ProvisionedThroughputDescription.builder()
     val LASTDECREASEDATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, JsonSerialName("LastDecreaseDateTime"))
     val LASTINCREASEDATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, JsonSerialName("LastIncreaseDateTime"))

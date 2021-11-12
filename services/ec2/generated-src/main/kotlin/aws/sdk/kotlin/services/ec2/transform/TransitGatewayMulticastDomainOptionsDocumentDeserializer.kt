@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayMulticastDomainOptionsDocument(deserializer: Deserializer): TransitGatewayMulticastDomainOptions {
+internal fun deserializeTransitGatewayMulticastDomainOptionsDocument(deserializer: Deserializer): TransitGatewayMulticastDomainOptions {
     val builder = TransitGatewayMulticastDomainOptions.builder()
     val AUTOACCEPTSHAREDASSOCIATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("autoAcceptSharedAssociations"))
     val IGMPV2SUPPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("igmpv2Support"))

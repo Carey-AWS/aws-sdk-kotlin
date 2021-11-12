@@ -49,7 +49,7 @@ internal class ListBucketMetricsConfigurationsOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeListBucketMetricsConfigurationsOperationBody(builder: ListBucketMetricsConfigurationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListBucketMetricsConfigurationsOperationBody(builder: ListBucketMetricsConfigurationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CONTINUATIONTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ContinuationToken"))
     val ISTRUNCATED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("IsTruncated"))

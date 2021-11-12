@@ -45,7 +45,7 @@ internal class CreateNetworkInsightsPathOperationDeserializer: HttpDeserialize<C
     }
 }
 
-private suspend fun deserializeCreateNetworkInsightsPathOperationBody(builder: CreateNetworkInsightsPathResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateNetworkInsightsPathOperationBody(builder: CreateNetworkInsightsPathResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NETWORKINSIGHTSPATH_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("networkInsightsPath"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

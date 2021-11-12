@@ -47,7 +47,7 @@ internal class SearchTransitGatewayMulticastGroupsOperationDeserializer: HttpDes
     }
 }
 
-private suspend fun deserializeSearchTransitGatewayMulticastGroupsOperationBody(builder: SearchTransitGatewayMulticastGroupsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeSearchTransitGatewayMulticastGroupsOperationBody(builder: SearchTransitGatewayMulticastGroupsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val MULTICASTGROUPS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("multicastGroups"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

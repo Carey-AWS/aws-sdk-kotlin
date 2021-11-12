@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeBucketDocument(deserializer: Deserializer): Bucket {
+internal fun deserializeBucketDocument(deserializer: Deserializer): Bucket {
     val builder = Bucket.builder()
     val CREATIONDATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("CreationDate"))
     val NAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Name"))

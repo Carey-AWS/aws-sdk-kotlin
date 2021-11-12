@@ -46,7 +46,7 @@ internal class ApplySecurityGroupsToClientVpnTargetNetworkOperationDeserializer:
     }
 }
 
-private suspend fun deserializeApplySecurityGroupsToClientVpnTargetNetworkOperationBody(builder: ApplySecurityGroupsToClientVpnTargetNetworkResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeApplySecurityGroupsToClientVpnTargetNetworkOperationBody(builder: ApplySecurityGroupsToClientVpnTargetNetworkResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SECURITYGROUPIDS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("securityGroupIds"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

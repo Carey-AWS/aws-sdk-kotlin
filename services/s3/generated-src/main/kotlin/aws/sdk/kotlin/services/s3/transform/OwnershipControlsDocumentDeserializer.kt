@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeOwnershipControlsDocument(deserializer: Deserializer): OwnershipControls {
+internal fun deserializeOwnershipControlsDocument(deserializer: Deserializer): OwnershipControls {
     val builder = OwnershipControls.builder()
     val RULES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("Rule"), Flattened)
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

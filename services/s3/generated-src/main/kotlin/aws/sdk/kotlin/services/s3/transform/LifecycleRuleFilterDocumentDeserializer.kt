@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLifecycleRuleFilterDocument(deserializer: Deserializer): LifecycleRuleFilter {
+internal fun deserializeLifecycleRuleFilterDocument(deserializer: Deserializer): LifecycleRuleFilter {
     var value: LifecycleRuleFilter? = null
     val AND_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("And"))
     val PREFIX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Prefix"))

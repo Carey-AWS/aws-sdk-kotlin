@@ -47,7 +47,7 @@ internal class SearchTransitGatewayRoutesOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeSearchTransitGatewayRoutesOperationBody(builder: SearchTransitGatewayRoutesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeSearchTransitGatewayRoutesOperationBody(builder: SearchTransitGatewayRoutesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ADDITIONALROUTESAVAILABLE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("additionalRoutesAvailable"))
     val ROUTES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("routeSet"), XmlCollectionName("item"))

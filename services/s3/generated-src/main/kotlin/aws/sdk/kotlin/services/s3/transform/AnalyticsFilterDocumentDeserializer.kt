@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAnalyticsFilterDocument(deserializer: Deserializer): AnalyticsFilter {
+internal fun deserializeAnalyticsFilterDocument(deserializer: Deserializer): AnalyticsFilter {
     var value: AnalyticsFilter? = null
     val AND_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("And"))
     val PREFIX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Prefix"))

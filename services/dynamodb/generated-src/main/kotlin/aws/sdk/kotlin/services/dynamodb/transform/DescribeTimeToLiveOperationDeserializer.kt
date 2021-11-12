@@ -44,7 +44,7 @@ internal class DescribeTimeToLiveOperationDeserializer: HttpDeserialize<Describe
     }
 }
 
-private suspend fun deserializeDescribeTimeToLiveOperationBody(builder: DescribeTimeToLiveResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeTimeToLiveOperationBody(builder: DescribeTimeToLiveResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val TIMETOLIVEDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("TimeToLiveDescription"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

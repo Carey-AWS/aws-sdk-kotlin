@@ -45,7 +45,7 @@ internal class CreateVpcEndpointOperationDeserializer: HttpDeserialize<CreateVpc
     }
 }
 
-private suspend fun deserializeCreateVpcEndpointOperationBody(builder: CreateVpcEndpointResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateVpcEndpointOperationBody(builder: CreateVpcEndpointResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientToken"))
     val VPCENDPOINT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("vpcEndpoint"))

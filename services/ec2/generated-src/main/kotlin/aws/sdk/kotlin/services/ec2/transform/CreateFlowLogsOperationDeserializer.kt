@@ -47,7 +47,7 @@ internal class CreateFlowLogsOperationDeserializer: HttpDeserialize<CreateFlowLo
     }
 }
 
-private suspend fun deserializeCreateFlowLogsOperationBody(builder: CreateFlowLogsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateFlowLogsOperationBody(builder: CreateFlowLogsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientToken"))
     val FLOWLOGIDS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("flowLogIdSet"), XmlCollectionName("item"))

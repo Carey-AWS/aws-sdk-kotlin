@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeEnableFastSnapshotRestoreStateErrorItemDocument(deserializer: Deserializer): EnableFastSnapshotRestoreStateErrorItem {
+internal fun deserializeEnableFastSnapshotRestoreStateErrorItemDocument(deserializer: Deserializer): EnableFastSnapshotRestoreStateErrorItem {
     val builder = EnableFastSnapshotRestoreStateErrorItem.builder()
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))
     val ERROR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("error"))

@@ -48,7 +48,7 @@ internal class ModifyInstanceCreditSpecificationOperationDeserializer: HttpDeser
     }
 }
 
-private suspend fun deserializeModifyInstanceCreditSpecificationOperationBody(builder: ModifyInstanceCreditSpecificationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyInstanceCreditSpecificationOperationBody(builder: ModifyInstanceCreditSpecificationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SUCCESSFULINSTANCECREDITSPECIFICATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("successfulInstanceCreditSpecificationSet"), XmlCollectionName("item"))
     val UNSUCCESSFULINSTANCECREDITSPECIFICATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("unsuccessfulInstanceCreditSpecificationSet"), XmlCollectionName("item"))

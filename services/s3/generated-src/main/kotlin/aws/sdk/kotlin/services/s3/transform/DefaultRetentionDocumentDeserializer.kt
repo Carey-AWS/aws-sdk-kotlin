@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDefaultRetentionDocument(deserializer: Deserializer): DefaultRetention {
+internal fun deserializeDefaultRetentionDocument(deserializer: Deserializer): DefaultRetention {
     val builder = DefaultRetention.builder()
     val DAYS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("Days"))
     val MODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Mode"))

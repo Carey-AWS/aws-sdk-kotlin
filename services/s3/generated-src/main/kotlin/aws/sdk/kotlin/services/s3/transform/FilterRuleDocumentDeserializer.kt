@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeFilterRuleDocument(deserializer: Deserializer): FilterRule {
+internal fun deserializeFilterRuleDocument(deserializer: Deserializer): FilterRule {
     val builder = FilterRule.builder()
     val NAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Name"))
     val VALUE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Value"))

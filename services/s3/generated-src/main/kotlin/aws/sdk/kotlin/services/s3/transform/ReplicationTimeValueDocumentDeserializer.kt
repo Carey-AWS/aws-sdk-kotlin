@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeReplicationTimeValueDocument(deserializer: Deserializer): ReplicationTimeValue {
+internal fun deserializeReplicationTimeValueDocument(deserializer: Deserializer): ReplicationTimeValue {
     val builder = ReplicationTimeValue.builder()
     val MINUTES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("Minutes"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

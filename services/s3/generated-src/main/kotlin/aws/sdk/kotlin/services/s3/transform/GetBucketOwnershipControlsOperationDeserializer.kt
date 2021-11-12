@@ -35,7 +35,7 @@ internal class GetBucketOwnershipControlsOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeGetBucketOwnershipControlsOperationBody(builder: GetBucketOwnershipControlsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketOwnershipControlsOperationBody(builder: GetBucketOwnershipControlsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.ownershipControls = deserializeOwnershipControlsDocument(deserializer)
 }

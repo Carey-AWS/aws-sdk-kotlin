@@ -45,7 +45,7 @@ internal class DisassociateEnclaveCertificateIamRoleOperationDeserializer: HttpD
     }
 }
 
-private suspend fun deserializeDisassociateEnclaveCertificateIamRoleOperationBody(builder: DisassociateEnclaveCertificateIamRoleResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisassociateEnclaveCertificateIamRoleOperationBody(builder: DisassociateEnclaveCertificateIamRoleResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

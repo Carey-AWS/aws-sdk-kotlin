@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeMultipartUploadDocument(deserializer: Deserializer): MultipartUpload {
+internal fun deserializeMultipartUploadDocument(deserializer: Deserializer): MultipartUpload {
     val builder = MultipartUpload.builder()
     val INITIATED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("Initiated"))
     val INITIATOR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Initiator"))

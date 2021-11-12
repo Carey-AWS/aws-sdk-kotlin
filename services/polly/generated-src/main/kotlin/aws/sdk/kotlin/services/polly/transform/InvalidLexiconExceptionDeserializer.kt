@@ -35,7 +35,7 @@ internal class InvalidLexiconExceptionDeserializer: HttpDeserialize<InvalidLexic
     }
 }
 
-private suspend fun deserializeInvalidLexiconExceptionError(builder: InvalidLexiconException.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidLexiconExceptionError(builder: InvalidLexiconException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

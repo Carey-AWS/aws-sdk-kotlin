@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeReplicationTimeDocument(deserializer: Deserializer): ReplicationTime {
+internal fun deserializeReplicationTimeDocument(deserializer: Deserializer): ReplicationTime {
     val builder = ReplicationTime.builder()
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Status"))
     val TIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Time"))

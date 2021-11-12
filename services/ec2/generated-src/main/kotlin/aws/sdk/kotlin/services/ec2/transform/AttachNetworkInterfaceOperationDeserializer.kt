@@ -45,7 +45,7 @@ internal class AttachNetworkInterfaceOperationDeserializer: HttpDeserialize<Atta
     }
 }
 
-private suspend fun deserializeAttachNetworkInterfaceOperationBody(builder: AttachNetworkInterfaceResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAttachNetworkInterfaceOperationBody(builder: AttachNetworkInterfaceResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ATTACHMENTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("attachmentId"))
     val NETWORKCARDINDEX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("networkCardIndex"))

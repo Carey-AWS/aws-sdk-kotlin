@@ -49,7 +49,7 @@ internal class ImportImageOperationDeserializer: HttpDeserialize<ImportImageResp
     }
 }
 
-private suspend fun deserializeImportImageOperationBody(builder: ImportImageResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeImportImageOperationBody(builder: ImportImageResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ARCHITECTURE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("architecture"))
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))

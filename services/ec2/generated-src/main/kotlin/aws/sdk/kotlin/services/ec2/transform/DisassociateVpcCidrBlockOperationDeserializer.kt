@@ -45,7 +45,7 @@ internal class DisassociateVpcCidrBlockOperationDeserializer: HttpDeserialize<Di
     }
 }
 
-private suspend fun deserializeDisassociateVpcCidrBlockOperationBody(builder: DisassociateVpcCidrBlockResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisassociateVpcCidrBlockOperationBody(builder: DisassociateVpcCidrBlockResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CIDRBLOCKASSOCIATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("cidrBlockAssociation"))
     val IPV6CIDRBLOCKASSOCIATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("ipv6CidrBlockAssociation"))

@@ -47,7 +47,7 @@ internal class DescribeStoreImageTasksOperationDeserializer: HttpDeserialize<Des
     }
 }
 
-private suspend fun deserializeDescribeStoreImageTasksOperationBody(builder: DescribeStoreImageTasksResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeStoreImageTasksOperationBody(builder: DescribeStoreImageTasksResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val STOREIMAGETASKRESULTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("storeImageTaskResultSet"), XmlCollectionName("item"))

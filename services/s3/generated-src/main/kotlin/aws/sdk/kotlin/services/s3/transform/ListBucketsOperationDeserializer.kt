@@ -49,7 +49,7 @@ internal class ListBucketsOperationDeserializer: HttpDeserialize<ListBucketsResp
     }
 }
 
-private suspend fun deserializeListBucketsOperationBody(builder: ListBucketsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListBucketsOperationBody(builder: ListBucketsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BUCKETS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("Buckets"), XmlCollectionName("Bucket"))
     val OWNER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Owner"))

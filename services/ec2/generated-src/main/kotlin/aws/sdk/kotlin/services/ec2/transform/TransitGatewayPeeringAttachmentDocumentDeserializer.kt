@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeTransitGatewayPeeringAttachmentDocument(deserializer: Deserializer): TransitGatewayPeeringAttachment {
+internal fun deserializeTransitGatewayPeeringAttachmentDocument(deserializer: Deserializer): TransitGatewayPeeringAttachment {
     val builder = TransitGatewayPeeringAttachment.builder()
     val ACCEPTERTGWINFO_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("accepterTgwInfo"))
     val CREATIONTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("creationTime"))

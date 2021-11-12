@@ -2,14 +2,21 @@
 
 package aws.sdk.kotlin.services.polly
 
+import aws.sdk.kotlin.runtime.auth.signing.AwsSigV4SigningMiddleware
 import aws.sdk.kotlin.runtime.client.AwsClientOption
 import aws.sdk.kotlin.runtime.execution.AuthAttributes
+import aws.sdk.kotlin.runtime.http.ApiMetadata
+import aws.sdk.kotlin.runtime.http.AwsUserAgentMetadata
 import aws.sdk.kotlin.runtime.http.engine.crt.CrtHttpEngine
+import aws.sdk.kotlin.runtime.http.middleware.ResolveAwsEndpoint
+import aws.sdk.kotlin.runtime.http.middleware.UserAgent
+import aws.sdk.kotlin.runtime.http.retries.AwsDefaultRetryPolicy
 import aws.sdk.kotlin.services.polly.model.*
 import aws.sdk.kotlin.services.polly.transform.*
 import aws.smithy.kotlin.runtime.client.ExecutionContext
 import aws.smithy.kotlin.runtime.client.SdkClientOption
 import aws.smithy.kotlin.runtime.http.SdkHttpClient
+import aws.smithy.kotlin.runtime.http.middleware.RetryFeature
 import aws.smithy.kotlin.runtime.http.operation.SdkHttpOperation
 import aws.smithy.kotlin.runtime.http.operation.context
 import aws.smithy.kotlin.runtime.http.operation.execute
@@ -28,6 +35,7 @@ internal class DefaultPollyClient(override val config: PollyClient.Config) : Pol
         val httpClientEngine = config.httpClientEngine ?: CrtHttpEngine()
         client = sdkHttpClient(httpClientEngine, manageEngine = config.httpClientEngine == null)
     }
+    private val awsUserAgentMetadata = AwsUserAgentMetadata.fromEnvironment(ApiMetadata(ServiceId, SdkVersion))
 
     /**
      * Deletes the specified pronunciation lexicon stored in an Amazon Web Services Region. A lexicon which has been deleted is not available for
@@ -45,8 +53,22 @@ internal class DefaultPollyClient(override val config: PollyClient.Config) : Pol
                 operationName = "DeleteLexicon"
             }
         }
-        registerDeleteLexiconMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "polly"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -78,8 +100,22 @@ internal class DefaultPollyClient(override val config: PollyClient.Config) : Pol
                 operationName = "DescribeVoices"
             }
         }
-        registerDescribeVoicesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "polly"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -97,8 +133,22 @@ internal class DefaultPollyClient(override val config: PollyClient.Config) : Pol
                 operationName = "GetLexicon"
             }
         }
-        registerGetLexiconMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "polly"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -118,8 +168,22 @@ internal class DefaultPollyClient(override val config: PollyClient.Config) : Pol
                 operationName = "GetSpeechSynthesisTask"
             }
         }
-        registerGetSpeechSynthesisTaskMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "polly"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -136,8 +200,22 @@ internal class DefaultPollyClient(override val config: PollyClient.Config) : Pol
                 operationName = "ListLexicons"
             }
         }
-        registerListLexiconsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "polly"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -156,8 +234,22 @@ internal class DefaultPollyClient(override val config: PollyClient.Config) : Pol
                 operationName = "ListSpeechSynthesisTasks"
             }
         }
-        registerListSpeechSynthesisTasksMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "polly"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -179,8 +271,22 @@ internal class DefaultPollyClient(override val config: PollyClient.Config) : Pol
                 operationName = "PutLexicon"
             }
         }
-        registerPutLexiconMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "polly"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -206,8 +312,22 @@ internal class DefaultPollyClient(override val config: PollyClient.Config) : Pol
                 operationName = "StartSpeechSynthesisTask"
             }
         }
-        registerStartSpeechSynthesisTaskMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "polly"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -228,8 +348,22 @@ internal class DefaultPollyClient(override val config: PollyClient.Config) : Pol
                 operationName = "SynthesizeSpeech"
             }
         }
-        registerSynthesizeSpeechMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "polly"
+        }
         return op.execute(client, input, block)
     }
 

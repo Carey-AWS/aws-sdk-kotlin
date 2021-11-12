@@ -45,7 +45,7 @@ internal class CreateDhcpOptionsOperationDeserializer: HttpDeserialize<CreateDhc
     }
 }
 
-private suspend fun deserializeCreateDhcpOptionsOperationBody(builder: CreateDhcpOptionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateDhcpOptionsOperationBody(builder: CreateDhcpOptionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val DHCPOPTIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("dhcpOptions"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

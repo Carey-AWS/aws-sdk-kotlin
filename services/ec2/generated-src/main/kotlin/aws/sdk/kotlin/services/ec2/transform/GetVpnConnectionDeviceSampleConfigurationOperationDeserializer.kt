@@ -45,7 +45,7 @@ internal class GetVpnConnectionDeviceSampleConfigurationOperationDeserializer: H
     }
 }
 
-private suspend fun deserializeGetVpnConnectionDeviceSampleConfigurationOperationBody(builder: GetVpnConnectionDeviceSampleConfigurationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetVpnConnectionDeviceSampleConfigurationOperationBody(builder: GetVpnConnectionDeviceSampleConfigurationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val VPNCONNECTIONDEVICESAMPLECONFIGURATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("vpnConnectionDeviceSampleConfiguration"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

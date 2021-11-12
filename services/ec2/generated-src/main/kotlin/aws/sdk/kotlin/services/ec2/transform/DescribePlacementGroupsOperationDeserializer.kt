@@ -47,7 +47,7 @@ internal class DescribePlacementGroupsOperationDeserializer: HttpDeserialize<Des
     }
 }
 
-private suspend fun deserializeDescribePlacementGroupsOperationBody(builder: DescribePlacementGroupsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribePlacementGroupsOperationBody(builder: DescribePlacementGroupsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val PLACEMENTGROUPS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("placementGroupSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

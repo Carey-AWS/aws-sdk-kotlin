@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceEventWindowDocument(deserializer: Deserializer): InstanceEventWindow {
+internal fun deserializeInstanceEventWindowDocument(deserializer: Deserializer): InstanceEventWindow {
     val builder = InstanceEventWindow.builder()
     val ASSOCIATIONTARGET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("associationTarget"))
     val CRONEXPRESSION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("cronExpression"))

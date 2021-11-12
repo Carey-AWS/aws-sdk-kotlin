@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSpotOptionsDocument(deserializer: Deserializer): SpotOptions {
+internal fun deserializeSpotOptionsDocument(deserializer: Deserializer): SpotOptions {
     val builder = SpotOptions.builder()
     val ALLOCATIONSTRATEGY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allocationStrategy"))
     val INSTANCEINTERRUPTIONBEHAVIOR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceInterruptionBehavior"))

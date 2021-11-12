@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLocalGatewayVirtualInterfaceDocument(deserializer: Deserializer): LocalGatewayVirtualInterface {
+internal fun deserializeLocalGatewayVirtualInterfaceDocument(deserializer: Deserializer): LocalGatewayVirtualInterface {
     val builder = LocalGatewayVirtualInterface.builder()
     val LOCALADDRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("localAddress"))
     val LOCALBGPASN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("localBgpAsn"))

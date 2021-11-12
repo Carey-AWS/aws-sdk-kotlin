@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeValidationWarningDocument(deserializer: Deserializer): ValidationWarning {
+internal fun deserializeValidationWarningDocument(deserializer: Deserializer): ValidationWarning {
     val builder = ValidationWarning.builder()
     val ERRORS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("errorSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

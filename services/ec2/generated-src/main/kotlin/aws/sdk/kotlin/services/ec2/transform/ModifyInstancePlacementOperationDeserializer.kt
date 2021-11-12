@@ -45,7 +45,7 @@ internal class ModifyInstancePlacementOperationDeserializer: HttpDeserialize<Mod
     }
 }
 
-private suspend fun deserializeModifyInstancePlacementOperationBody(builder: ModifyInstancePlacementResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyInstancePlacementOperationBody(builder: ModifyInstancePlacementResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

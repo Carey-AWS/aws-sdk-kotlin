@@ -49,7 +49,7 @@ internal class GetBucketCorsOperationDeserializer: HttpDeserialize<GetBucketCors
     }
 }
 
-private suspend fun deserializeGetBucketCorsOperationBody(builder: GetBucketCorsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketCorsOperationBody(builder: GetBucketCorsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CORSRULES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("CORSRule"), Flattened)
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

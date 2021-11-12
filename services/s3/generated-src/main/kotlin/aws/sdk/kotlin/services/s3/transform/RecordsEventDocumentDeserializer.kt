@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.util.decodeBase64Bytes
 
 
-internal suspend fun deserializeRecordsEventDocument(deserializer: Deserializer): RecordsEvent {
+internal fun deserializeRecordsEventDocument(deserializer: Deserializer): RecordsEvent {
     val builder = RecordsEvent.builder()
     val PAYLOAD_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Blob, XmlSerialName("Payload"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

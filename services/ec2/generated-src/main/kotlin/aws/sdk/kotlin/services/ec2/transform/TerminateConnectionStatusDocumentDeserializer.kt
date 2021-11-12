@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTerminateConnectionStatusDocument(deserializer: Deserializer): TerminateConnectionStatus {
+internal fun deserializeTerminateConnectionStatusDocument(deserializer: Deserializer): TerminateConnectionStatus {
     val builder = TerminateConnectionStatus.builder()
     val CONNECTIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("connectionId"))
     val CURRENTSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("currentStatus"))

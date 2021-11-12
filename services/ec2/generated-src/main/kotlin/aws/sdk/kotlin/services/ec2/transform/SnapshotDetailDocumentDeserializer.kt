@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSnapshotDetailDocument(deserializer: Deserializer): SnapshotDetail {
+internal fun deserializeSnapshotDetailDocument(deserializer: Deserializer): SnapshotDetail {
     val builder = SnapshotDetail.builder()
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val DEVICENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("deviceName"))

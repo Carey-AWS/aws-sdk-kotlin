@@ -45,7 +45,7 @@ internal class AttachVpnGatewayOperationDeserializer: HttpDeserialize<AttachVpnG
     }
 }
 
-private suspend fun deserializeAttachVpnGatewayOperationBody(builder: AttachVpnGatewayResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAttachVpnGatewayOperationBody(builder: AttachVpnGatewayResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val VPCATTACHMENT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("attachment"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

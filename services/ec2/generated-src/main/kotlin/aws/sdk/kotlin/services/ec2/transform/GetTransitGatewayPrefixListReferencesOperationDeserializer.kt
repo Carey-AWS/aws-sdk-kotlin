@@ -47,7 +47,7 @@ internal class GetTransitGatewayPrefixListReferencesOperationDeserializer: HttpD
     }
 }
 
-private suspend fun deserializeGetTransitGatewayPrefixListReferencesOperationBody(builder: GetTransitGatewayPrefixListReferencesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetTransitGatewayPrefixListReferencesOperationBody(builder: GetTransitGatewayPrefixListReferencesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val TRANSITGATEWAYPREFIXLISTREFERENCES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("transitGatewayPrefixListReferenceSet"), XmlCollectionName("item"))

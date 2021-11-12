@@ -45,7 +45,7 @@ internal class ResetFpgaImageAttributeOperationDeserializer: HttpDeserialize<Res
     }
 }
 
-private suspend fun deserializeResetFpgaImageAttributeOperationBody(builder: ResetFpgaImageAttributeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeResetFpgaImageAttributeOperationBody(builder: ResetFpgaImageAttributeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -37,7 +37,7 @@ internal class IdpCommunicationErrorExceptionDeserializer: HttpDeserialize<IdpCo
     }
 }
 
-private suspend fun deserializeIdpCommunicationErrorExceptionError(builder: IdpCommunicationErrorException.DslBuilder, payload: ByteArray) {
+private fun deserializeIdpCommunicationErrorExceptionError(builder: IdpCommunicationErrorException.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

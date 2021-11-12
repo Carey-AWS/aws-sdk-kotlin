@@ -47,7 +47,7 @@ internal class GetCoipPoolUsageOperationDeserializer: HttpDeserialize<GetCoipPoo
     }
 }
 
-private suspend fun deserializeGetCoipPoolUsageOperationBody(builder: GetCoipPoolUsageResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetCoipPoolUsageOperationBody(builder: GetCoipPoolUsageResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val COIPADDRESSUSAGES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("coipAddressUsageSet"), XmlCollectionName("item"))
     val COIPPOOLID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("coipPoolId"))

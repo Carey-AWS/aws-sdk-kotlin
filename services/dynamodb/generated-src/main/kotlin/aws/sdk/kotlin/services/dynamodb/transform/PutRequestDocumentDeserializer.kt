@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializePutRequestDocument(deserializer: Deserializer): PutRequest {
+internal fun deserializePutRequestDocument(deserializer: Deserializer): PutRequest {
     val builder = PutRequest.builder()
     val ITEM_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Map, JsonSerialName("Item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

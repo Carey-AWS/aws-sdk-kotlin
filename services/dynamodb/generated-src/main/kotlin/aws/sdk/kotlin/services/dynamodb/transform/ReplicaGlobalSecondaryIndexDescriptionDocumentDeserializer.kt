@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeReplicaGlobalSecondaryIndexDescriptionDocument(deserializer: Deserializer): ReplicaGlobalSecondaryIndexDescription {
+internal fun deserializeReplicaGlobalSecondaryIndexDescriptionDocument(deserializer: Deserializer): ReplicaGlobalSecondaryIndexDescription {
     val builder = ReplicaGlobalSecondaryIndexDescription.builder()
     val INDEXNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("IndexName"))
     val PROVISIONEDTHROUGHPUTOVERRIDE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("ProvisionedThroughputOverride"))

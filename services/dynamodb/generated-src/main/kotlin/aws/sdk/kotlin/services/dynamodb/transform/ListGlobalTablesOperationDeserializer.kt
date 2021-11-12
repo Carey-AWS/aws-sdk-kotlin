@@ -45,7 +45,7 @@ internal class ListGlobalTablesOperationDeserializer: HttpDeserialize<ListGlobal
     }
 }
 
-private suspend fun deserializeListGlobalTablesOperationBody(builder: ListGlobalTablesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListGlobalTablesOperationBody(builder: ListGlobalTablesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val GLOBALTABLES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("GlobalTables"))
     val LASTEVALUATEDGLOBALTABLENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("LastEvaluatedGlobalTableName"))

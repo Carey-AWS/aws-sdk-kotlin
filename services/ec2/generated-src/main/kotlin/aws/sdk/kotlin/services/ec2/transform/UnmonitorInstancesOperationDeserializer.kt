@@ -47,7 +47,7 @@ internal class UnmonitorInstancesOperationDeserializer: HttpDeserialize<Unmonito
     }
 }
 
-private suspend fun deserializeUnmonitorInstancesOperationBody(builder: UnmonitorInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeUnmonitorInstancesOperationBody(builder: UnmonitorInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCEMONITORINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instancesSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

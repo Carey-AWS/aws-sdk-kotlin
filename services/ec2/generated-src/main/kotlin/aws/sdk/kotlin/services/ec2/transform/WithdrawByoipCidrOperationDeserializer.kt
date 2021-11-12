@@ -45,7 +45,7 @@ internal class WithdrawByoipCidrOperationDeserializer: HttpDeserialize<WithdrawB
     }
 }
 
-private suspend fun deserializeWithdrawByoipCidrOperationBody(builder: WithdrawByoipCidrResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeWithdrawByoipCidrOperationBody(builder: WithdrawByoipCidrResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BYOIPCIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("byoipCidr"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

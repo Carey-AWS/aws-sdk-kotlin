@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeNetworkCardInfoDocument(deserializer: Deserializer): NetworkCardInfo {
+internal fun deserializeNetworkCardInfoDocument(deserializer: Deserializer): NetworkCardInfo {
     val builder = NetworkCardInfo.builder()
     val MAXIMUMNETWORKINTERFACES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("maximumNetworkInterfaces"))
     val NETWORKCARDINDEX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("networkCardIndex"))

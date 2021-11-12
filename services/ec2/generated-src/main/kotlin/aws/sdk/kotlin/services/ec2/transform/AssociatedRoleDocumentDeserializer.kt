@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAssociatedRoleDocument(deserializer: Deserializer): AssociatedRole {
+internal fun deserializeAssociatedRoleDocument(deserializer: Deserializer): AssociatedRole {
     val builder = AssociatedRole.builder()
     val ASSOCIATEDROLEARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("associatedRoleArn"))
     val CERTIFICATES3BUCKETNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("certificateS3BucketName"))

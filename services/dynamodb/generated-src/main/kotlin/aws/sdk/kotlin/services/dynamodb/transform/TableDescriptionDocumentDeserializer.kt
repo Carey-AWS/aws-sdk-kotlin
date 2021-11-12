@@ -26,7 +26,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeTableDescriptionDocument(deserializer: Deserializer): TableDescription {
+internal fun deserializeTableDescriptionDocument(deserializer: Deserializer): TableDescription {
     val builder = TableDescription.builder()
     val ARCHIVALSUMMARY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("ArchivalSummary"))
     val ATTRIBUTEDEFINITIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("AttributeDefinitions"))

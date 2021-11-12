@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePropagatingVgwDocument(deserializer: Deserializer): PropagatingVgw {
+internal fun deserializePropagatingVgwDocument(deserializer: Deserializer): PropagatingVgw {
     val builder = PropagatingVgw.builder()
     val GATEWAYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("gatewayId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

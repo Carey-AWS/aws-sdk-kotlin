@@ -47,7 +47,7 @@ internal class RequestSpotInstancesOperationDeserializer: HttpDeserialize<Reques
     }
 }
 
-private suspend fun deserializeRequestSpotInstancesOperationBody(builder: RequestSpotInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRequestSpotInstancesOperationBody(builder: RequestSpotInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SPOTINSTANCEREQUESTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("spotInstanceRequestSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

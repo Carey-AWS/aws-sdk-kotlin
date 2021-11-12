@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeTransitGatewayRouteTableDocument(deserializer: Deserializer): TransitGatewayRouteTable {
+internal fun deserializeTransitGatewayRouteTableDocument(deserializer: Deserializer): TransitGatewayRouteTable {
     val builder = TransitGatewayRouteTable.builder()
     val CREATIONTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("creationTime"))
     val DEFAULTASSOCIATIONROUTETABLE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("defaultAssociationRouteTable"))

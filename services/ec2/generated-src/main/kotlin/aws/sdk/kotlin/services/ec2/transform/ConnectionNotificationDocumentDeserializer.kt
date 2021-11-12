@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeConnectionNotificationDocument(deserializer: Deserializer): ConnectionNotification {
+internal fun deserializeConnectionNotificationDocument(deserializer: Deserializer): ConnectionNotification {
     val builder = ConnectionNotification.builder()
     val CONNECTIONEVENTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("connectionEvents"), XmlCollectionName("item"))
     val CONNECTIONNOTIFICATIONARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("connectionNotificationArn"))

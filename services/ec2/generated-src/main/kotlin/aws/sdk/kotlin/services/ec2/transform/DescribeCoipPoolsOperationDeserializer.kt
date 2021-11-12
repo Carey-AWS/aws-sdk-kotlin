@@ -47,7 +47,7 @@ internal class DescribeCoipPoolsOperationDeserializer: HttpDeserialize<DescribeC
     }
 }
 
-private suspend fun deserializeDescribeCoipPoolsOperationBody(builder: DescribeCoipPoolsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeCoipPoolsOperationBody(builder: DescribeCoipPoolsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val COIPPOOLS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("coipPoolSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDeleteQueuedReservedInstancesErrorDocument(deserializer: Deserializer): DeleteQueuedReservedInstancesError {
+internal fun deserializeDeleteQueuedReservedInstancesErrorDocument(deserializer: Deserializer): DeleteQueuedReservedInstancesError {
     val builder = DeleteQueuedReservedInstancesError.builder()
     val CODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("code"))
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))

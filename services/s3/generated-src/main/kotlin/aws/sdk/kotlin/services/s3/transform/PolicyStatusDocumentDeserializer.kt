@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePolicyStatusDocument(deserializer: Deserializer): PolicyStatus {
+internal fun deserializePolicyStatusDocument(deserializer: Deserializer): PolicyStatus {
     val builder = PolicyStatus.builder()
     val ISPUBLIC_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("IsPublic"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

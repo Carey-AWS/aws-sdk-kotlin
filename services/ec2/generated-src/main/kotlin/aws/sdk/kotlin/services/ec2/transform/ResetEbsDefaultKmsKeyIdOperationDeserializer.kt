@@ -45,7 +45,7 @@ internal class ResetEbsDefaultKmsKeyIdOperationDeserializer: HttpDeserialize<Res
     }
 }
 
-private suspend fun deserializeResetEbsDefaultKmsKeyIdOperationBody(builder: ResetEbsDefaultKmsKeyIdResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeResetEbsDefaultKmsKeyIdOperationBody(builder: ResetEbsDefaultKmsKeyIdResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val KMSKEYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("kmsKeyId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

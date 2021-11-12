@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeSnapshotInfoDocument(deserializer: Deserializer): SnapshotInfo {
+internal fun deserializeSnapshotInfoDocument(deserializer: Deserializer): SnapshotInfo {
     val builder = SnapshotInfo.builder()
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val ENCRYPTED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("encrypted"))

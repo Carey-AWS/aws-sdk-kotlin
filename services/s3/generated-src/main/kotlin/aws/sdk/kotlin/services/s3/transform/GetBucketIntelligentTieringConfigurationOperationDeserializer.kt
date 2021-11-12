@@ -35,7 +35,7 @@ internal class GetBucketIntelligentTieringConfigurationOperationDeserializer: Ht
     }
 }
 
-private suspend fun deserializeGetBucketIntelligentTieringConfigurationOperationBody(builder: GetBucketIntelligentTieringConfigurationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketIntelligentTieringConfigurationOperationBody(builder: GetBucketIntelligentTieringConfigurationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.intelligentTieringConfiguration = deserializeIntelligentTieringConfigurationDocument(deserializer)
 }

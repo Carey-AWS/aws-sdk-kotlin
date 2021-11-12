@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceTypeOfferingDocument(deserializer: Deserializer): InstanceTypeOffering {
+internal fun deserializeInstanceTypeOfferingDocument(deserializer: Deserializer): InstanceTypeOffering {
     val builder = InstanceTypeOffering.builder()
     val INSTANCETYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceType"))
     val LOCATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("location"))

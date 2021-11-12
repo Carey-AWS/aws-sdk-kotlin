@@ -47,7 +47,7 @@ internal class DescribeSecurityGroupsOperationDeserializer: HttpDeserialize<Desc
     }
 }
 
-private suspend fun deserializeDescribeSecurityGroupsOperationBody(builder: DescribeSecurityGroupsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeSecurityGroupsOperationBody(builder: DescribeSecurityGroupsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val SECURITYGROUPS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("securityGroupInfo"), XmlCollectionName("item"))

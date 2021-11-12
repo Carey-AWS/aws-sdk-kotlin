@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeBundleTaskDocument(deserializer: Deserializer): BundleTask {
+internal fun deserializeBundleTaskDocument(deserializer: Deserializer): BundleTask {
     val builder = BundleTask.builder()
     val BUNDLEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("bundleId"))
     val BUNDLETASKERROR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("error"))

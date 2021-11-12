@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeProjectionDocument(deserializer: Deserializer): Projection {
+internal fun deserializeProjectionDocument(deserializer: Deserializer): Projection {
     val builder = Projection.builder()
     val NONKEYATTRIBUTES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("NonKeyAttributes"))
     val PROJECTIONTYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("ProjectionType"))

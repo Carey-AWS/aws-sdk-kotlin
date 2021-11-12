@@ -51,7 +51,7 @@ internal class GetObjectTaggingOperationDeserializer: HttpDeserialize<GetObjectT
     }
 }
 
-private suspend fun deserializeGetObjectTaggingOperationBody(builder: GetObjectTaggingResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetObjectTaggingOperationBody(builder: GetObjectTaggingResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val TAGSET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("TagSet"), XmlCollectionName("Tag"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

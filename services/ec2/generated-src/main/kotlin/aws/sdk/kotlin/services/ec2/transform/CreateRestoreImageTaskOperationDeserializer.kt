@@ -45,7 +45,7 @@ internal class CreateRestoreImageTaskOperationDeserializer: HttpDeserialize<Crea
     }
 }
 
-private suspend fun deserializeCreateRestoreImageTaskOperationBody(builder: CreateRestoreImageTaskResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateRestoreImageTaskOperationBody(builder: CreateRestoreImageTaskResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IMAGEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("imageId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

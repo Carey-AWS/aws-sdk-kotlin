@@ -46,7 +46,7 @@ internal class GetConsoleOutputOperationDeserializer: HttpDeserialize<GetConsole
     }
 }
 
-private suspend fun deserializeGetConsoleOutputOperationBody(builder: GetConsoleOutputResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetConsoleOutputOperationBody(builder: GetConsoleOutputResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceId"))
     val OUTPUT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("output"))

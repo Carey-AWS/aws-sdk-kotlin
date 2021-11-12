@@ -45,7 +45,7 @@ internal class DisableVpcClassicLinkDnsSupportOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeDisableVpcClassicLinkDnsSupportOperationBody(builder: DisableVpcClassicLinkDnsSupportResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisableVpcClassicLinkDnsSupportOperationBody(builder: DisableVpcClassicLinkDnsSupportResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

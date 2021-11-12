@@ -37,7 +37,7 @@ internal class RegionDisabledExceptionDeserializer: HttpDeserialize<RegionDisabl
     }
 }
 
-private suspend fun deserializeRegionDisabledExceptionError(builder: RegionDisabledException.DslBuilder, payload: ByteArray) {
+private fun deserializeRegionDisabledExceptionError(builder: RegionDisabledException.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchTemplateEnclaveOptionsDocument(deserializer: Deserializer): LaunchTemplateEnclaveOptions {
+internal fun deserializeLaunchTemplateEnclaveOptionsDocument(deserializer: Deserializer): LaunchTemplateEnclaveOptions {
     val builder = LaunchTemplateEnclaveOptions.builder()
     val ENABLED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("enabled"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

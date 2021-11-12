@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeFpgaImageAttributeDocument(deserializer: Deserializer): FpgaImageAttribute {
+internal fun deserializeFpgaImageAttributeDocument(deserializer: Deserializer): FpgaImageAttribute {
     val builder = FpgaImageAttribute.builder()
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val FPGAIMAGEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("fpgaImageId"))

@@ -47,7 +47,7 @@ internal class DescribeVolumeAttributeOperationDeserializer: HttpDeserialize<Des
     }
 }
 
-private suspend fun deserializeDescribeVolumeAttributeOperationBody(builder: DescribeVolumeAttributeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeVolumeAttributeOperationBody(builder: DescribeVolumeAttributeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val AUTOENABLEIO_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("autoEnableIO"))
     val PRODUCTCODES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("productCodes"), XmlCollectionName("item"))

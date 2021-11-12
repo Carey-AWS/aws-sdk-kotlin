@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSelectObjectContentEventStreamDocument(deserializer: Deserializer): SelectObjectContentEventStream {
+internal fun deserializeSelectObjectContentEventStreamDocument(deserializer: Deserializer): SelectObjectContentEventStream {
     var value: SelectObjectContentEventStream? = null
     val CONT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Cont"))
     val END_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("End"))

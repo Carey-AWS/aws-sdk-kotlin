@@ -45,7 +45,7 @@ internal class CopyImageOperationDeserializer: HttpDeserialize<CopyImageResponse
     }
 }
 
-private suspend fun deserializeCopyImageOperationBody(builder: CopyImageResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCopyImageOperationBody(builder: CopyImageResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IMAGEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("imageId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

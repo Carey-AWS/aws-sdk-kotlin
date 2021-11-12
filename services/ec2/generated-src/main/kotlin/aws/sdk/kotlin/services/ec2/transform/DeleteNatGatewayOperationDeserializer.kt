@@ -45,7 +45,7 @@ internal class DeleteNatGatewayOperationDeserializer: HttpDeserialize<DeleteNatG
     }
 }
 
-private suspend fun deserializeDeleteNatGatewayOperationBody(builder: DeleteNatGatewayResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteNatGatewayOperationBody(builder: DeleteNatGatewayResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NATGATEWAYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("natGatewayId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeFederatedUserDocument(deserializer: Deserializer): FederatedUser {
+internal fun deserializeFederatedUserDocument(deserializer: Deserializer): FederatedUser {
     val builder = FederatedUser.builder()
     val ARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Arn"))
     val FEDERATEDUSERID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("FederatedUserId"))

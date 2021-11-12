@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeProvisionedBandwidthDocument(deserializer: Deserializer): ProvisionedBandwidth {
+internal fun deserializeProvisionedBandwidthDocument(deserializer: Deserializer): ProvisionedBandwidth {
     val builder = ProvisionedBandwidth.builder()
     val PROVISIONTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("provisionTime"))
     val PROVISIONED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("provisioned"))

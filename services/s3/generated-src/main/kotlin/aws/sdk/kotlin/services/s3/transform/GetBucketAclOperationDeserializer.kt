@@ -49,7 +49,7 @@ internal class GetBucketAclOperationDeserializer: HttpDeserialize<GetBucketAclRe
     }
 }
 
-private suspend fun deserializeGetBucketAclOperationBody(builder: GetBucketAclResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketAclOperationBody(builder: GetBucketAclResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val GRANTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("AccessControlList"), XmlCollectionName("Grant"))
     val OWNER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Owner"))

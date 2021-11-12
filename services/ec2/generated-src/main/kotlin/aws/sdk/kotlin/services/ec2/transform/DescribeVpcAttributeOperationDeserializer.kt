@@ -45,7 +45,7 @@ internal class DescribeVpcAttributeOperationDeserializer: HttpDeserialize<Descri
     }
 }
 
-private suspend fun deserializeDescribeVpcAttributeOperationBody(builder: DescribeVpcAttributeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeVpcAttributeOperationBody(builder: DescribeVpcAttributeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ENABLEDNSHOSTNAMES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("enableDnsHostnames"))
     val ENABLEDNSSUPPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("enableDnsSupport"))

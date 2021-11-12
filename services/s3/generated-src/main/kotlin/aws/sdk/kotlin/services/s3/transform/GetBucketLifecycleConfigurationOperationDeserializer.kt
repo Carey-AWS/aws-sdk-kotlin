@@ -49,7 +49,7 @@ internal class GetBucketLifecycleConfigurationOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeGetBucketLifecycleConfigurationOperationBody(builder: GetBucketLifecycleConfigurationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketLifecycleConfigurationOperationBody(builder: GetBucketLifecycleConfigurationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RULES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("Rule"), Flattened)
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -45,7 +45,7 @@ internal class ListExportsOperationDeserializer: HttpDeserialize<ListExportsResp
     }
 }
 
-private suspend fun deserializeListExportsOperationBody(builder: ListExportsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListExportsOperationBody(builder: ListExportsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val EXPORTSUMMARIES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("ExportSummaries"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("NextToken"))

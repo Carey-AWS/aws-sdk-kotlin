@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInventoryScheduleDocument(deserializer: Deserializer): InventorySchedule {
+internal fun deserializeInventoryScheduleDocument(deserializer: Deserializer): InventorySchedule {
     val builder = InventorySchedule.builder()
     val FREQUENCY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Frequency"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -29,7 +29,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeResponseLaunchTemplateDataDocument(deserializer: Deserializer): ResponseLaunchTemplateData {
+internal fun deserializeResponseLaunchTemplateDataDocument(deserializer: Deserializer): ResponseLaunchTemplateData {
     val builder = ResponseLaunchTemplateData.builder()
     val BLOCKDEVICEMAPPINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("blockDeviceMappingSet"), XmlCollectionName("item"))
     val CAPACITYRESERVATIONSPECIFICATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("capacityReservationSpecification"))

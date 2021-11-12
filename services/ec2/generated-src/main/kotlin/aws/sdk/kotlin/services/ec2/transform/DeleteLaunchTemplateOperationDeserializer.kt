@@ -45,7 +45,7 @@ internal class DeleteLaunchTemplateOperationDeserializer: HttpDeserialize<Delete
     }
 }
 
-private suspend fun deserializeDeleteLaunchTemplateOperationBody(builder: DeleteLaunchTemplateResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteLaunchTemplateOperationBody(builder: DeleteLaunchTemplateResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val LAUNCHTEMPLATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("launchTemplate"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

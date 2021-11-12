@@ -45,7 +45,7 @@ internal class GetConsoleScreenshotOperationDeserializer: HttpDeserialize<GetCon
     }
 }
 
-private suspend fun deserializeGetConsoleScreenshotOperationBody(builder: GetConsoleScreenshotResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetConsoleScreenshotOperationBody(builder: GetConsoleScreenshotResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IMAGEDATA_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("imageData"))
     val INSTANCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceId"))

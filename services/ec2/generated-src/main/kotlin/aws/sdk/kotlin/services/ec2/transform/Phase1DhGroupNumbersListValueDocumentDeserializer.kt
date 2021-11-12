@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePhase1DhGroupNumbersListValueDocument(deserializer: Deserializer): Phase1DhGroupNumbersListValue {
+internal fun deserializePhase1DhGroupNumbersListValueDocument(deserializer: Deserializer): Phase1DhGroupNumbersListValue {
     val builder = Phase1DhGroupNumbersListValue.builder()
     val VALUE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("value"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeObjectLockRetentionDocument(deserializer: Deserializer): ObjectLockRetention {
+internal fun deserializeObjectLockRetentionDocument(deserializer: Deserializer): ObjectLockRetention {
     val builder = ObjectLockRetention.builder()
     val MODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Mode"))
     val RETAINUNTILDATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("RetainUntilDate"))

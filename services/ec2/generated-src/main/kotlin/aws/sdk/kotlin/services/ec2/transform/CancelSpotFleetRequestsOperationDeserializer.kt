@@ -48,7 +48,7 @@ internal class CancelSpotFleetRequestsOperationDeserializer: HttpDeserialize<Can
     }
 }
 
-private suspend fun deserializeCancelSpotFleetRequestsOperationBody(builder: CancelSpotFleetRequestsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCancelSpotFleetRequestsOperationBody(builder: CancelSpotFleetRequestsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SUCCESSFULFLEETREQUESTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("successfulFleetRequestSet"), XmlCollectionName("item"))
     val UNSUCCESSFULFLEETREQUESTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("unsuccessfulFleetRequestSet"), XmlCollectionName("item"))

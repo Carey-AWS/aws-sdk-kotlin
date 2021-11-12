@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeCredentialsDocument(deserializer: Deserializer): Credentials {
+internal fun deserializeCredentialsDocument(deserializer: Deserializer): Credentials {
     val builder = Credentials.builder()
     val ACCESSKEYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("AccessKeyId"))
     val EXPIRATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("Expiration"))

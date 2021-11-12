@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeServiceTypeDetailDocument(deserializer: Deserializer): ServiceTypeDetail {
+internal fun deserializeServiceTypeDetailDocument(deserializer: Deserializer): ServiceTypeDetail {
     val builder = ServiceTypeDetail.builder()
     val SERVICETYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("serviceType"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

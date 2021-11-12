@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeProductCodeDocument(deserializer: Deserializer): ProductCode {
+internal fun deserializeProductCodeDocument(deserializer: Deserializer): ProductCode {
     val builder = ProductCode.builder()
     val PRODUCTCODEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("productCode"))
     val PRODUCTCODETYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("type"))

@@ -45,7 +45,7 @@ internal class ListBackupsOperationDeserializer: HttpDeserialize<ListBackupsResp
     }
 }
 
-private suspend fun deserializeListBackupsOperationBody(builder: ListBackupsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListBackupsOperationBody(builder: ListBackupsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val BACKUPSUMMARIES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("BackupSummaries"))
     val LASTEVALUATEDBACKUPARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("LastEvaluatedBackupArn"))

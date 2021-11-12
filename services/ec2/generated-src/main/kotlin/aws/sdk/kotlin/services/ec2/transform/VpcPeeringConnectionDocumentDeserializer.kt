@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeVpcPeeringConnectionDocument(deserializer: Deserializer): VpcPeeringConnection {
+internal fun deserializeVpcPeeringConnectionDocument(deserializer: Deserializer): VpcPeeringConnection {
     val builder = VpcPeeringConnection.builder()
     val ACCEPTERVPCINFO_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("accepterVpcInfo"))
     val EXPIRATIONTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("expirationTime"))

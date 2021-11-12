@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAssumedRoleUserDocument(deserializer: Deserializer): AssumedRoleUser {
+internal fun deserializeAssumedRoleUserDocument(deserializer: Deserializer): AssumedRoleUser {
     val builder = AssumedRoleUser.builder()
     val ARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Arn"))
     val ASSUMEDROLEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("AssumedRoleId"))

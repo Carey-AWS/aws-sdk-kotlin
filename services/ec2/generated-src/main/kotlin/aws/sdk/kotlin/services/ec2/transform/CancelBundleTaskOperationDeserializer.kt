@@ -45,7 +45,7 @@ internal class CancelBundleTaskOperationDeserializer: HttpDeserialize<CancelBund
     }
 }
 
-private suspend fun deserializeCancelBundleTaskOperationBody(builder: CancelBundleTaskResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCancelBundleTaskOperationBody(builder: CancelBundleTaskResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BUNDLETASK_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("bundleInstanceTask"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

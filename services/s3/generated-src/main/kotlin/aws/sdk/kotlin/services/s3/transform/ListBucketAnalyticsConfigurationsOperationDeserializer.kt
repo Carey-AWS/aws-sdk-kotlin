@@ -49,7 +49,7 @@ internal class ListBucketAnalyticsConfigurationsOperationDeserializer: HttpDeser
     }
 }
 
-private suspend fun deserializeListBucketAnalyticsConfigurationsOperationBody(builder: ListBucketAnalyticsConfigurationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListBucketAnalyticsConfigurationsOperationBody(builder: ListBucketAnalyticsConfigurationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ANALYTICSCONFIGURATIONLIST_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("AnalyticsConfiguration"), Flattened)
     val CONTINUATIONTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ContinuationToken"))

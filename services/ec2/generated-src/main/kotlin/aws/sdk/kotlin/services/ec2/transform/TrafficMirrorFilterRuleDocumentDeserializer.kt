@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTrafficMirrorFilterRuleDocument(deserializer: Deserializer): TrafficMirrorFilterRule {
+internal fun deserializeTrafficMirrorFilterRuleDocument(deserializer: Deserializer): TrafficMirrorFilterRule {
     val builder = TrafficMirrorFilterRule.builder()
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val DESTINATIONCIDRBLOCK_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("destinationCidrBlock"))

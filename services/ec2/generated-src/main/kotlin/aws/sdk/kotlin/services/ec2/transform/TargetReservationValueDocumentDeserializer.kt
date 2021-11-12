@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTargetReservationValueDocument(deserializer: Deserializer): TargetReservationValue {
+internal fun deserializeTargetReservationValueDocument(deserializer: Deserializer): TargetReservationValue {
     val builder = TargetReservationValue.builder()
     val RESERVATIONVALUE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("reservationValue"))
     val TARGETCONFIGURATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("targetConfiguration"))

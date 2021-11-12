@@ -45,7 +45,7 @@ internal class GetFlowLogsIntegrationTemplateOperationDeserializer: HttpDeserial
     }
 }
 
-private suspend fun deserializeGetFlowLogsIntegrationTemplateOperationBody(builder: GetFlowLogsIntegrationTemplateResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetFlowLogsIntegrationTemplateOperationBody(builder: GetFlowLogsIntegrationTemplateResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RESULT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("result"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

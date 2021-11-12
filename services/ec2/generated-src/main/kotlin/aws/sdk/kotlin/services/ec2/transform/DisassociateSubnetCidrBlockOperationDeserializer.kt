@@ -45,7 +45,7 @@ internal class DisassociateSubnetCidrBlockOperationDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeDisassociateSubnetCidrBlockOperationBody(builder: DisassociateSubnetCidrBlockResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisassociateSubnetCidrBlockOperationBody(builder: DisassociateSubnetCidrBlockResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IPV6CIDRBLOCKASSOCIATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("ipv6CidrBlockAssociation"))
     val SUBNETID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("subnetId"))

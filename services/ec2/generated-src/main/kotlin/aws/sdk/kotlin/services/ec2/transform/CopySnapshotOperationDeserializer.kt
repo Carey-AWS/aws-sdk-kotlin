@@ -47,7 +47,7 @@ internal class CopySnapshotOperationDeserializer: HttpDeserialize<CopySnapshotRe
     }
 }
 
-private suspend fun deserializeCopySnapshotOperationBody(builder: CopySnapshotResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCopySnapshotOperationBody(builder: CopySnapshotResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SNAPSHOTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("snapshotId"))
     val TAGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("tagSet"), XmlCollectionName("item"))

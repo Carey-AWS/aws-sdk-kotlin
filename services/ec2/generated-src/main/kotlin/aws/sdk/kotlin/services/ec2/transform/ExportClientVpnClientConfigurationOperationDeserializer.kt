@@ -45,7 +45,7 @@ internal class ExportClientVpnClientConfigurationOperationDeserializer: HttpDese
     }
 }
 
-private suspend fun deserializeExportClientVpnClientConfigurationOperationBody(builder: ExportClientVpnClientConfigurationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeExportClientVpnClientConfigurationOperationBody(builder: ExportClientVpnClientConfigurationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTCONFIGURATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientConfiguration"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

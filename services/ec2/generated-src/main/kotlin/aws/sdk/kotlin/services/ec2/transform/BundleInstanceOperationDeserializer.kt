@@ -45,7 +45,7 @@ internal class BundleInstanceOperationDeserializer: HttpDeserialize<BundleInstan
     }
 }
 
-private suspend fun deserializeBundleInstanceOperationBody(builder: BundleInstanceResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeBundleInstanceOperationBody(builder: BundleInstanceResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BUNDLETASK_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("bundleInstanceTask"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

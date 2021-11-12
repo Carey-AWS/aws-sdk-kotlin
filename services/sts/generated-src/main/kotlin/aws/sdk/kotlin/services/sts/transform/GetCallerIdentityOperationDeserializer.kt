@@ -46,7 +46,7 @@ internal class GetCallerIdentityOperationDeserializer: HttpDeserialize<GetCaller
     }
 }
 
-private suspend fun deserializeGetCallerIdentityOperationBody(builder: GetCallerIdentityResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetCallerIdentityOperationBody(builder: GetCallerIdentityResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
 
     val resultDescriptor = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("GetCallerIdentityResult"))

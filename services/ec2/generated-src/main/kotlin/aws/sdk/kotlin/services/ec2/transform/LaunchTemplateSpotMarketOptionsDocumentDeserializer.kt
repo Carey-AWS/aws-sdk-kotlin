@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeLaunchTemplateSpotMarketOptionsDocument(deserializer: Deserializer): LaunchTemplateSpotMarketOptions {
+internal fun deserializeLaunchTemplateSpotMarketOptionsDocument(deserializer: Deserializer): LaunchTemplateSpotMarketOptions {
     val builder = LaunchTemplateSpotMarketOptions.builder()
     val BLOCKDURATIONMINUTES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("blockDurationMinutes"))
     val INSTANCEINTERRUPTIONBEHAVIOR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceInterruptionBehavior"))

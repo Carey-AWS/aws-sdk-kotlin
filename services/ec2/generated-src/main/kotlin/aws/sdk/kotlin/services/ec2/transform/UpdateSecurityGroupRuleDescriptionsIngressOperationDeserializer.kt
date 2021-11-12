@@ -45,7 +45,7 @@ internal class UpdateSecurityGroupRuleDescriptionsIngressOperationDeserializer: 
     }
 }
 
-private suspend fun deserializeUpdateSecurityGroupRuleDescriptionsIngressOperationBody(builder: UpdateSecurityGroupRuleDescriptionsIngressResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeUpdateSecurityGroupRuleDescriptionsIngressOperationBody(builder: UpdateSecurityGroupRuleDescriptionsIngressResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

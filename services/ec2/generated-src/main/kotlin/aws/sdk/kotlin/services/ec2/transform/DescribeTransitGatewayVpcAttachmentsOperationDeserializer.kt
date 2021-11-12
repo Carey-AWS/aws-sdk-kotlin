@@ -47,7 +47,7 @@ internal class DescribeTransitGatewayVpcAttachmentsOperationDeserializer: HttpDe
     }
 }
 
-private suspend fun deserializeDescribeTransitGatewayVpcAttachmentsOperationBody(builder: DescribeTransitGatewayVpcAttachmentsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeTransitGatewayVpcAttachmentsOperationBody(builder: DescribeTransitGatewayVpcAttachmentsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val TRANSITGATEWAYVPCATTACHMENTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("transitGatewayVpcAttachments"), XmlCollectionName("item"))

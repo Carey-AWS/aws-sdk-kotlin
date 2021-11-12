@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeLexiconDocument(deserializer: Deserializer): Lexicon {
+internal fun deserializeLexiconDocument(deserializer: Deserializer): Lexicon {
     val builder = Lexicon.builder()
     val CONTENT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Content"))
     val NAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Name"))

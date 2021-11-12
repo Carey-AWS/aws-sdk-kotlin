@@ -45,7 +45,7 @@ internal class GetDefaultCreditSpecificationOperationDeserializer: HttpDeseriali
     }
 }
 
-private suspend fun deserializeGetDefaultCreditSpecificationOperationBody(builder: GetDefaultCreditSpecificationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetDefaultCreditSpecificationOperationBody(builder: GetDefaultCreditSpecificationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCEFAMILYCREDITSPECIFICATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("instanceFamilyCreditSpecification"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

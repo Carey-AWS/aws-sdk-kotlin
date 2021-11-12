@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeItemCollectionMetricsDocument(deserializer: Deserializer): ItemCollectionMetrics {
+internal fun deserializeItemCollectionMetricsDocument(deserializer: Deserializer): ItemCollectionMetrics {
     val builder = ItemCollectionMetrics.builder()
     val ITEMCOLLECTIONKEY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Map, JsonSerialName("ItemCollectionKey"))
     val SIZEESTIMATERANGEGB_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("SizeEstimateRangeGB"))

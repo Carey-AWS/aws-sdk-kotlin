@@ -47,7 +47,7 @@ internal class DescribeMovingAddressesOperationDeserializer: HttpDeserialize<Des
     }
 }
 
-private suspend fun deserializeDescribeMovingAddressesOperationBody(builder: DescribeMovingAddressesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeMovingAddressesOperationBody(builder: DescribeMovingAddressesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val MOVINGADDRESSSTATUSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("movingAddressStatusSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

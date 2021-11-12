@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAvailabilityZoneDocument(deserializer: Deserializer): AvailabilityZone {
+internal fun deserializeAvailabilityZoneDocument(deserializer: Deserializer): AvailabilityZone {
     val builder = AvailabilityZone.builder()
     val GROUPNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("groupName"))
     val MESSAGES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("messageSet"), XmlCollectionName("item"))

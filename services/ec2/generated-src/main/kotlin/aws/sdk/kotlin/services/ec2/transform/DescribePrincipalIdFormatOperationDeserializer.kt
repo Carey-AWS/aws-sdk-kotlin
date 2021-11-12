@@ -47,7 +47,7 @@ internal class DescribePrincipalIdFormatOperationDeserializer: HttpDeserialize<D
     }
 }
 
-private suspend fun deserializeDescribePrincipalIdFormatOperationBody(builder: DescribePrincipalIdFormatResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribePrincipalIdFormatOperationBody(builder: DescribePrincipalIdFormatResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val PRINCIPALS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("principalSet"), XmlCollectionName("item"))

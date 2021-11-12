@@ -35,7 +35,7 @@ internal class InvalidS3BucketExceptionDeserializer: HttpDeserialize<InvalidS3Bu
     }
 }
 
-private suspend fun deserializeInvalidS3BucketExceptionError(builder: InvalidS3BucketException.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidS3BucketExceptionError(builder: InvalidS3BucketException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

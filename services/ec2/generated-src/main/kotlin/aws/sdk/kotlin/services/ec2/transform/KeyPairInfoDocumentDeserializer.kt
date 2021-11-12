@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeKeyPairInfoDocument(deserializer: Deserializer): KeyPairInfo {
+internal fun deserializeKeyPairInfoDocument(deserializer: Deserializer): KeyPairInfo {
     val builder = KeyPairInfo.builder()
     val KEYFINGERPRINT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("keyFingerprint"))
     val KEYNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("keyName"))

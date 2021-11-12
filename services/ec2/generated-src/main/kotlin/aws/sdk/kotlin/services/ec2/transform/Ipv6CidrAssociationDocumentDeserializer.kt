@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeIpv6CidrAssociationDocument(deserializer: Deserializer): Ipv6CidrAssociation {
+internal fun deserializeIpv6CidrAssociationDocument(deserializer: Deserializer): Ipv6CidrAssociation {
     val builder = Ipv6CidrAssociation.builder()
     val ASSOCIATEDRESOURCE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("associatedResource"))
     val IPV6CIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ipv6Cidr"))

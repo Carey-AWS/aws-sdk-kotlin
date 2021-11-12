@@ -35,7 +35,7 @@ internal class BackupNotFoundExceptionDeserializer: HttpDeserialize<BackupNotFou
     }
 }
 
-private suspend fun deserializeBackupNotFoundExceptionError(builder: BackupNotFoundException.DslBuilder, payload: ByteArray) {
+private fun deserializeBackupNotFoundExceptionError(builder: BackupNotFoundException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

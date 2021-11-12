@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeKeysAndAttributesDocument(deserializer: Deserializer): KeysAndAttributes {
+internal fun deserializeKeysAndAttributesDocument(deserializer: Deserializer): KeysAndAttributes {
     val builder = KeysAndAttributes.builder()
     val ATTRIBUTESTOGET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("AttributesToGet"))
     val CONSISTENTREAD_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, JsonSerialName("ConsistentRead"))

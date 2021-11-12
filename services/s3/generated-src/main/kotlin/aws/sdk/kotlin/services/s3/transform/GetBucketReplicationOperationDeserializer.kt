@@ -35,7 +35,7 @@ internal class GetBucketReplicationOperationDeserializer: HttpDeserialize<GetBuc
     }
 }
 
-private suspend fun deserializeGetBucketReplicationOperationBody(builder: GetBucketReplicationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketReplicationOperationBody(builder: GetBucketReplicationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.replicationConfiguration = deserializeReplicationConfigurationDocument(deserializer)
 }

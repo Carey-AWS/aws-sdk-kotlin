@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeClientConnectResponseOptionsDocument(deserializer: Deserializer): ClientConnectResponseOptions {
+internal fun deserializeClientConnectResponseOptionsDocument(deserializer: Deserializer): ClientConnectResponseOptions {
     val builder = ClientConnectResponseOptions.builder()
     val ENABLED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("enabled"))
     val LAMBDAFUNCTIONARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("lambdaFunctionArn"))

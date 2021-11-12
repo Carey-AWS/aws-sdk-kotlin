@@ -48,7 +48,7 @@ internal class CancelCapacityReservationFleetsOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeCancelCapacityReservationFleetsOperationBody(builder: CancelCapacityReservationFleetsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCancelCapacityReservationFleetsOperationBody(builder: CancelCapacityReservationFleetsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val FAILEDFLEETCANCELLATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("failedFleetCancellationSet"), XmlCollectionName("item"))
     val SUCCESSFULFLEETCANCELLATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("successfulFleetCancellationSet"), XmlCollectionName("item"))

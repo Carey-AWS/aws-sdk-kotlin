@@ -52,7 +52,7 @@ internal class ListObjectVersionsOperationDeserializer: HttpDeserialize<ListObje
     }
 }
 
-private suspend fun deserializeListObjectVersionsOperationBody(builder: ListObjectVersionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListObjectVersionsOperationBody(builder: ListObjectVersionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val COMMONPREFIXES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("CommonPrefixes"), Flattened)
     val DELETEMARKERS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("DeleteMarker"), Flattened)

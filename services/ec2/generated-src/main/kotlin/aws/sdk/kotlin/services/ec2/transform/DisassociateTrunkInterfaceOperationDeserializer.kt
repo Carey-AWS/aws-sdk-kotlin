@@ -45,7 +45,7 @@ internal class DisassociateTrunkInterfaceOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeDisassociateTrunkInterfaceOperationBody(builder: DisassociateTrunkInterfaceResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisassociateTrunkInterfaceOperationBody(builder: DisassociateTrunkInterfaceResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientToken"))
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))

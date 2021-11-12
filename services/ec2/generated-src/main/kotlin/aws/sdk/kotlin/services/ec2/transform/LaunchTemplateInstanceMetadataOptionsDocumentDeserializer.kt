@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchTemplateInstanceMetadataOptionsDocument(deserializer: Deserializer): LaunchTemplateInstanceMetadataOptions {
+internal fun deserializeLaunchTemplateInstanceMetadataOptionsDocument(deserializer: Deserializer): LaunchTemplateInstanceMetadataOptions {
     val builder = LaunchTemplateInstanceMetadataOptions.builder()
     val HTTPENDPOINT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("httpEndpoint"))
     val HTTPPROTOCOLIPV6_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("httpProtocolIpv6"))

@@ -46,7 +46,7 @@ internal class AllocateAddressOperationDeserializer: HttpDeserialize<AllocateAdd
     }
 }
 
-private suspend fun deserializeAllocateAddressOperationBody(builder: AllocateAddressResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAllocateAddressOperationBody(builder: AllocateAddressResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ALLOCATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allocationId"))
     val CARRIERIP_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("carrierIp"))

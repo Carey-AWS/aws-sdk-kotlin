@@ -48,7 +48,7 @@ internal class DeleteLaunchTemplateVersionsOperationDeserializer: HttpDeserializ
     }
 }
 
-private suspend fun deserializeDeleteLaunchTemplateVersionsOperationBody(builder: DeleteLaunchTemplateVersionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteLaunchTemplateVersionsOperationBody(builder: DeleteLaunchTemplateVersionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SUCCESSFULLYDELETEDLAUNCHTEMPLATEVERSIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("successfullyDeletedLaunchTemplateVersionSet"), XmlCollectionName("item"))
     val UNSUCCESSFULLYDELETEDLAUNCHTEMPLATEVERSIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("unsuccessfullyDeletedLaunchTemplateVersionSet"), XmlCollectionName("item"))

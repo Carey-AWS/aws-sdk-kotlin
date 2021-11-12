@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCancelledSpotInstanceRequestDocument(deserializer: Deserializer): CancelledSpotInstanceRequest {
+internal fun deserializeCancelledSpotInstanceRequestDocument(deserializer: Deserializer): CancelledSpotInstanceRequest {
     val builder = CancelledSpotInstanceRequest.builder()
     val SPOTINSTANCEREQUESTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("spotInstanceRequestId"))
     val STATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("state"))

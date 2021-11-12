@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDestinationOptionsResponseDocument(deserializer: Deserializer): DestinationOptionsResponse {
+internal fun deserializeDestinationOptionsResponseDocument(deserializer: Deserializer): DestinationOptionsResponse {
     val builder = DestinationOptionsResponse.builder()
     val FILEFORMAT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("fileFormat"))
     val HIVECOMPATIBLEPARTITIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("hiveCompatiblePartitions"))

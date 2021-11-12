@@ -47,7 +47,7 @@ internal class DescribeNetworkInterfaceAttributeOperationDeserializer: HttpDeser
     }
 }
 
-private suspend fun deserializeDescribeNetworkInterfaceAttributeOperationBody(builder: DescribeNetworkInterfaceAttributeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeNetworkInterfaceAttributeOperationBody(builder: DescribeNetworkInterfaceAttributeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ATTACHMENT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("attachment"))
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("description"))

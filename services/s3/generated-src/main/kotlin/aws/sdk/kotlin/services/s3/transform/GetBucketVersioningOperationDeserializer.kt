@@ -49,7 +49,7 @@ internal class GetBucketVersioningOperationDeserializer: HttpDeserialize<GetBuck
     }
 }
 
-private suspend fun deserializeGetBucketVersioningOperationBody(builder: GetBucketVersioningResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketVersioningOperationBody(builder: GetBucketVersioningResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val MFADELETE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("MfaDelete"))
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Status"))

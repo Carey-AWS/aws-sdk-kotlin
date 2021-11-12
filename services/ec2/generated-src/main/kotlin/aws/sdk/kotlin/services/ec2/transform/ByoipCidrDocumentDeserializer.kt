@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeByoipCidrDocument(deserializer: Deserializer): ByoipCidr {
+internal fun deserializeByoipCidrDocument(deserializer: Deserializer): ByoipCidr {
     val builder = ByoipCidr.builder()
     val CIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("cidr"))
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))

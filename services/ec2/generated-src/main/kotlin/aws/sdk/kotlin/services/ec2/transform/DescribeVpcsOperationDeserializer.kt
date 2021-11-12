@@ -47,7 +47,7 @@ internal class DescribeVpcsOperationDeserializer: HttpDeserialize<DescribeVpcsRe
     }
 }
 
-private suspend fun deserializeDescribeVpcsOperationBody(builder: DescribeVpcsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeVpcsOperationBody(builder: DescribeVpcsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val VPCS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("vpcSet"), XmlCollectionName("item"))

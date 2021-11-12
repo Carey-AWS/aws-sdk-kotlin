@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeBatchStatementErrorDocument(deserializer: Deserializer): BatchStatementError {
+internal fun deserializeBatchStatementErrorDocument(deserializer: Deserializer): BatchStatementError {
     val builder = BatchStatementError.builder()
     val CODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Code"))
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Message"))

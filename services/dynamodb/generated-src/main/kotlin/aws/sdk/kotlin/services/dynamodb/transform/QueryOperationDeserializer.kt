@@ -45,7 +45,7 @@ internal class QueryOperationDeserializer: HttpDeserialize<QueryResponse> {
     }
 }
 
-private suspend fun deserializeQueryOperationBody(builder: QueryResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeQueryOperationBody(builder: QueryResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val CONSUMEDCAPACITY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("ConsumedCapacity"))
     val COUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, JsonSerialName("Count"))

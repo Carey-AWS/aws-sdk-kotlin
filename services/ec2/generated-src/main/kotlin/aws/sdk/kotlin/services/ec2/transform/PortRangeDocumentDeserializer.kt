@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePortRangeDocument(deserializer: Deserializer): PortRange {
+internal fun deserializePortRangeDocument(deserializer: Deserializer): PortRange {
     val builder = PortRange.builder()
     val FROM_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("from"))
     val TO_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("to"))

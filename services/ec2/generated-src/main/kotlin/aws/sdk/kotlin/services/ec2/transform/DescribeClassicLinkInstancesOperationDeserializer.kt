@@ -47,7 +47,7 @@ internal class DescribeClassicLinkInstancesOperationDeserializer: HttpDeserializ
     }
 }
 
-private suspend fun deserializeDescribeClassicLinkInstancesOperationBody(builder: DescribeClassicLinkInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeClassicLinkInstancesOperationBody(builder: DescribeClassicLinkInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instancesSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

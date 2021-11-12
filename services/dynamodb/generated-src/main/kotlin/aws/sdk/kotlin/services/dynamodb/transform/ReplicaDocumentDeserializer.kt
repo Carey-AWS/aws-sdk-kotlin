@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeReplicaDocument(deserializer: Deserializer): Replica {
+internal fun deserializeReplicaDocument(deserializer: Deserializer): Replica {
     val builder = Replica.builder()
     val REGIONNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("RegionName"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCapacityReservationGroupDocument(deserializer: Deserializer): CapacityReservationGroup {
+internal fun deserializeCapacityReservationGroupDocument(deserializer: Deserializer): CapacityReservationGroup {
     val builder = CapacityReservationGroup.builder()
     val GROUPARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("groupArn"))
     val OWNERID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ownerId"))

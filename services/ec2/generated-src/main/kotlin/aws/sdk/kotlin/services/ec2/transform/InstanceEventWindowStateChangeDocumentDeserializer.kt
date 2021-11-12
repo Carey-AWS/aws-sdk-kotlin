@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceEventWindowStateChangeDocument(deserializer: Deserializer): InstanceEventWindowStateChange {
+internal fun deserializeInstanceEventWindowStateChangeDocument(deserializer: Deserializer): InstanceEventWindowStateChange {
     val builder = InstanceEventWindowStateChange.builder()
     val INSTANCEEVENTWINDOWID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceEventWindowId"))
     val STATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("state"))

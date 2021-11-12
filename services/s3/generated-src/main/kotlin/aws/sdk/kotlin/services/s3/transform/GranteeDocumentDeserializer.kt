@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeGranteeDocument(deserializer: Deserializer): Grantee {
+internal fun deserializeGranteeDocument(deserializer: Deserializer): Grantee {
     val builder = Grantee.builder()
     val DISPLAYNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("DisplayName"))
     val EMAILADDRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("EmailAddress"))

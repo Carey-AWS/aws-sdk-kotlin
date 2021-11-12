@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayAttachmentPropagationDocument(deserializer: Deserializer): TransitGatewayAttachmentPropagation {
+internal fun deserializeTransitGatewayAttachmentPropagationDocument(deserializer: Deserializer): TransitGatewayAttachmentPropagation {
     val builder = TransitGatewayAttachmentPropagation.builder()
     val STATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("state"))
     val TRANSITGATEWAYROUTETABLEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("transitGatewayRouteTableId"))

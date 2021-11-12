@@ -25,7 +25,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeTransitGatewayAttachmentDocument(deserializer: Deserializer): TransitGatewayAttachment {
+internal fun deserializeTransitGatewayAttachmentDocument(deserializer: Deserializer): TransitGatewayAttachment {
     val builder = TransitGatewayAttachment.builder()
     val ASSOCIATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("association"))
     val CREATIONTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("creationTime"))

@@ -45,7 +45,7 @@ internal class CreateInternetGatewayOperationDeserializer: HttpDeserialize<Creat
     }
 }
 
-private suspend fun deserializeCreateInternetGatewayOperationBody(builder: CreateInternetGatewayResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateInternetGatewayOperationBody(builder: CreateInternetGatewayResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INTERNETGATEWAY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("internetGateway"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

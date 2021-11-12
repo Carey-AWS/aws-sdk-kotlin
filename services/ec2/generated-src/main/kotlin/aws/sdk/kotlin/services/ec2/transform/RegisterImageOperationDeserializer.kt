@@ -45,7 +45,7 @@ internal class RegisterImageOperationDeserializer: HttpDeserialize<RegisterImage
     }
 }
 
-private suspend fun deserializeRegisterImageOperationBody(builder: RegisterImageResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRegisterImageOperationBody(builder: RegisterImageResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IMAGEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("imageId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

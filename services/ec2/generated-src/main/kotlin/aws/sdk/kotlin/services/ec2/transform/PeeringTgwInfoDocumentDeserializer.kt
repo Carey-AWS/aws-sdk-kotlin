@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePeeringTgwInfoDocument(deserializer: Deserializer): PeeringTgwInfo {
+internal fun deserializePeeringTgwInfoDocument(deserializer: Deserializer): PeeringTgwInfo {
     val builder = PeeringTgwInfo.builder()
     val OWNERID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ownerId"))
     val REGION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("region"))

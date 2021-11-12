@@ -45,7 +45,7 @@ internal class DisassociateClientVpnTargetNetworkOperationDeserializer: HttpDese
     }
 }
 
-private suspend fun deserializeDisassociateClientVpnTargetNetworkOperationBody(builder: DisassociateClientVpnTargetNetworkResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisassociateClientVpnTargetNetworkOperationBody(builder: DisassociateClientVpnTargetNetworkResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ASSOCIATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("associationId"))
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("status"))

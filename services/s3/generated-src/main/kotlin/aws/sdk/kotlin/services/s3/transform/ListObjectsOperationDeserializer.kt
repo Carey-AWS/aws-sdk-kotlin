@@ -51,7 +51,7 @@ internal class ListObjectsOperationDeserializer: HttpDeserialize<ListObjectsResp
     }
 }
 
-private suspend fun deserializeListObjectsOperationBody(builder: ListObjectsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListObjectsOperationBody(builder: ListObjectsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val COMMONPREFIXES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("CommonPrefixes"), Flattened)
     val CONTENTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("Contents"), Flattened)

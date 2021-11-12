@@ -44,7 +44,7 @@ internal class GetLexiconOperationDeserializer: HttpDeserialize<GetLexiconRespon
     }
 }
 
-private suspend fun deserializeGetLexiconOperationBody(builder: GetLexiconResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetLexiconOperationBody(builder: GetLexiconResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val LEXICON_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("Lexicon"))
     val LEXICONATTRIBUTES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("LexiconAttributes"))

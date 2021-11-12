@@ -47,7 +47,7 @@ internal class DescribeScheduledInstancesOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeDescribeScheduledInstancesOperationBody(builder: DescribeScheduledInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeScheduledInstancesOperationBody(builder: DescribeScheduledInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val SCHEDULEDINSTANCESET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("scheduledInstanceSet"), XmlCollectionName("item"))

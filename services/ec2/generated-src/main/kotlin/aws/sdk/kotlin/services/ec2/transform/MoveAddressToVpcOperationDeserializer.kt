@@ -46,7 +46,7 @@ internal class MoveAddressToVpcOperationDeserializer: HttpDeserialize<MoveAddres
     }
 }
 
-private suspend fun deserializeMoveAddressToVpcOperationBody(builder: MoveAddressToVpcResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeMoveAddressToVpcOperationBody(builder: MoveAddressToVpcResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ALLOCATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allocationId"))
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("status"))

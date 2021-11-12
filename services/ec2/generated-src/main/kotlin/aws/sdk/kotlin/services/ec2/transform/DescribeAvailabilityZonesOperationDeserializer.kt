@@ -47,7 +47,7 @@ internal class DescribeAvailabilityZonesOperationDeserializer: HttpDeserialize<D
     }
 }
 
-private suspend fun deserializeDescribeAvailabilityZonesOperationBody(builder: DescribeAvailabilityZonesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeAvailabilityZonesOperationBody(builder: DescribeAvailabilityZonesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val AVAILABILITYZONES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("availabilityZoneInfo"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

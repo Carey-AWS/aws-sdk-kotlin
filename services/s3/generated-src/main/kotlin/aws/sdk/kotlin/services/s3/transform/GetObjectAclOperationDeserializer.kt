@@ -52,7 +52,7 @@ internal class GetObjectAclOperationDeserializer: HttpDeserialize<GetObjectAclRe
     }
 }
 
-private suspend fun deserializeGetObjectAclOperationBody(builder: GetObjectAclResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetObjectAclOperationBody(builder: GetObjectAclResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val GRANTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("AccessControlList"), XmlCollectionName("Grant"))
     val OWNER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Owner"))

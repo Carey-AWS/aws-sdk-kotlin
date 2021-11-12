@@ -35,7 +35,7 @@ internal class LimitExceededExceptionDeserializer: HttpDeserialize<LimitExceeded
     }
 }
 
-private suspend fun deserializeLimitExceededExceptionError(builder: LimitExceededException.DslBuilder, payload: ByteArray) {
+private fun deserializeLimitExceededExceptionError(builder: LimitExceededException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

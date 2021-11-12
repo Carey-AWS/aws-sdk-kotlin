@@ -47,7 +47,7 @@ internal class DescribeExportImageTasksOperationDeserializer: HttpDeserialize<De
     }
 }
 
-private suspend fun deserializeDescribeExportImageTasksOperationBody(builder: DescribeExportImageTasksResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeExportImageTasksOperationBody(builder: DescribeExportImageTasksResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val EXPORTIMAGETASKS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("exportImageTaskSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

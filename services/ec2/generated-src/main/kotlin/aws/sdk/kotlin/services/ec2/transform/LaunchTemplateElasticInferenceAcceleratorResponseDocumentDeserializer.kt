@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchTemplateElasticInferenceAcceleratorResponseDocument(deserializer: Deserializer): LaunchTemplateElasticInferenceAcceleratorResponse {
+internal fun deserializeLaunchTemplateElasticInferenceAcceleratorResponseDocument(deserializer: Deserializer): LaunchTemplateElasticInferenceAcceleratorResponse {
     val builder = LaunchTemplateElasticInferenceAcceleratorResponse.builder()
     val COUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("count"))
     val TYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("type"))

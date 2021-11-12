@@ -48,7 +48,7 @@ internal class CopyObjectOperationDeserializer: HttpDeserialize<CopyObjectRespon
     }
 }
 
-private suspend fun deserializeCopyObjectOperationBody(builder: CopyObjectResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCopyObjectOperationBody(builder: CopyObjectResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.copyObjectResult = deserializeCopyObjectResultDocument(deserializer)
 }

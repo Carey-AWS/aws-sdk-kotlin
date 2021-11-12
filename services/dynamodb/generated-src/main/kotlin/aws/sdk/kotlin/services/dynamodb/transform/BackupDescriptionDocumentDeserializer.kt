@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeBackupDescriptionDocument(deserializer: Deserializer): BackupDescription {
+internal fun deserializeBackupDescriptionDocument(deserializer: Deserializer): BackupDescription {
     val builder = BackupDescription.builder()
     val BACKUPDETAILS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("BackupDetails"))
     val SOURCETABLEDETAILS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("SourceTableDetails"))

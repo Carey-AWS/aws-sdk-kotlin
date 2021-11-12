@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeVpcPeeringConnectionOptionsDescriptionDocument(deserializer: Deserializer): VpcPeeringConnectionOptionsDescription {
+internal fun deserializeVpcPeeringConnectionOptionsDescriptionDocument(deserializer: Deserializer): VpcPeeringConnectionOptionsDescription {
     val builder = VpcPeeringConnectionOptionsDescription.builder()
     val ALLOWDNSRESOLUTIONFROMREMOTEVPC_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("allowDnsResolutionFromRemoteVpc"))
     val ALLOWEGRESSFROMLOCALCLASSICLINKTOREMOTEVPC_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("allowEgressFromLocalClassicLinkToRemoteVpc"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeAttributeDefinitionDocument(deserializer: Deserializer): AttributeDefinition {
+internal fun deserializeAttributeDefinitionDocument(deserializer: Deserializer): AttributeDefinition {
     val builder = AttributeDefinition.builder()
     val ATTRIBUTENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("AttributeName"))
     val ATTRIBUTETYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("AttributeType"))

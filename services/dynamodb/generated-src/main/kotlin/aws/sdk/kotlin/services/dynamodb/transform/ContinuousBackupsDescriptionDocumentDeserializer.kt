@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeContinuousBackupsDescriptionDocument(deserializer: Deserializer): ContinuousBackupsDescription {
+internal fun deserializeContinuousBackupsDescriptionDocument(deserializer: Deserializer): ContinuousBackupsDescription {
     val builder = ContinuousBackupsDescription.builder()
     val CONTINUOUSBACKUPSSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("ContinuousBackupsStatus"))
     val POINTINTIMERECOVERYDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("PointInTimeRecoveryDescription"))

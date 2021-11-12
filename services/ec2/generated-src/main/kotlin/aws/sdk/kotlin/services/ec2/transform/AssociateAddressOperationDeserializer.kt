@@ -45,7 +45,7 @@ internal class AssociateAddressOperationDeserializer: HttpDeserialize<AssociateA
     }
 }
 
-private suspend fun deserializeAssociateAddressOperationBody(builder: AssociateAddressResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAssociateAddressOperationBody(builder: AssociateAddressResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ASSOCIATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("associationId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -37,7 +37,7 @@ internal class MalformedPolicyDocumentExceptionDeserializer: HttpDeserialize<Mal
     }
 }
 
-private suspend fun deserializeMalformedPolicyDocumentExceptionError(builder: MalformedPolicyDocumentException.DslBuilder, payload: ByteArray) {
+private fun deserializeMalformedPolicyDocumentExceptionError(builder: MalformedPolicyDocumentException.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

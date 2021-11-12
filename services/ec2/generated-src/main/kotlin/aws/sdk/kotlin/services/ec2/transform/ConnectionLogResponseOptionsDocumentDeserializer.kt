@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeConnectionLogResponseOptionsDocument(deserializer: Deserializer): ConnectionLogResponseOptions {
+internal fun deserializeConnectionLogResponseOptionsDocument(deserializer: Deserializer): ConnectionLogResponseOptions {
     val builder = ConnectionLogResponseOptions.builder()
     val CLOUDWATCHLOGGROUP_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("CloudwatchLogGroup"))
     val CLOUDWATCHLOGSTREAM_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("CloudwatchLogStream"))

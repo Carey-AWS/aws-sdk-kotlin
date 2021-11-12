@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSpotMaintenanceStrategiesDocument(deserializer: Deserializer): SpotMaintenanceStrategies {
+internal fun deserializeSpotMaintenanceStrategiesDocument(deserializer: Deserializer): SpotMaintenanceStrategies {
     val builder = SpotMaintenanceStrategies.builder()
     val CAPACITYREBALANCE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("capacityRebalance"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

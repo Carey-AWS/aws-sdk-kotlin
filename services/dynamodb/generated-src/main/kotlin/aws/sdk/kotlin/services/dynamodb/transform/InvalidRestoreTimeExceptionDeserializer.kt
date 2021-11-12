@@ -35,7 +35,7 @@ internal class InvalidRestoreTimeExceptionDeserializer: HttpDeserialize<InvalidR
     }
 }
 
-private suspend fun deserializeInvalidRestoreTimeExceptionError(builder: InvalidRestoreTimeException.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidRestoreTimeExceptionError(builder: InvalidRestoreTimeException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

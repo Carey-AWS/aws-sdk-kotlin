@@ -35,7 +35,7 @@ internal class InvalidSsmlExceptionDeserializer: HttpDeserialize<InvalidSsmlExce
     }
 }
 
-private suspend fun deserializeInvalidSsmlExceptionError(builder: InvalidSsmlException.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidSsmlExceptionError(builder: InvalidSsmlException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

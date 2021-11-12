@@ -47,7 +47,7 @@ internal class DescribeFastSnapshotRestoresOperationDeserializer: HttpDeserializ
     }
 }
 
-private suspend fun deserializeDescribeFastSnapshotRestoresOperationBody(builder: DescribeFastSnapshotRestoresResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeFastSnapshotRestoresOperationBody(builder: DescribeFastSnapshotRestoresResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val FASTSNAPSHOTRESTORES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("fastSnapshotRestoreSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

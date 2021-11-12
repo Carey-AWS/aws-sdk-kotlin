@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDestinationDocument(deserializer: Deserializer): Destination {
+internal fun deserializeDestinationDocument(deserializer: Deserializer): Destination {
     val builder = Destination.builder()
     val ACCESSCONTROLTRANSLATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("AccessControlTranslation"))
     val ACCOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Account"))

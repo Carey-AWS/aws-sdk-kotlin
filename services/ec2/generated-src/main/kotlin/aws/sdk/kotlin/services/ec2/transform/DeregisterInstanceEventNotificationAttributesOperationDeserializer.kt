@@ -45,7 +45,7 @@ internal class DeregisterInstanceEventNotificationAttributesOperationDeserialize
     }
 }
 
-private suspend fun deserializeDeregisterInstanceEventNotificationAttributesOperationBody(builder: DeregisterInstanceEventNotificationAttributesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeregisterInstanceEventNotificationAttributesOperationBody(builder: DeregisterInstanceEventNotificationAttributesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCETAGATTRIBUTE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("instanceTagAttribute"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

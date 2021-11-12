@@ -45,7 +45,7 @@ internal class RevokeClientVpnIngressOperationDeserializer: HttpDeserialize<Revo
     }
 }
 
-private suspend fun deserializeRevokeClientVpnIngressOperationBody(builder: RevokeClientVpnIngressResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRevokeClientVpnIngressOperationBody(builder: RevokeClientVpnIngressResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("status"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

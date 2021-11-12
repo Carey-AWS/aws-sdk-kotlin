@@ -45,7 +45,7 @@ internal class DeleteVpcPeeringConnectionOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeDeleteVpcPeeringConnectionOperationBody(builder: DeleteVpcPeeringConnectionResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteVpcPeeringConnectionOperationBody(builder: DeleteVpcPeeringConnectionResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

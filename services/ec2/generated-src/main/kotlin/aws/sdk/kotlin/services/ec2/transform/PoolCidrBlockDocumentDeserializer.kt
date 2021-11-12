@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePoolCidrBlockDocument(deserializer: Deserializer): PoolCidrBlock {
+internal fun deserializePoolCidrBlockDocument(deserializer: Deserializer): PoolCidrBlock {
     val builder = PoolCidrBlock.builder()
     val CIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("poolCidrBlock"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

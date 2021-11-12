@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeMovingAddressStatusDocument(deserializer: Deserializer): MovingAddressStatus {
+internal fun deserializeMovingAddressStatusDocument(deserializer: Deserializer): MovingAddressStatus {
     val builder = MovingAddressStatus.builder()
     val MOVESTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("moveStatus"))
     val PUBLICIP_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("publicIp"))

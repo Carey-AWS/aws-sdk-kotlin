@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDiskImageDescriptionDocument(deserializer: Deserializer): DiskImageDescription {
+internal fun deserializeDiskImageDescriptionDocument(deserializer: Deserializer): DiskImageDescription {
     val builder = DiskImageDescription.builder()
     val CHECKSUM_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("checksum"))
     val FORMAT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("format"))

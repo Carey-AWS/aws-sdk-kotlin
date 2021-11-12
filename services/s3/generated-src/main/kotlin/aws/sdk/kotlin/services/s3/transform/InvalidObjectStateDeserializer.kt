@@ -39,7 +39,7 @@ internal class InvalidObjectStateDeserializer: HttpDeserialize<InvalidObjectStat
     }
 }
 
-private suspend fun deserializeInvalidObjectStateError(builder: InvalidObjectState.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidObjectStateError(builder: InvalidObjectState.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ACCESSTIER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("AccessTier"))
     val STORAGECLASS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("StorageClass"))

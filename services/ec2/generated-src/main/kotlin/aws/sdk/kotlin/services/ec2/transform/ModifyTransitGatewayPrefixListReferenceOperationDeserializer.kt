@@ -45,7 +45,7 @@ internal class ModifyTransitGatewayPrefixListReferenceOperationDeserializer: Htt
     }
 }
 
-private suspend fun deserializeModifyTransitGatewayPrefixListReferenceOperationBody(builder: ModifyTransitGatewayPrefixListReferenceResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyTransitGatewayPrefixListReferenceOperationBody(builder: ModifyTransitGatewayPrefixListReferenceResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val TRANSITGATEWAYPREFIXLISTREFERENCE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("transitGatewayPrefixListReference"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

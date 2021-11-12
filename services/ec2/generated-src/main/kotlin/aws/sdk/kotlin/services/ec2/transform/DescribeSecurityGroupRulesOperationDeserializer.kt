@@ -47,7 +47,7 @@ internal class DescribeSecurityGroupRulesOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeDescribeSecurityGroupRulesOperationBody(builder: DescribeSecurityGroupRulesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeSecurityGroupRulesOperationBody(builder: DescribeSecurityGroupRulesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val SECURITYGROUPRULES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("securityGroupRuleSet"), XmlCollectionName("item"))

@@ -47,7 +47,7 @@ internal class DescribeIamInstanceProfileAssociationsOperationDeserializer: Http
     }
 }
 
-private suspend fun deserializeDescribeIamInstanceProfileAssociationsOperationBody(builder: DescribeIamInstanceProfileAssociationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeIamInstanceProfileAssociationsOperationBody(builder: DescribeIamInstanceProfileAssociationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IAMINSTANCEPROFILEASSOCIATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("iamInstanceProfileAssociationSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

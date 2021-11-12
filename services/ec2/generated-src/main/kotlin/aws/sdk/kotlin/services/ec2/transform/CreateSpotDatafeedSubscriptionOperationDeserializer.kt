@@ -45,7 +45,7 @@ internal class CreateSpotDatafeedSubscriptionOperationDeserializer: HttpDeserial
     }
 }
 
-private suspend fun deserializeCreateSpotDatafeedSubscriptionOperationBody(builder: CreateSpotDatafeedSubscriptionResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateSpotDatafeedSubscriptionOperationBody(builder: CreateSpotDatafeedSubscriptionResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SPOTDATAFEEDSUBSCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("spotDatafeedSubscription"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

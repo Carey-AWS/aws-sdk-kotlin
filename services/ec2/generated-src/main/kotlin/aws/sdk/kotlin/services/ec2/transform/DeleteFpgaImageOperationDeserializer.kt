@@ -45,7 +45,7 @@ internal class DeleteFpgaImageOperationDeserializer: HttpDeserialize<DeleteFpgaI
     }
 }
 
-private suspend fun deserializeDeleteFpgaImageOperationBody(builder: DeleteFpgaImageResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteFpgaImageOperationBody(builder: DeleteFpgaImageResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

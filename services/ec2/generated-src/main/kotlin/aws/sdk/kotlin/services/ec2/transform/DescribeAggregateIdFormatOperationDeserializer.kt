@@ -47,7 +47,7 @@ internal class DescribeAggregateIdFormatOperationDeserializer: HttpDeserialize<D
     }
 }
 
-private suspend fun deserializeDescribeAggregateIdFormatOperationBody(builder: DescribeAggregateIdFormatResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeAggregateIdFormatOperationBody(builder: DescribeAggregateIdFormatResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val STATUSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("statusSet"), XmlCollectionName("item"))
     val USELONGIDSAGGREGATED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("useLongIdsAggregated"))

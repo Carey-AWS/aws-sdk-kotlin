@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePathComponentDocument(deserializer: Deserializer): PathComponent {
+internal fun deserializePathComponentDocument(deserializer: Deserializer): PathComponent {
     val builder = PathComponent.builder()
     val ACLRULE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("aclRule"))
     val COMPONENT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("component"))

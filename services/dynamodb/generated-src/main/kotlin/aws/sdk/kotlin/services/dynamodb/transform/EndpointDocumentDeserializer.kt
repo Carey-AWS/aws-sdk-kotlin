@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeEndpointDocument(deserializer: Deserializer): Endpoint {
+internal fun deserializeEndpointDocument(deserializer: Deserializer): Endpoint {
     val builder = Endpoint.builder()
     val ADDRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Address"))
     val CACHEPERIODINMINUTES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, JsonSerialName("CachePeriodInMinutes"))

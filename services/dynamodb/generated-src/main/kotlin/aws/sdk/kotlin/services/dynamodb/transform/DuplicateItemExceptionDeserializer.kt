@@ -35,7 +35,7 @@ internal class DuplicateItemExceptionDeserializer: HttpDeserialize<DuplicateItem
     }
 }
 
-private suspend fun deserializeDuplicateItemExceptionError(builder: DuplicateItemException.DslBuilder, payload: ByteArray) {
+private fun deserializeDuplicateItemExceptionError(builder: DuplicateItemException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

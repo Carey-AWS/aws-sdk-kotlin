@@ -47,7 +47,7 @@ internal class DescribePrefixListsOperationDeserializer: HttpDeserialize<Describ
     }
 }
 
-private suspend fun deserializeDescribePrefixListsOperationBody(builder: DescribePrefixListsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribePrefixListsOperationBody(builder: DescribePrefixListsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val PREFIXLISTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("prefixListSet"), XmlCollectionName("item"))

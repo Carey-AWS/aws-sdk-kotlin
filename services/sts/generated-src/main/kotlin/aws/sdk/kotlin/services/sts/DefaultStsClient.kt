@@ -2,14 +2,22 @@
 
 package aws.sdk.kotlin.services.sts
 
+import aws.sdk.kotlin.runtime.auth.signing.AwsSigV4SigningMiddleware
 import aws.sdk.kotlin.runtime.client.AwsClientOption
 import aws.sdk.kotlin.runtime.execution.AuthAttributes
+import aws.sdk.kotlin.runtime.http.ApiMetadata
+import aws.sdk.kotlin.runtime.http.AwsUserAgentMetadata
 import aws.sdk.kotlin.runtime.http.engine.crt.CrtHttpEngine
+import aws.sdk.kotlin.runtime.http.middleware.ResolveAwsEndpoint
+import aws.sdk.kotlin.runtime.http.middleware.UserAgent
+import aws.sdk.kotlin.runtime.http.retries.AwsDefaultRetryPolicy
 import aws.sdk.kotlin.services.sts.model.*
 import aws.sdk.kotlin.services.sts.transform.*
 import aws.smithy.kotlin.runtime.client.ExecutionContext
 import aws.smithy.kotlin.runtime.client.SdkClientOption
 import aws.smithy.kotlin.runtime.http.SdkHttpClient
+import aws.smithy.kotlin.runtime.http.middleware.MutateHeaders
+import aws.smithy.kotlin.runtime.http.middleware.RetryFeature
 import aws.smithy.kotlin.runtime.http.operation.SdkHttpOperation
 import aws.smithy.kotlin.runtime.http.operation.context
 import aws.smithy.kotlin.runtime.http.operation.roundTrip
@@ -27,6 +35,7 @@ internal class DefaultStsClient(override val config: StsClient.Config) : StsClie
         val httpClientEngine = config.httpClientEngine ?: CrtHttpEngine()
         client = sdkHttpClient(httpClientEngine, manageEngine = config.httpClientEngine == null)
     }
+    private val awsUserAgentMetadata = AwsUserAgentMetadata.fromEnvironment(ApiMetadata(ServiceId, SdkVersion))
 
     /**
      * Returns a set of temporary security credentials that you can use to access Amazon Web Services
@@ -110,8 +119,25 @@ internal class DefaultStsClient(override val config: StsClient.Config) : StsClie
                 operationName = "AssumeRole"
             }
         }
-        registerAssumeRoleMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "sts"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -226,8 +252,21 @@ internal class DefaultStsClient(override val config: StsClient.Config) : StsClie
                 operationName = "AssumeRoleWithSAML"
             }
         }
-        registerAssumeRoleWithSamlMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
         return op.roundTrip(client, input)
     }
 
@@ -348,8 +387,21 @@ internal class DefaultStsClient(override val config: StsClient.Config) : StsClie
                 operationName = "AssumeRoleWithWebIdentity"
             }
         }
-        registerAssumeRoleWithWebIdentityMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
         return op.roundTrip(client, input)
     }
 
@@ -387,8 +439,25 @@ internal class DefaultStsClient(override val config: StsClient.Config) : StsClie
                 operationName = "DecodeAuthorizationMessage"
             }
         }
-        registerDecodeAuthorizationMessageMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "sts"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -422,8 +491,25 @@ internal class DefaultStsClient(override val config: StsClient.Config) : StsClie
                 operationName = "GetAccessKeyInfo"
             }
         }
-        registerGetAccessKeyInfoMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "sts"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -447,8 +533,25 @@ internal class DefaultStsClient(override val config: StsClient.Config) : StsClie
                 operationName = "GetCallerIdentity"
             }
         }
-        registerGetCallerIdentityMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "sts"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -574,8 +677,25 @@ internal class DefaultStsClient(override val config: StsClient.Config) : StsClie
                 operationName = "GetFederationToken"
             }
         }
-        registerGetFederationTokenMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "sts"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -631,8 +751,25 @@ internal class DefaultStsClient(override val config: StsClient.Config) : StsClie
                 operationName = "GetSessionToken"
             }
         }
-        registerGetSessionTokenMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(MutateHeaders) {
+            setIfMissing("Content-Type", "application/x-www-form-urlencoded")
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "sts"
+        }
         return op.roundTrip(client, input)
     }
 

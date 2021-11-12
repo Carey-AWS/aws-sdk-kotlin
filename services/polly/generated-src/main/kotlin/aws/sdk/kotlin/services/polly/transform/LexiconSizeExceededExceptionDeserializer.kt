@@ -35,7 +35,7 @@ internal class LexiconSizeExceededExceptionDeserializer: HttpDeserialize<Lexicon
     }
 }
 
-private suspend fun deserializeLexiconSizeExceededExceptionError(builder: LexiconSizeExceededException.DslBuilder, payload: ByteArray) {
+private fun deserializeLexiconSizeExceededExceptionError(builder: LexiconSizeExceededException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTargetConfigurationDocument(deserializer: Deserializer): TargetConfiguration {
+internal fun deserializeTargetConfigurationDocument(deserializer: Deserializer): TargetConfiguration {
     val builder = TargetConfiguration.builder()
     val INSTANCECOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("instanceCount"))
     val OFFERINGID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("offeringId"))

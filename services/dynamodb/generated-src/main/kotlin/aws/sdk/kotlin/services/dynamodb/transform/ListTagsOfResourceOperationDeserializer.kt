@@ -45,7 +45,7 @@ internal class ListTagsOfResourceOperationDeserializer: HttpDeserialize<ListTags
     }
 }
 
-private suspend fun deserializeListTagsOfResourceOperationBody(builder: ListTagsOfResourceResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListTagsOfResourceOperationBody(builder: ListTagsOfResourceResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("NextToken"))
     val TAGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("Tags"))

@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeRedirectAllRequestsToDocument(deserializer: Deserializer): RedirectAllRequestsTo {
+internal fun deserializeRedirectAllRequestsToDocument(deserializer: Deserializer): RedirectAllRequestsTo {
     val builder = RedirectAllRequestsTo.builder()
     val HOSTNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("HostName"))
     val PROTOCOL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Protocol"))

@@ -45,7 +45,7 @@ internal class DescribeVoicesOperationDeserializer: HttpDeserialize<DescribeVoic
     }
 }
 
-private suspend fun deserializeDescribeVoicesOperationBody(builder: DescribeVoicesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeVoicesOperationBody(builder: DescribeVoicesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("NextToken"))
     val VOICES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("Voices"))

@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeClassicLinkInstanceDocument(deserializer: Deserializer): ClassicLinkInstance {
+internal fun deserializeClassicLinkInstanceDocument(deserializer: Deserializer): ClassicLinkInstance {
     val builder = ClassicLinkInstance.builder()
     val GROUPS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("groupSet"), XmlCollectionName("item"))
     val INSTANCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceId"))

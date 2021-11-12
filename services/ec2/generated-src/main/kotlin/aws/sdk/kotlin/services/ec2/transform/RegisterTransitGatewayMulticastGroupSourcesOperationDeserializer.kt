@@ -45,7 +45,7 @@ internal class RegisterTransitGatewayMulticastGroupSourcesOperationDeserializer:
     }
 }
 
-private suspend fun deserializeRegisterTransitGatewayMulticastGroupSourcesOperationBody(builder: RegisterTransitGatewayMulticastGroupSourcesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRegisterTransitGatewayMulticastGroupSourcesOperationBody(builder: RegisterTransitGatewayMulticastGroupSourcesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val REGISTEREDMULTICASTGROUPSOURCES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("registeredMulticastGroupSources"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

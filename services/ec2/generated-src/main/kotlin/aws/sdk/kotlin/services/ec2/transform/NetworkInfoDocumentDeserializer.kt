@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeNetworkInfoDocument(deserializer: Deserializer): NetworkInfo {
+internal fun deserializeNetworkInfoDocument(deserializer: Deserializer): NetworkInfo {
     val builder = NetworkInfo.builder()
     val DEFAULTNETWORKCARDINDEX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("defaultNetworkCardIndex"))
     val EFAINFO_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("efaInfo"))

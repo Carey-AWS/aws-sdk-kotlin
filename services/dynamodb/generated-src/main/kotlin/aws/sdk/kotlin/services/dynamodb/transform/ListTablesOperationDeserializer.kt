@@ -44,7 +44,7 @@ internal class ListTablesOperationDeserializer: HttpDeserialize<ListTablesRespon
     }
 }
 
-private suspend fun deserializeListTablesOperationBody(builder: ListTablesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListTablesOperationBody(builder: ListTablesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val LASTEVALUATEDTABLENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("LastEvaluatedTableName"))
     val TABLENAMES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("TableNames"))

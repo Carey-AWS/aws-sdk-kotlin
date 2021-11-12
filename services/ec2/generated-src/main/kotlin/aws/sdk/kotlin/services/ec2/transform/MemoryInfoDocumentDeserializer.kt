@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeMemoryInfoDocument(deserializer: Deserializer): MemoryInfo {
+internal fun deserializeMemoryInfoDocument(deserializer: Deserializer): MemoryInfo {
     val builder = MemoryInfo.builder()
     val SIZEINMIB_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, XmlSerialName("sizeInMiB"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

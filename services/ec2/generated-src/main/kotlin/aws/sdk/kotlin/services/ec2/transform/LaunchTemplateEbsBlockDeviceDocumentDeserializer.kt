@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchTemplateEbsBlockDeviceDocument(deserializer: Deserializer): LaunchTemplateEbsBlockDevice {
+internal fun deserializeLaunchTemplateEbsBlockDeviceDocument(deserializer: Deserializer): LaunchTemplateEbsBlockDevice {
     val builder = LaunchTemplateEbsBlockDevice.builder()
     val DELETEONTERMINATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("deleteOnTermination"))
     val ENCRYPTED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("encrypted"))

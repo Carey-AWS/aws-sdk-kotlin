@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeObjectVersionDocument(deserializer: Deserializer): ObjectVersion {
+internal fun deserializeObjectVersionDocument(deserializer: Deserializer): ObjectVersion {
     val builder = ObjectVersion.builder()
     val ETAG_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ETag"))
     val ISLATEST_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("IsLatest"))

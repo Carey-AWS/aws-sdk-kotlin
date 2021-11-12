@@ -35,7 +35,7 @@ internal class InvalidSampleRateExceptionDeserializer: HttpDeserialize<InvalidSa
     }
 }
 
-private suspend fun deserializeInvalidSampleRateExceptionError(builder: InvalidSampleRateException.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidSampleRateExceptionError(builder: InvalidSampleRateException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePeeringAttachmentStatusDocument(deserializer: Deserializer): PeeringAttachmentStatus {
+internal fun deserializePeeringAttachmentStatusDocument(deserializer: Deserializer): PeeringAttachmentStatus {
     val builder = PeeringAttachmentStatus.builder()
     val CODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("code"))
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))

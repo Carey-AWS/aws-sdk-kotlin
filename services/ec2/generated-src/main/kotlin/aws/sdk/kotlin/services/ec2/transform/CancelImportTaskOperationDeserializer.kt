@@ -45,7 +45,7 @@ internal class CancelImportTaskOperationDeserializer: HttpDeserialize<CancelImpo
     }
 }
 
-private suspend fun deserializeCancelImportTaskOperationBody(builder: CancelImportTaskResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCancelImportTaskOperationBody(builder: CancelImportTaskResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IMPORTTASKID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("importTaskId"))
     val PREVIOUSSTATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("previousState"))

@@ -45,7 +45,7 @@ internal class DisassociateTransitGatewayRouteTableOperationDeserializer: HttpDe
     }
 }
 
-private suspend fun deserializeDisassociateTransitGatewayRouteTableOperationBody(builder: DisassociateTransitGatewayRouteTableResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisassociateTransitGatewayRouteTableOperationBody(builder: DisassociateTransitGatewayRouteTableResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ASSOCIATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("association"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

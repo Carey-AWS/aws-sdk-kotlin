@@ -35,7 +35,7 @@ internal class LexiconNotFoundExceptionDeserializer: HttpDeserialize<LexiconNotF
     }
 }
 
-private suspend fun deserializeLexiconNotFoundExceptionError(builder: LexiconNotFoundException.DslBuilder, payload: ByteArray) {
+private fun deserializeLexiconNotFoundExceptionError(builder: LexiconNotFoundException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

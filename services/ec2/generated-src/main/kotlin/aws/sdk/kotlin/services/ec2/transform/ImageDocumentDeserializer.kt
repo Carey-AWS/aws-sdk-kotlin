@@ -32,7 +32,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeImageDocument(deserializer: Deserializer): Image {
+internal fun deserializeImageDocument(deserializer: Deserializer): Image {
     val builder = Image.builder()
     val ARCHITECTURE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("architecture"))
     val BLOCKDEVICEMAPPINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("blockDeviceMapping"), XmlCollectionName("item"))

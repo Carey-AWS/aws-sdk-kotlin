@@ -35,7 +35,7 @@ internal class GetObjectLockConfigurationOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeGetObjectLockConfigurationOperationBody(builder: GetObjectLockConfigurationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetObjectLockConfigurationOperationBody(builder: GetObjectLockConfigurationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.objectLockConfiguration = deserializeObjectLockConfigurationDocument(deserializer)
 }

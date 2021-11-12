@@ -25,7 +25,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeIpPermissionDocument(deserializer: Deserializer): IpPermission {
+internal fun deserializeIpPermissionDocument(deserializer: Deserializer): IpPermission {
     val builder = IpPermission.builder()
     val FROMPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("fromPort"))
     val IPPROTOCOL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ipProtocol"))

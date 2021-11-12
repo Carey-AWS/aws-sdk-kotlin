@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayAttachmentBgpConfigurationDocument(deserializer: Deserializer): TransitGatewayAttachmentBgpConfiguration {
+internal fun deserializeTransitGatewayAttachmentBgpConfigurationDocument(deserializer: Deserializer): TransitGatewayAttachmentBgpConfiguration {
     val builder = TransitGatewayAttachmentBgpConfiguration.builder()
     val BGPSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("bgpStatus"))
     val PEERADDRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("peerAddress"))

@@ -47,7 +47,7 @@ internal class CreateSecurityGroupOperationDeserializer: HttpDeserialize<CreateS
     }
 }
 
-private suspend fun deserializeCreateSecurityGroupOperationBody(builder: CreateSecurityGroupResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateSecurityGroupOperationBody(builder: CreateSecurityGroupResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val GROUPID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("groupId"))
     val TAGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("tagSet"), XmlCollectionName("item"))

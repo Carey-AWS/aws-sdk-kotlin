@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeDeleteMarkerEntryDocument(deserializer: Deserializer): DeleteMarkerEntry {
+internal fun deserializeDeleteMarkerEntryDocument(deserializer: Deserializer): DeleteMarkerEntry {
     val builder = DeleteMarkerEntry.builder()
     val ISLATEST_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("IsLatest"))
     val KEY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Key"))

@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeReplicationRuleDocument(deserializer: Deserializer): ReplicationRule {
+internal fun deserializeReplicationRuleDocument(deserializer: Deserializer): ReplicationRule {
     val builder = ReplicationRule.builder()
     val DELETEMARKERREPLICATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("DeleteMarkerReplication"))
     val DESTINATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Destination"))

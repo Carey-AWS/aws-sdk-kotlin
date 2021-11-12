@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeImportInstanceVolumeDetailItemDocument(deserializer: Deserializer): ImportInstanceVolumeDetailItem {
+internal fun deserializeImportInstanceVolumeDetailItemDocument(deserializer: Deserializer): ImportInstanceVolumeDetailItem {
     val builder = ImportInstanceVolumeDetailItem.builder()
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))
     val BYTESCONVERTED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, XmlSerialName("bytesConverted"))

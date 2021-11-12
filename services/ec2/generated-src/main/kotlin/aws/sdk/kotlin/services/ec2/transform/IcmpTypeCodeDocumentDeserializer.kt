@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeIcmpTypeCodeDocument(deserializer: Deserializer): IcmpTypeCode {
+internal fun deserializeIcmpTypeCodeDocument(deserializer: Deserializer): IcmpTypeCode {
     val builder = IcmpTypeCode.builder()
     val CODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("code"))
     val TYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("type"))

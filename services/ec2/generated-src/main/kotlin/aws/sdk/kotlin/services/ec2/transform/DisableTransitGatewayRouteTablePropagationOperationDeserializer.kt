@@ -45,7 +45,7 @@ internal class DisableTransitGatewayRouteTablePropagationOperationDeserializer: 
     }
 }
 
-private suspend fun deserializeDisableTransitGatewayRouteTablePropagationOperationBody(builder: DisableTransitGatewayRouteTablePropagationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisableTransitGatewayRouteTablePropagationOperationBody(builder: DisableTransitGatewayRouteTablePropagationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val PROPAGATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("propagation"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

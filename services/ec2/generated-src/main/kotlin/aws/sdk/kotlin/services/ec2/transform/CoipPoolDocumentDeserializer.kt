@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCoipPoolDocument(deserializer: Deserializer): CoipPool {
+internal fun deserializeCoipPoolDocument(deserializer: Deserializer): CoipPool {
     val builder = CoipPool.builder()
     val LOCALGATEWAYROUTETABLEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("localGatewayRouteTableId"))
     val POOLARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("poolArn"))

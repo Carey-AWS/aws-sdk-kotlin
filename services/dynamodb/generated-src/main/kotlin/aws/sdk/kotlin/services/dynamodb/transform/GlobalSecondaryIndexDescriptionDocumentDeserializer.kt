@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeGlobalSecondaryIndexDescriptionDocument(deserializer: Deserializer): GlobalSecondaryIndexDescription {
+internal fun deserializeGlobalSecondaryIndexDescriptionDocument(deserializer: Deserializer): GlobalSecondaryIndexDescription {
     val builder = GlobalSecondaryIndexDescription.builder()
     val BACKFILLING_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, JsonSerialName("Backfilling"))
     val INDEXARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("IndexArn"))

@@ -48,7 +48,7 @@ internal class PurchaseHostReservationOperationDeserializer: HttpDeserialize<Pur
     }
 }
 
-private suspend fun deserializePurchaseHostReservationOperationBody(builder: PurchaseHostReservationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializePurchaseHostReservationOperationBody(builder: PurchaseHostReservationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientToken"))
     val CURRENCYCODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("currencyCode"))

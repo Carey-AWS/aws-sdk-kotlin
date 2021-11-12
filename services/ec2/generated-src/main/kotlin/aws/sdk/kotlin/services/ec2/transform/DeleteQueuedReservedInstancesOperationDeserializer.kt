@@ -48,7 +48,7 @@ internal class DeleteQueuedReservedInstancesOperationDeserializer: HttpDeseriali
     }
 }
 
-private suspend fun deserializeDeleteQueuedReservedInstancesOperationBody(builder: DeleteQueuedReservedInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteQueuedReservedInstancesOperationBody(builder: DeleteQueuedReservedInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val FAILEDQUEUEDPURCHASEDELETIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("failedQueuedPurchaseDeletionSet"), XmlCollectionName("item"))
     val SUCCESSFULQUEUEDPURCHASEDELETIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("successfulQueuedPurchaseDeletionSet"), XmlCollectionName("item"))

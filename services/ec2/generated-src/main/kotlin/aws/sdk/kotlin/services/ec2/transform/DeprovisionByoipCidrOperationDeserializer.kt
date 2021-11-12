@@ -45,7 +45,7 @@ internal class DeprovisionByoipCidrOperationDeserializer: HttpDeserialize<Deprov
     }
 }
 
-private suspend fun deserializeDeprovisionByoipCidrOperationBody(builder: DeprovisionByoipCidrResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeprovisionByoipCidrOperationBody(builder: DeprovisionByoipCidrResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BYOIPCIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("byoipCidr"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

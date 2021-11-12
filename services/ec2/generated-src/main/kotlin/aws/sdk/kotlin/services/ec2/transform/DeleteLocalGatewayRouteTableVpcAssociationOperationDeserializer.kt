@@ -45,7 +45,7 @@ internal class DeleteLocalGatewayRouteTableVpcAssociationOperationDeserializer: 
     }
 }
 
-private suspend fun deserializeDeleteLocalGatewayRouteTableVpcAssociationOperationBody(builder: DeleteLocalGatewayRouteTableVpcAssociationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteLocalGatewayRouteTableVpcAssociationOperationBody(builder: DeleteLocalGatewayRouteTableVpcAssociationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val LOCALGATEWAYROUTETABLEVPCASSOCIATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("localGatewayRouteTableVpcAssociation"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

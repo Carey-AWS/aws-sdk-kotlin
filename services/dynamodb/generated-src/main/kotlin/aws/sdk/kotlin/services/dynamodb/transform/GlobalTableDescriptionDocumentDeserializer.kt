@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeGlobalTableDescriptionDocument(deserializer: Deserializer): GlobalTableDescription {
+internal fun deserializeGlobalTableDescriptionDocument(deserializer: Deserializer): GlobalTableDescription {
     val builder = GlobalTableDescription.builder()
     val CREATIONDATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, JsonSerialName("CreationDateTime"))
     val GLOBALTABLEARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("GlobalTableArn"))

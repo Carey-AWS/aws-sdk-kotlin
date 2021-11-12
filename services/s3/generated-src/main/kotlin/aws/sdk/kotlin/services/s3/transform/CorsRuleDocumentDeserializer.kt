@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCorsRuleDocument(deserializer: Deserializer): CorsRule {
+internal fun deserializeCorsRuleDocument(deserializer: Deserializer): CorsRule {
     val builder = CorsRule.builder()
     val ALLOWEDHEADERS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("AllowedHeader"), Flattened)
     val ALLOWEDMETHODS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("AllowedMethod"), Flattened)

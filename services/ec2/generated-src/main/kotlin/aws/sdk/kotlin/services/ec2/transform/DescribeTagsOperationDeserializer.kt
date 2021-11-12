@@ -47,7 +47,7 @@ internal class DescribeTagsOperationDeserializer: HttpDeserialize<DescribeTagsRe
     }
 }
 
-private suspend fun deserializeDescribeTagsOperationBody(builder: DescribeTagsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeTagsOperationBody(builder: DescribeTagsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val TAGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("tagSet"), XmlCollectionName("item"))

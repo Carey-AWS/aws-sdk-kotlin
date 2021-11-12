@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeAutoScalingSettingsDescriptionDocument(deserializer: Deserializer): AutoScalingSettingsDescription {
+internal fun deserializeAutoScalingSettingsDescriptionDocument(deserializer: Deserializer): AutoScalingSettingsDescription {
     val builder = AutoScalingSettingsDescription.builder()
     val AUTOSCALINGDISABLED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, JsonSerialName("AutoScalingDisabled"))
     val AUTOSCALINGROLEARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("AutoScalingRoleArn"))

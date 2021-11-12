@@ -27,7 +27,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeCapacityReservationFleetDocument(deserializer: Deserializer): CapacityReservationFleet {
+internal fun deserializeCapacityReservationFleetDocument(deserializer: Deserializer): CapacityReservationFleet {
     val builder = CapacityReservationFleet.builder()
     val ALLOCATIONSTRATEGY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allocationStrategy"))
     val CAPACITYRESERVATIONFLEETARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("capacityReservationFleetArn"))

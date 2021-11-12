@@ -44,7 +44,7 @@ internal class CreateBackupOperationDeserializer: HttpDeserialize<CreateBackupRe
     }
 }
 
-private suspend fun deserializeCreateBackupOperationBody(builder: CreateBackupResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateBackupOperationBody(builder: CreateBackupResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val BACKUPDETAILS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("BackupDetails"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

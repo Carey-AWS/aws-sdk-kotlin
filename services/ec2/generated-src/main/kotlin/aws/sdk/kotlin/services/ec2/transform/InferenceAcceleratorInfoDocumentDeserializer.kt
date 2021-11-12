@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInferenceAcceleratorInfoDocument(deserializer: Deserializer): InferenceAcceleratorInfo {
+internal fun deserializeInferenceAcceleratorInfoDocument(deserializer: Deserializer): InferenceAcceleratorInfo {
     val builder = InferenceAcceleratorInfo.builder()
     val ACCELERATORS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("accelerators"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

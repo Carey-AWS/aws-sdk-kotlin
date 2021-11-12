@@ -45,7 +45,7 @@ internal class PutItemOperationDeserializer: HttpDeserialize<PutItemResponse> {
     }
 }
 
-private suspend fun deserializePutItemOperationBody(builder: PutItemResponse.DslBuilder, payload: ByteArray) {
+private fun deserializePutItemOperationBody(builder: PutItemResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val ATTRIBUTES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Map, JsonSerialName("Attributes"))
     val CONSUMEDCAPACITY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("ConsumedCapacity"))

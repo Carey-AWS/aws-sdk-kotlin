@@ -35,7 +35,7 @@ internal class InvalidSnsTopicArnExceptionDeserializer: HttpDeserialize<InvalidS
     }
 }
 
-private suspend fun deserializeInvalidSnsTopicArnExceptionError(builder: InvalidSnsTopicArnException.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidSnsTopicArnExceptionError(builder: InvalidSnsTopicArnException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

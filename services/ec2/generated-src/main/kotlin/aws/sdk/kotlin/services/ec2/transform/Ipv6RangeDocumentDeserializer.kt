@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeIpv6RangeDocument(deserializer: Deserializer): Ipv6Range {
+internal fun deserializeIpv6RangeDocument(deserializer: Deserializer): Ipv6Range {
     val builder = Ipv6Range.builder()
     val CIDRIPV6_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("cidrIpv6"))
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))

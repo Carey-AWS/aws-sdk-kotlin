@@ -45,7 +45,7 @@ internal class PurchaseReservedInstancesOfferingOperationDeserializer: HttpDeser
     }
 }
 
-private suspend fun deserializePurchaseReservedInstancesOfferingOperationBody(builder: PurchaseReservedInstancesOfferingResponse.DslBuilder, payload: ByteArray) {
+private fun deserializePurchaseReservedInstancesOfferingOperationBody(builder: PurchaseReservedInstancesOfferingResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RESERVEDINSTANCESID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("reservedInstancesId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

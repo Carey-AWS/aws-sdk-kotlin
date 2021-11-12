@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeKeySchemaElementDocument(deserializer: Deserializer): KeySchemaElement {
+internal fun deserializeKeySchemaElementDocument(deserializer: Deserializer): KeySchemaElement {
     val builder = KeySchemaElement.builder()
     val ATTRIBUTENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("AttributeName"))
     val KEYTYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("KeyType"))

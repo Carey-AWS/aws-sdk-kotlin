@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeScheduledInstanceRecurrenceDocument(deserializer: Deserializer): ScheduledInstanceRecurrence {
+internal fun deserializeScheduledInstanceRecurrenceDocument(deserializer: Deserializer): ScheduledInstanceRecurrence {
     val builder = ScheduledInstanceRecurrence.builder()
     val FREQUENCY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("frequency"))
     val INTERVAL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("interval"))

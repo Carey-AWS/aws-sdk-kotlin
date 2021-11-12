@@ -45,7 +45,7 @@ internal class AttachClassicLinkVpcOperationDeserializer: HttpDeserialize<Attach
     }
 }
 
-private suspend fun deserializeAttachClassicLinkVpcOperationBody(builder: AttachClassicLinkVpcResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAttachClassicLinkVpcOperationBody(builder: AttachClassicLinkVpcResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

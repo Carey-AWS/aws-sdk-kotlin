@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDisableFastSnapshotRestoreErrorItemDocument(deserializer: Deserializer): DisableFastSnapshotRestoreErrorItem {
+internal fun deserializeDisableFastSnapshotRestoreErrorItemDocument(deserializer: Deserializer): DisableFastSnapshotRestoreErrorItem {
     val builder = DisableFastSnapshotRestoreErrorItem.builder()
     val FASTSNAPSHOTRESTORESTATEERRORS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("fastSnapshotRestoreStateErrorSet"), XmlCollectionName("item"))
     val SNAPSHOTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("snapshotId"))

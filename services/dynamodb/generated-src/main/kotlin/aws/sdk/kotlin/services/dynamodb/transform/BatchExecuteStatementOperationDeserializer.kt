@@ -45,7 +45,7 @@ internal class BatchExecuteStatementOperationDeserializer: HttpDeserialize<Batch
     }
 }
 
-private suspend fun deserializeBatchExecuteStatementOperationBody(builder: BatchExecuteStatementResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeBatchExecuteStatementOperationBody(builder: BatchExecuteStatementResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val RESPONSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("Responses"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

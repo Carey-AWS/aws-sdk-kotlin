@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeNoncurrentVersionTransitionDocument(deserializer: Deserializer): NoncurrentVersionTransition {
+internal fun deserializeNoncurrentVersionTransitionDocument(deserializer: Deserializer): NoncurrentVersionTransition {
     val builder = NoncurrentVersionTransition.builder()
     val NONCURRENTDAYS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("NoncurrentDays"))
     val STORAGECLASS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("StorageClass"))

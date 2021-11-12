@@ -2,15 +2,23 @@
 
 package aws.sdk.kotlin.services.dynamodb
 
+import aws.sdk.kotlin.runtime.auth.signing.AwsSigV4SigningMiddleware
 import aws.sdk.kotlin.runtime.client.AwsClientOption
 import aws.sdk.kotlin.runtime.execution.AuthAttributes
+import aws.sdk.kotlin.runtime.http.ApiMetadata
+import aws.sdk.kotlin.runtime.http.AwsUserAgentMetadata
 import aws.sdk.kotlin.runtime.http.engine.crt.CrtHttpEngine
+import aws.sdk.kotlin.runtime.http.middleware.ResolveAwsEndpoint
+import aws.sdk.kotlin.runtime.http.middleware.UserAgent
+import aws.sdk.kotlin.runtime.http.retries.AwsDefaultRetryPolicy
+import aws.sdk.kotlin.runtime.protocol.json.AwsJsonProtocol
 import aws.sdk.kotlin.services.dynamodb.model.*
 import aws.sdk.kotlin.services.dynamodb.transform.*
 import aws.smithy.kotlin.runtime.client.ExecutionContext
 import aws.smithy.kotlin.runtime.client.SdkClientOption
 import aws.smithy.kotlin.runtime.client.idempotencyTokenProvider
 import aws.smithy.kotlin.runtime.http.SdkHttpClient
+import aws.smithy.kotlin.runtime.http.middleware.RetryFeature
 import aws.smithy.kotlin.runtime.http.operation.SdkHttpOperation
 import aws.smithy.kotlin.runtime.http.operation.context
 import aws.smithy.kotlin.runtime.http.operation.roundTrip
@@ -28,6 +36,7 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
         val httpClientEngine = config.httpClientEngine ?: CrtHttpEngine()
         client = sdkHttpClient(httpClientEngine, manageEngine = config.httpClientEngine == null)
     }
+    private val awsUserAgentMetadata = AwsUserAgentMetadata.fromEnvironment(ApiMetadata(ServiceId, SdkVersion))
 
     /**
      * This operation allows you to perform batch reads and writes on data stored in DynamoDB, using PartiQL.
@@ -42,8 +51,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "BatchExecuteStatement"
             }
         }
-        registerBatchExecuteStatementMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -101,8 +128,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "BatchGetItem"
             }
         }
-        registerBatchGetItemMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -169,8 +214,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "BatchWriteItem"
             }
         }
-        registerBatchWriteItemMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -204,8 +267,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "CreateBackup"
             }
         }
-        registerCreateBackupMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -245,8 +326,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "CreateGlobalTable"
             }
         }
-        registerCreateGlobalTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -274,8 +373,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "CreateTable"
             }
         }
-        registerCreateTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -293,8 +410,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DeleteBackup"
             }
         }
-        registerDeleteBackupMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -316,8 +451,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DeleteItem"
             }
         }
-        registerDeleteItemMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -347,8 +500,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DeleteTable"
             }
         }
-        registerDeleteTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -366,8 +537,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeBackup"
             }
         }
-        registerDescribeBackupMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -392,8 +581,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeContinuousBackups"
             }
         }
-        registerDescribeContinuousBackupsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -410,8 +617,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeContributorInsights"
             }
         }
-        registerDescribeContributorInsightsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -428,8 +653,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeEndpoints"
             }
         }
-        registerDescribeEndpointsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -446,8 +689,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeExport"
             }
         }
-        registerDescribeExportMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -466,8 +727,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeGlobalTable"
             }
         }
-        registerDescribeGlobalTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -485,8 +764,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeGlobalTableSettings"
             }
         }
-        registerDescribeGlobalTableSettingsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -503,8 +800,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeKinesisStreamingDestination"
             }
         }
-        registerDescribeKinesisStreamingDestinationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -559,8 +874,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeLimits"
             }
         }
-        registerDescribeLimitsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -581,8 +914,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeTable"
             }
         }
-        registerDescribeTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -600,8 +951,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeTableReplicaAutoScaling"
             }
         }
-        registerDescribeTableReplicaAutoScalingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -618,8 +987,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DescribeTimeToLive"
             }
         }
-        registerDescribeTimeToLiveMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -637,8 +1024,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "DisableKinesisStreamingDestination"
             }
         }
-        registerDisableKinesisStreamingDestinationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -658,8 +1063,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "EnableKinesisStreamingDestination"
             }
         }
-        registerEnableKinesisStreamingDestinationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -676,8 +1099,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "ExecuteStatement"
             }
         }
-        registerExecuteStatementMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -694,8 +1135,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "ExecuteTransaction"
             }
         }
-        registerExecuteTransactionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -714,8 +1173,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "ExportTableToPointInTime"
             }
         }
-        registerExportTableToPointInTimeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -737,8 +1214,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "GetItem"
             }
         }
-        registerGetItemMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -761,8 +1256,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "ListBackups"
             }
         }
-        registerListBackupsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -779,8 +1292,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "ListContributorInsights"
             }
         }
-        registerListContributorInsightsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -797,8 +1328,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "ListExports"
             }
         }
-        registerListExportsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -816,8 +1365,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "ListGlobalTables"
             }
         }
-        registerListGlobalTablesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -836,8 +1403,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "ListTables"
             }
         }
-        registerListTablesMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -857,8 +1442,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "ListTagsOfResource"
             }
         }
-        registerListTagsOfResourceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -899,8 +1502,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "PutItem"
             }
         }
-        registerPutItemMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -956,8 +1577,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "Query"
             }
         }
-        registerQueryMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -983,8 +1622,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "RestoreTableFromBackup"
             }
         }
-        registerRestoreTableFromBackupMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1020,8 +1677,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "RestoreTableToPointInTime"
             }
         }
-        registerRestoreTableToPointInTimeMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1060,8 +1735,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "Scan"
             }
         }
-        registerScanMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1084,8 +1777,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "TagResource"
             }
         }
-        registerTagResourceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1116,8 +1827,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "TransactGetItems"
             }
         }
-        registerTransactGetItemsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1175,8 +1904,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "TransactWriteItems"
             }
         }
-        registerTransactWriteItemsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1197,8 +1944,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "UntagResource"
             }
         }
-        registerUntagResourceMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1222,8 +1987,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "UpdateContinuousBackups"
             }
         }
-        registerUpdateContinuousBackupsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1240,8 +2023,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "UpdateContributorInsights"
             }
         }
-        registerUpdateContributorInsightsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1268,8 +2069,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "UpdateGlobalTable"
             }
         }
-        registerUpdateGlobalTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1286,8 +2105,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "UpdateGlobalTableSettings"
             }
         }
-        registerUpdateGlobalTableSettingsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1306,8 +2143,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "UpdateItem"
             }
         }
-        registerUpdateItemMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1335,8 +2190,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "UpdateTable"
             }
         }
-        registerUpdateTableMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1354,8 +2227,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "UpdateTableReplicaAutoScaling"
             }
         }
-        registerUpdateTableReplicaAutoScalingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1391,8 +2282,26 @@ internal class DefaultDynamoDbClient(override val config: DynamoDbClient.Config)
                 operationName = "UpdateTimeToLive"
             }
         }
-        registerUpdateTimeToLiveMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(AwsJsonProtocol) {
+            serviceShapeName = "DynamoDB_20120810"
+            version = "1.0"
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "dynamodb"
+        }
         return op.roundTrip(client, input)
     }
 

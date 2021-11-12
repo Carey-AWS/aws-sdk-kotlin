@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDescribeFleetErrorDocument(deserializer: Deserializer): DescribeFleetError {
+internal fun deserializeDescribeFleetErrorDocument(deserializer: Deserializer): DescribeFleetError {
     val builder = DescribeFleetError.builder()
     val ERRORCODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("errorCode"))
     val ERRORMESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("errorMessage"))

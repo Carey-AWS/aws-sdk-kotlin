@@ -45,7 +45,7 @@ internal class DisassociateTransitGatewayMulticastDomainOperationDeserializer: H
     }
 }
 
-private suspend fun deserializeDisassociateTransitGatewayMulticastDomainOperationBody(builder: DisassociateTransitGatewayMulticastDomainResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisassociateTransitGatewayMulticastDomainOperationBody(builder: DisassociateTransitGatewayMulticastDomainResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ASSOCIATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("associations"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

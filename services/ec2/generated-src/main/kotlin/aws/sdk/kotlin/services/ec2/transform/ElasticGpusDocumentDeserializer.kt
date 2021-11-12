@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeElasticGpusDocument(deserializer: Deserializer): ElasticGpus {
+internal fun deserializeElasticGpusDocument(deserializer: Deserializer): ElasticGpus {
     val builder = ElasticGpus.builder()
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))
     val ELASTICGPUHEALTH_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("elasticGpuHealth"))

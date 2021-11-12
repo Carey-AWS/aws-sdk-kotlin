@@ -47,7 +47,7 @@ internal class CancelReservedInstancesListingOperationDeserializer: HttpDeserial
     }
 }
 
-private suspend fun deserializeCancelReservedInstancesListingOperationBody(builder: CancelReservedInstancesListingResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCancelReservedInstancesListingOperationBody(builder: CancelReservedInstancesListingResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RESERVEDINSTANCESLISTINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("reservedInstancesListingsSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

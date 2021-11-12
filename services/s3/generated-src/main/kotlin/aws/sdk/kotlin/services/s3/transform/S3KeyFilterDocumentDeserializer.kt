@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeS3KeyFilterDocument(deserializer: Deserializer): S3KeyFilter {
+internal fun deserializeS3KeyFilterDocument(deserializer: Deserializer): S3KeyFilter {
     val builder = S3KeyFilter.builder()
     val FILTERRULES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("FilterRule"), Flattened)
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -46,7 +46,7 @@ internal class DescribeContributorInsightsOperationDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeDescribeContributorInsightsOperationBody(builder: DescribeContributorInsightsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeContributorInsightsOperationBody(builder: DescribeContributorInsightsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val CONTRIBUTORINSIGHTSRULELIST_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("ContributorInsightsRuleList"))
     val CONTRIBUTORINSIGHTSSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("ContributorInsightsStatus"))

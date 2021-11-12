@@ -44,7 +44,7 @@ internal class ExportTableToPointInTimeOperationDeserializer: HttpDeserialize<Ex
     }
 }
 
-private suspend fun deserializeExportTableToPointInTimeOperationBody(builder: ExportTableToPointInTimeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeExportTableToPointInTimeOperationBody(builder: ExportTableToPointInTimeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val EXPORTDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("ExportDescription"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

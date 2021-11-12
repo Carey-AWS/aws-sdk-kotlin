@@ -47,7 +47,7 @@ internal class DescribeNetworkInsightsAnalysesOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeDescribeNetworkInsightsAnalysesOperationBody(builder: DescribeNetworkInsightsAnalysesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeNetworkInsightsAnalysesOperationBody(builder: DescribeNetworkInsightsAnalysesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NETWORKINSIGHTSANALYSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("networkInsightsAnalysisSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

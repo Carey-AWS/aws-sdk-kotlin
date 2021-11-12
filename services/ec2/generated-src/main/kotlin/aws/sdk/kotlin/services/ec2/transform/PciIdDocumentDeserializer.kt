@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePciIdDocument(deserializer: Deserializer): PciId {
+internal fun deserializePciIdDocument(deserializer: Deserializer): PciId {
     val builder = PciId.builder()
     val DEVICEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("DeviceId"))
     val SUBSYSTEMID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("SubsystemId"))

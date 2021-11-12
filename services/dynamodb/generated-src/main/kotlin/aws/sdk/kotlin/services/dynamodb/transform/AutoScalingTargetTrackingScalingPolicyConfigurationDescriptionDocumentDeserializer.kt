@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeAutoScalingTargetTrackingScalingPolicyConfigurationDescriptionDocument(deserializer: Deserializer): AutoScalingTargetTrackingScalingPolicyConfigurationDescription {
+internal fun deserializeAutoScalingTargetTrackingScalingPolicyConfigurationDescriptionDocument(deserializer: Deserializer): AutoScalingTargetTrackingScalingPolicyConfigurationDescription {
     val builder = AutoScalingTargetTrackingScalingPolicyConfigurationDescription.builder()
     val DISABLESCALEIN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, JsonSerialName("DisableScaleIn"))
     val SCALEINCOOLDOWN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, JsonSerialName("ScaleInCooldown"))

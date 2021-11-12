@@ -47,7 +47,7 @@ internal class DescribeNetworkInterfacePermissionsOperationDeserializer: HttpDes
     }
 }
 
-private suspend fun deserializeDescribeNetworkInterfacePermissionsOperationBody(builder: DescribeNetworkInterfacePermissionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeNetworkInterfacePermissionsOperationBody(builder: DescribeNetworkInterfacePermissionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NETWORKINTERFACEPERMISSIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("networkInterfacePermissions"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

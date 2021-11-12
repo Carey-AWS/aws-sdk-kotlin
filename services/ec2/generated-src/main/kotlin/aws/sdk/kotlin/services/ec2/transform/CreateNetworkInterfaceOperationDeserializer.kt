@@ -45,7 +45,7 @@ internal class CreateNetworkInterfaceOperationDeserializer: HttpDeserialize<Crea
     }
 }
 
-private suspend fun deserializeCreateNetworkInterfaceOperationBody(builder: CreateNetworkInterfaceResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateNetworkInterfaceOperationBody(builder: CreateNetworkInterfaceResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientToken"))
     val NETWORKINTERFACE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("networkInterface"))

@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeRedirectDocument(deserializer: Deserializer): Redirect {
+internal fun deserializeRedirectDocument(deserializer: Deserializer): Redirect {
     val builder = Redirect.builder()
     val HOSTNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("HostName"))
     val HTTPREDIRECTCODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("HttpRedirectCode"))

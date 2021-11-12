@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceStorageInfoDocument(deserializer: Deserializer): InstanceStorageInfo {
+internal fun deserializeInstanceStorageInfoDocument(deserializer: Deserializer): InstanceStorageInfo {
     val builder = InstanceStorageInfo.builder()
     val DISKS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("disks"), XmlCollectionName("item"))
     val ENCRYPTIONSUPPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("encryptionSupport"))

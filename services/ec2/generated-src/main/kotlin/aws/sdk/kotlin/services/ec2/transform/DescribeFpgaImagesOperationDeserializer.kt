@@ -47,7 +47,7 @@ internal class DescribeFpgaImagesOperationDeserializer: HttpDeserialize<Describe
     }
 }
 
-private suspend fun deserializeDescribeFpgaImagesOperationBody(builder: DescribeFpgaImagesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeFpgaImagesOperationBody(builder: DescribeFpgaImagesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val FPGAIMAGES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("fpgaImageSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

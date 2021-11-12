@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeVpcClassicLinkDocument(deserializer: Deserializer): VpcClassicLink {
+internal fun deserializeVpcClassicLinkDocument(deserializer: Deserializer): VpcClassicLink {
     val builder = VpcClassicLink.builder()
     val CLASSICLINKENABLED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("classicLinkEnabled"))
     val TAGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("tagSet"), XmlCollectionName("item"))

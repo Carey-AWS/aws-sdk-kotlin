@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeInstanceStatusEventDocument(deserializer: Deserializer): InstanceStatusEvent {
+internal fun deserializeInstanceStatusEventDocument(deserializer: Deserializer): InstanceStatusEvent {
     val builder = InstanceStatusEvent.builder()
     val CODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("code"))
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))

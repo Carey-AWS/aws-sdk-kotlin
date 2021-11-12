@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayMulticastDomainAssociationDocument(deserializer: Deserializer): TransitGatewayMulticastDomainAssociation {
+internal fun deserializeTransitGatewayMulticastDomainAssociationDocument(deserializer: Deserializer): TransitGatewayMulticastDomainAssociation {
     val builder = TransitGatewayMulticastDomainAssociation.builder()
     val RESOURCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("resourceId"))
     val RESOURCEOWNERID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("resourceOwnerId"))

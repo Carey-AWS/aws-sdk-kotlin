@@ -35,7 +35,7 @@ internal class InvalidS3KeyExceptionDeserializer: HttpDeserialize<InvalidS3KeyEx
     }
 }
 
-private suspend fun deserializeInvalidS3KeyExceptionError(builder: InvalidS3KeyException.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidS3KeyExceptionError(builder: InvalidS3KeyException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

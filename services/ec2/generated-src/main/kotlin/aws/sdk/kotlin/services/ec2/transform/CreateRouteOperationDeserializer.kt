@@ -45,7 +45,7 @@ internal class CreateRouteOperationDeserializer: HttpDeserialize<CreateRouteResp
     }
 }
 
-private suspend fun deserializeCreateRouteOperationBody(builder: CreateRouteResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateRouteOperationBody(builder: CreateRouteResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

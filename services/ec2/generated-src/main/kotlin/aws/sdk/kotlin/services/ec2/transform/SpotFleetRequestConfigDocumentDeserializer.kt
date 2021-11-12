@@ -25,7 +25,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeSpotFleetRequestConfigDocument(deserializer: Deserializer): SpotFleetRequestConfig {
+internal fun deserializeSpotFleetRequestConfigDocument(deserializer: Deserializer): SpotFleetRequestConfig {
     val builder = SpotFleetRequestConfig.builder()
     val ACTIVITYSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("activityStatus"))
     val CREATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("createTime"))

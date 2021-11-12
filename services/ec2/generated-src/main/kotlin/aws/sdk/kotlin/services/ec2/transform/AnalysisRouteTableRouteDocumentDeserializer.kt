@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAnalysisRouteTableRouteDocument(deserializer: Deserializer): AnalysisRouteTableRoute {
+internal fun deserializeAnalysisRouteTableRouteDocument(deserializer: Deserializer): AnalysisRouteTableRoute {
     val builder = AnalysisRouteTableRoute.builder()
     val DESTINATIONCIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("destinationCidr"))
     val DESTINATIONPREFIXLISTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("destinationPrefixListId"))

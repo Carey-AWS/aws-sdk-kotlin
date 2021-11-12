@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCarrierGatewayDocument(deserializer: Deserializer): CarrierGateway {
+internal fun deserializeCarrierGatewayDocument(deserializer: Deserializer): CarrierGateway {
     val builder = CarrierGateway.builder()
     val CARRIERGATEWAYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("carrierGatewayId"))
     val OWNERID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ownerId"))

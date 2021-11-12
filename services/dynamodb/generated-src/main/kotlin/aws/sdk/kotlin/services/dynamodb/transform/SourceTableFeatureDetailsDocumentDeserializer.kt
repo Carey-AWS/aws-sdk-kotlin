@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeSourceTableFeatureDetailsDocument(deserializer: Deserializer): SourceTableFeatureDetails {
+internal fun deserializeSourceTableFeatureDetailsDocument(deserializer: Deserializer): SourceTableFeatureDetails {
     val builder = SourceTableFeatureDetails.builder()
     val GLOBALSECONDARYINDEXES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("GlobalSecondaryIndexes"))
     val LOCALSECONDARYINDEXES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("LocalSecondaryIndexes"))

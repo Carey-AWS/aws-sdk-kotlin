@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePublicAccessBlockConfigurationDocument(deserializer: Deserializer): PublicAccessBlockConfiguration {
+internal fun deserializePublicAccessBlockConfigurationDocument(deserializer: Deserializer): PublicAccessBlockConfiguration {
     val builder = PublicAccessBlockConfiguration.builder()
     val BLOCKPUBLICACLS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("BlockPublicAcls"))
     val BLOCKPUBLICPOLICY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("BlockPublicPolicy"))

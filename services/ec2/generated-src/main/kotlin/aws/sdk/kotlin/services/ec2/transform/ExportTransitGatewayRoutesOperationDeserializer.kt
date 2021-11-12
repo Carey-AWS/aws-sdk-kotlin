@@ -45,7 +45,7 @@ internal class ExportTransitGatewayRoutesOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeExportTransitGatewayRoutesOperationBody(builder: ExportTransitGatewayRoutesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeExportTransitGatewayRoutesOperationBody(builder: ExportTransitGatewayRoutesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val S3LOCATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("s3Location"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

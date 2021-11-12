@@ -49,7 +49,7 @@ internal class DescribeImageAttributeOperationDeserializer: HttpDeserialize<Desc
     }
 }
 
-private suspend fun deserializeDescribeImageAttributeOperationBody(builder: DescribeImageAttributeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeImageAttributeOperationBody(builder: DescribeImageAttributeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BLOCKDEVICEMAPPINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("blockDeviceMapping"), XmlCollectionName("item"))
     val BOOTMODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("bootMode"))

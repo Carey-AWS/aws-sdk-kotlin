@@ -47,7 +47,7 @@ internal class AuthorizeSecurityGroupEgressOperationDeserializer: HttpDeserializ
     }
 }
 
-private suspend fun deserializeAuthorizeSecurityGroupEgressOperationBody(builder: AuthorizeSecurityGroupEgressResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAuthorizeSecurityGroupEgressOperationBody(builder: AuthorizeSecurityGroupEgressResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val SECURITYGROUPRULES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("securityGroupRuleSet"), XmlCollectionName("item"))

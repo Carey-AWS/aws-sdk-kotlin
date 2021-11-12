@@ -48,7 +48,7 @@ internal class DescribeFleetHistoryOperationDeserializer: HttpDeserialize<Descri
     }
 }
 
-private suspend fun deserializeDescribeFleetHistoryOperationBody(builder: DescribeFleetHistoryResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeFleetHistoryOperationBody(builder: DescribeFleetHistoryResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val FLEETID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("fleetId"))
     val HISTORYRECORDS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("historyRecordSet"), XmlCollectionName("item"))

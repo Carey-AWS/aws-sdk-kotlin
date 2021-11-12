@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSpotDatafeedSubscriptionDocument(deserializer: Deserializer): SpotDatafeedSubscription {
+internal fun deserializeSpotDatafeedSubscriptionDocument(deserializer: Deserializer): SpotDatafeedSubscription {
     val builder = SpotDatafeedSubscription.builder()
     val BUCKET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("bucket"))
     val FAULT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("fault"))

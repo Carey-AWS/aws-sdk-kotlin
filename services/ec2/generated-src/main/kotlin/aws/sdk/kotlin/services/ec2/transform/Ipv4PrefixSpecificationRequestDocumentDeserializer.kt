@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeIpv4PrefixSpecificationRequestDocument(deserializer: Deserializer): Ipv4PrefixSpecificationRequest {
+internal fun deserializeIpv4PrefixSpecificationRequestDocument(deserializer: Deserializer): Ipv4PrefixSpecificationRequest {
     val builder = Ipv4PrefixSpecificationRequest.builder()
     val IPV4PREFIX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Ipv4Prefix"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

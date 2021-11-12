@@ -45,7 +45,7 @@ internal class DeleteTransitGatewayMulticastDomainOperationDeserializer: HttpDes
     }
 }
 
-private suspend fun deserializeDeleteTransitGatewayMulticastDomainOperationBody(builder: DeleteTransitGatewayMulticastDomainResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteTransitGatewayMulticastDomainOperationBody(builder: DeleteTransitGatewayMulticastDomainResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val TRANSITGATEWAYMULTICASTDOMAIN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("transitGatewayMulticastDomain"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

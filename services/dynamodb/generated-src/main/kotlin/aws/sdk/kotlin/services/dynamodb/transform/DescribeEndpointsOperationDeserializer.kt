@@ -45,7 +45,7 @@ internal class DescribeEndpointsOperationDeserializer: HttpDeserialize<DescribeE
     }
 }
 
-private suspend fun deserializeDescribeEndpointsOperationBody(builder: DescribeEndpointsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeEndpointsOperationBody(builder: DescribeEndpointsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val ENDPOINTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("Endpoints"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

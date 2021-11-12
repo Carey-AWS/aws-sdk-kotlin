@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeSseDescriptionDocument(deserializer: Deserializer): SseDescription {
+internal fun deserializeSseDescriptionDocument(deserializer: Deserializer): SseDescription {
     val builder = SseDescription.builder()
     val INACCESSIBLEENCRYPTIONDATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, JsonSerialName("InaccessibleEncryptionDateTime"))
     val KMSMASTERKEYARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("KMSMasterKeyArn"))

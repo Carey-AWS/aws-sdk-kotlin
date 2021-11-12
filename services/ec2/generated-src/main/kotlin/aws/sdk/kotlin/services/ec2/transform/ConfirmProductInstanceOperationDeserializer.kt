@@ -45,7 +45,7 @@ internal class ConfirmProductInstanceOperationDeserializer: HttpDeserialize<Conf
     }
 }
 
-private suspend fun deserializeConfirmProductInstanceOperationBody(builder: ConfirmProductInstanceResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeConfirmProductInstanceOperationBody(builder: ConfirmProductInstanceResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val OWNERID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ownerId"))
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))

@@ -35,7 +35,7 @@ internal class TransactionConflictExceptionDeserializer: HttpDeserialize<Transac
     }
 }
 
-private suspend fun deserializeTransactionConflictExceptionError(builder: TransactionConflictException.DslBuilder, payload: ByteArray) {
+private fun deserializeTransactionConflictExceptionError(builder: TransactionConflictException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

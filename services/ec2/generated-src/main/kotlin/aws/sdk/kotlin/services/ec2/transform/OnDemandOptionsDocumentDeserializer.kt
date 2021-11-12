@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeOnDemandOptionsDocument(deserializer: Deserializer): OnDemandOptions {
+internal fun deserializeOnDemandOptionsDocument(deserializer: Deserializer): OnDemandOptions {
     val builder = OnDemandOptions.builder()
     val ALLOCATIONSTRATEGY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allocationStrategy"))
     val CAPACITYRESERVATIONOPTIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("capacityReservationOptions"))

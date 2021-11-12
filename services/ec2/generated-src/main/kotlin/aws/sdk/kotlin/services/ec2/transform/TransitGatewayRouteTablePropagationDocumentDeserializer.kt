@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayRouteTablePropagationDocument(deserializer: Deserializer): TransitGatewayRouteTablePropagation {
+internal fun deserializeTransitGatewayRouteTablePropagationDocument(deserializer: Deserializer): TransitGatewayRouteTablePropagation {
     val builder = TransitGatewayRouteTablePropagation.builder()
     val RESOURCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("resourceId"))
     val RESOURCETYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("resourceType"))

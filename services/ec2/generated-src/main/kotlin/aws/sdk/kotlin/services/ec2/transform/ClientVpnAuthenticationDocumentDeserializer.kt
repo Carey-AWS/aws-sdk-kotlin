@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeClientVpnAuthenticationDocument(deserializer: Deserializer): ClientVpnAuthentication {
+internal fun deserializeClientVpnAuthenticationDocument(deserializer: Deserializer): ClientVpnAuthentication {
     val builder = ClientVpnAuthentication.builder()
     val ACTIVEDIRECTORY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("activeDirectory"))
     val FEDERATEDAUTHENTICATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("federatedAuthentication"))

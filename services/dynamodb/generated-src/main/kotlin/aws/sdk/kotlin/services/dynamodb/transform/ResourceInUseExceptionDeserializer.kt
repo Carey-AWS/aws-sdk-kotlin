@@ -35,7 +35,7 @@ internal class ResourceInUseExceptionDeserializer: HttpDeserialize<ResourceInUse
     }
 }
 
-private suspend fun deserializeResourceInUseExceptionError(builder: ResourceInUseException.DslBuilder, payload: ByteArray) {
+private fun deserializeResourceInUseExceptionError(builder: ResourceInUseException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchPermissionDocument(deserializer: Deserializer): LaunchPermission {
+internal fun deserializeLaunchPermissionDocument(deserializer: Deserializer): LaunchPermission {
     val builder = LaunchPermission.builder()
     val GROUP_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("group"))
     val USERID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("userId"))

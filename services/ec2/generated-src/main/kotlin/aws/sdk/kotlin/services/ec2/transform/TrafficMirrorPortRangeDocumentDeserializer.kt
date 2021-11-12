@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTrafficMirrorPortRangeDocument(deserializer: Deserializer): TrafficMirrorPortRange {
+internal fun deserializeTrafficMirrorPortRangeDocument(deserializer: Deserializer): TrafficMirrorPortRange {
     val builder = TrafficMirrorPortRange.builder()
     val FROMPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("fromPort"))
     val TOPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("toPort"))

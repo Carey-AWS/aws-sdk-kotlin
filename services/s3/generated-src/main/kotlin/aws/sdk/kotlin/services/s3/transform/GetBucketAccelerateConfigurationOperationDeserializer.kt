@@ -48,7 +48,7 @@ internal class GetBucketAccelerateConfigurationOperationDeserializer: HttpDeseri
     }
 }
 
-private suspend fun deserializeGetBucketAccelerateConfigurationOperationBody(builder: GetBucketAccelerateConfigurationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketAccelerateConfigurationOperationBody(builder: GetBucketAccelerateConfigurationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Status"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

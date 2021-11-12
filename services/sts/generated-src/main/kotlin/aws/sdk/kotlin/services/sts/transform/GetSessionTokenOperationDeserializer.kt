@@ -46,7 +46,7 @@ internal class GetSessionTokenOperationDeserializer: HttpDeserialize<GetSessionT
     }
 }
 
-private suspend fun deserializeGetSessionTokenOperationBody(builder: GetSessionTokenResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetSessionTokenOperationBody(builder: GetSessionTokenResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
 
     val resultDescriptor = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("GetSessionTokenResult"))

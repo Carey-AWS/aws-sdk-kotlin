@@ -47,7 +47,7 @@ internal class TerminateClientVpnConnectionsOperationDeserializer: HttpDeseriali
     }
 }
 
-private suspend fun deserializeTerminateClientVpnConnectionsOperationBody(builder: TerminateClientVpnConnectionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeTerminateClientVpnConnectionsOperationBody(builder: TerminateClientVpnConnectionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTVPNENDPOINTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientVpnEndpointId"))
     val CONNECTIONSTATUSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("connectionStatuses"), XmlCollectionName("item"))

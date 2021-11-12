@@ -47,7 +47,7 @@ internal class DescribeReservedInstancesModificationsOperationDeserializer: Http
     }
 }
 
-private suspend fun deserializeDescribeReservedInstancesModificationsOperationBody(builder: DescribeReservedInstancesModificationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeReservedInstancesModificationsOperationBody(builder: DescribeReservedInstancesModificationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val RESERVEDINSTANCESMODIFICATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("reservedInstancesModificationsSet"), XmlCollectionName("item"))

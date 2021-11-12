@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeKinesisDataStreamDestinationDocument(deserializer: Deserializer): KinesisDataStreamDestination {
+internal fun deserializeKinesisDataStreamDestinationDocument(deserializer: Deserializer): KinesisDataStreamDestination {
     val builder = KinesisDataStreamDestination.builder()
     val DESTINATIONSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("DestinationStatus"))
     val DESTINATIONSTATUSDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("DestinationStatusDescription"))

@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLocalGatewayDocument(deserializer: Deserializer): LocalGateway {
+internal fun deserializeLocalGatewayDocument(deserializer: Deserializer): LocalGateway {
     val builder = LocalGateway.builder()
     val LOCALGATEWAYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("localGatewayId"))
     val OUTPOSTARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("outpostArn"))

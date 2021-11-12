@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeGlobalSecondaryIndexInfoDocument(deserializer: Deserializer): GlobalSecondaryIndexInfo {
+internal fun deserializeGlobalSecondaryIndexInfoDocument(deserializer: Deserializer): GlobalSecondaryIndexInfo {
     val builder = GlobalSecondaryIndexInfo.builder()
     val INDEXNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("IndexName"))
     val KEYSCHEMA_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("KeySchema"))

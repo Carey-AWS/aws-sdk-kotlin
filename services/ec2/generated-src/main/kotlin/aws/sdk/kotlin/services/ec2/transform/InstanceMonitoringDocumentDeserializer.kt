@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceMonitoringDocument(deserializer: Deserializer): InstanceMonitoring {
+internal fun deserializeInstanceMonitoringDocument(deserializer: Deserializer): InstanceMonitoring {
     val builder = InstanceMonitoring.builder()
     val INSTANCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceId"))
     val MONITORING_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("monitoring"))

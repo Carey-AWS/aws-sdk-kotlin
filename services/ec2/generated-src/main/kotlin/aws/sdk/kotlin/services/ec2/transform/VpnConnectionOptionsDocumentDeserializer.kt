@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeVpnConnectionOptionsDocument(deserializer: Deserializer): VpnConnectionOptions {
+internal fun deserializeVpnConnectionOptionsDocument(deserializer: Deserializer): VpnConnectionOptions {
     val builder = VpnConnectionOptions.builder()
     val ENABLEACCELERATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("enableAcceleration"))
     val LOCALIPV4NETWORKCIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("localIpv4NetworkCidr"))

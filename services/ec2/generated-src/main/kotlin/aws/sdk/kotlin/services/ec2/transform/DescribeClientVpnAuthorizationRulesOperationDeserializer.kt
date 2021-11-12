@@ -47,7 +47,7 @@ internal class DescribeClientVpnAuthorizationRulesOperationDeserializer: HttpDes
     }
 }
 
-private suspend fun deserializeDescribeClientVpnAuthorizationRulesOperationBody(builder: DescribeClientVpnAuthorizationRulesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeClientVpnAuthorizationRulesOperationBody(builder: DescribeClientVpnAuthorizationRulesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val AUTHORIZATIONRULES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("authorizationRule"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

@@ -51,7 +51,7 @@ internal class ListMultipartUploadsOperationDeserializer: HttpDeserialize<ListMu
     }
 }
 
-private suspend fun deserializeListMultipartUploadsOperationBody(builder: ListMultipartUploadsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListMultipartUploadsOperationBody(builder: ListMultipartUploadsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BUCKET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Bucket"))
     val COMMONPREFIXES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("CommonPrefixes"), Flattened)

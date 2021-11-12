@@ -45,7 +45,7 @@ internal class RestoreManagedPrefixListVersionOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeRestoreManagedPrefixListVersionOperationBody(builder: RestoreManagedPrefixListVersionResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRestoreManagedPrefixListVersionOperationBody(builder: RestoreManagedPrefixListVersionResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val PREFIXLIST_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("prefixList"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

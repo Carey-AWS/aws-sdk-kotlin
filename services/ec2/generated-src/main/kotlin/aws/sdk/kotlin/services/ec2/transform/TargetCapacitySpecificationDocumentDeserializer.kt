@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTargetCapacitySpecificationDocument(deserializer: Deserializer): TargetCapacitySpecification {
+internal fun deserializeTargetCapacitySpecificationDocument(deserializer: Deserializer): TargetCapacitySpecification {
     val builder = TargetCapacitySpecification.builder()
     val DEFAULTTARGETCAPACITYTYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("defaultTargetCapacityType"))
     val ONDEMANDTARGETCAPACITY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("onDemandTargetCapacity"))

@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLoggingEnabledDocument(deserializer: Deserializer): LoggingEnabled {
+internal fun deserializeLoggingEnabledDocument(deserializer: Deserializer): LoggingEnabled {
     val builder = LoggingEnabled.builder()
     val TARGETBUCKET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("TargetBucket"))
     val TARGETGRANTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("TargetGrants"), XmlCollectionName("Grant"))

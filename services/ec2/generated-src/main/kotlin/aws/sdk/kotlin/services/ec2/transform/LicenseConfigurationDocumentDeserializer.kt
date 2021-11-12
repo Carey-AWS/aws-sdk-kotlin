@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLicenseConfigurationDocument(deserializer: Deserializer): LicenseConfiguration {
+internal fun deserializeLicenseConfigurationDocument(deserializer: Deserializer): LicenseConfiguration {
     val builder = LicenseConfiguration.builder()
     val LICENSECONFIGURATIONARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("licenseConfigurationArn"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

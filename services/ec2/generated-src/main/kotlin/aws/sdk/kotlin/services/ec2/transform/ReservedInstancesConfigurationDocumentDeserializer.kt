@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeReservedInstancesConfigurationDocument(deserializer: Deserializer): ReservedInstancesConfiguration {
+internal fun deserializeReservedInstancesConfigurationDocument(deserializer: Deserializer): ReservedInstancesConfiguration {
     val builder = ReservedInstancesConfiguration.builder()
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))
     val INSTANCECOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("instanceCount"))

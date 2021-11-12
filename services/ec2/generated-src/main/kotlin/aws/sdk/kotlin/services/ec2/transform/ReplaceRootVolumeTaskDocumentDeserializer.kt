@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeReplaceRootVolumeTaskDocument(deserializer: Deserializer): ReplaceRootVolumeTask {
+internal fun deserializeReplaceRootVolumeTaskDocument(deserializer: Deserializer): ReplaceRootVolumeTask {
     val builder = ReplaceRootVolumeTask.builder()
     val COMPLETETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("completeTime"))
     val INSTANCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceId"))

@@ -35,7 +35,7 @@ internal class LanguageNotSupportedExceptionDeserializer: HttpDeserialize<Langua
     }
 }
 
-private suspend fun deserializeLanguageNotSupportedExceptionError(builder: LanguageNotSupportedException.DslBuilder, payload: ByteArray) {
+private fun deserializeLanguageNotSupportedExceptionError(builder: LanguageNotSupportedException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -27,7 +27,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeNetworkInsightsAnalysisDocument(deserializer: Deserializer): NetworkInsightsAnalysis {
+internal fun deserializeNetworkInsightsAnalysisDocument(deserializer: Deserializer): NetworkInsightsAnalysis {
     val builder = NetworkInsightsAnalysis.builder()
     val ALTERNATEPATHHINTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("alternatePathHintSet"), XmlCollectionName("item"))
     val EXPLANATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("explanationSet"), XmlCollectionName("item"))

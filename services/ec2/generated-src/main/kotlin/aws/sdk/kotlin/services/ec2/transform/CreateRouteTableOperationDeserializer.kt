@@ -45,7 +45,7 @@ internal class CreateRouteTableOperationDeserializer: HttpDeserialize<CreateRout
     }
 }
 
-private suspend fun deserializeCreateRouteTableOperationBody(builder: CreateRouteTableResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateRouteTableOperationBody(builder: CreateRouteTableResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ROUTETABLE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("routeTable"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

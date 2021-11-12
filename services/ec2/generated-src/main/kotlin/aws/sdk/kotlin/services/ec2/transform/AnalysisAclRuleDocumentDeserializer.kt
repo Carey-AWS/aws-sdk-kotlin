@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAnalysisAclRuleDocument(deserializer: Deserializer): AnalysisAclRule {
+internal fun deserializeAnalysisAclRuleDocument(deserializer: Deserializer): AnalysisAclRule {
     val builder = AnalysisAclRule.builder()
     val CIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("cidr"))
     val EGRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("egress"))

@@ -35,7 +35,7 @@ internal class GetBucketInventoryConfigurationOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeGetBucketInventoryConfigurationOperationBody(builder: GetBucketInventoryConfigurationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketInventoryConfigurationOperationBody(builder: GetBucketInventoryConfigurationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.inventoryConfiguration = deserializeInventoryConfigurationDocument(deserializer)
 }

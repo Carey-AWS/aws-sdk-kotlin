@@ -38,7 +38,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeInstanceDocument(deserializer: Deserializer): Instance {
+internal fun deserializeInstanceDocument(deserializer: Deserializer): Instance {
     val builder = Instance.builder()
     val AMILAUNCHINDEX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("amiLaunchIndex"))
     val ARCHITECTURE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("architecture"))

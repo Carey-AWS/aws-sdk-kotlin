@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCancelSpotFleetRequestsErrorItemDocument(deserializer: Deserializer): CancelSpotFleetRequestsErrorItem {
+internal fun deserializeCancelSpotFleetRequestsErrorItemDocument(deserializer: Deserializer): CancelSpotFleetRequestsErrorItem {
     val builder = CancelSpotFleetRequestsErrorItem.builder()
     val ERROR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("error"))
     val SPOTFLEETREQUESTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("spotFleetRequestId"))

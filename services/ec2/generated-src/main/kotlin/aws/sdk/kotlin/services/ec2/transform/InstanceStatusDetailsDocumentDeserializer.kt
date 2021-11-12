@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeInstanceStatusDetailsDocument(deserializer: Deserializer): InstanceStatusDetails {
+internal fun deserializeInstanceStatusDetailsDocument(deserializer: Deserializer): InstanceStatusDetails {
     val builder = InstanceStatusDetails.builder()
     val IMPAIREDSINCE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("impairedSince"))
     val NAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("name"))

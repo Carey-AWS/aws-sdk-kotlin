@@ -28,7 +28,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTunnelOptionDocument(deserializer: Deserializer): TunnelOption {
+internal fun deserializeTunnelOptionDocument(deserializer: Deserializer): TunnelOption {
     val builder = TunnelOption.builder()
     val DPDTIMEOUTACTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("dpdTimeoutAction"))
     val DPDTIMEOUTSECONDS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("dpdTimeoutSeconds"))

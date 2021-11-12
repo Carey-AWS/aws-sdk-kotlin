@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayConnectOptionsDocument(deserializer: Deserializer): TransitGatewayConnectOptions {
+internal fun deserializeTransitGatewayConnectOptionsDocument(deserializer: Deserializer): TransitGatewayConnectOptions {
     val builder = TransitGatewayConnectOptions.builder()
     val PROTOCOL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("protocol"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDeleteLaunchTemplateVersionsResponseSuccessItemDocument(deserializer: Deserializer): DeleteLaunchTemplateVersionsResponseSuccessItem {
+internal fun deserializeDeleteLaunchTemplateVersionsResponseSuccessItemDocument(deserializer: Deserializer): DeleteLaunchTemplateVersionsResponseSuccessItem {
     val builder = DeleteLaunchTemplateVersionsResponseSuccessItem.builder()
     val LAUNCHTEMPLATEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("launchTemplateId"))
     val LAUNCHTEMPLATENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("launchTemplateName"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInferenceDeviceInfoDocument(deserializer: Deserializer): InferenceDeviceInfo {
+internal fun deserializeInferenceDeviceInfoDocument(deserializer: Deserializer): InferenceDeviceInfo {
     val builder = InferenceDeviceInfo.builder()
     val COUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("count"))
     val MANUFACTURER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("manufacturer"))

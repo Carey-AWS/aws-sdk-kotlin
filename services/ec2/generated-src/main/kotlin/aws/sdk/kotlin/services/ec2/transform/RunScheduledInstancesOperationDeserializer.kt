@@ -46,7 +46,7 @@ internal class RunScheduledInstancesOperationDeserializer: HttpDeserialize<RunSc
     }
 }
 
-private suspend fun deserializeRunScheduledInstancesOperationBody(builder: RunScheduledInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRunScheduledInstancesOperationBody(builder: RunScheduledInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCEIDSET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instanceIdSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -47,7 +47,7 @@ internal class DescribeRegionsOperationDeserializer: HttpDeserialize<DescribeReg
     }
 }
 
-private suspend fun deserializeDescribeRegionsOperationBody(builder: DescribeRegionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeRegionsOperationBody(builder: DescribeRegionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val REGIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("regionInfo"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

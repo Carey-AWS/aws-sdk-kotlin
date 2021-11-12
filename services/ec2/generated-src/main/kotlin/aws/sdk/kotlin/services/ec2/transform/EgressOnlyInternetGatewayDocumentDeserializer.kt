@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeEgressOnlyInternetGatewayDocument(deserializer: Deserializer): EgressOnlyInternetGateway {
+internal fun deserializeEgressOnlyInternetGatewayDocument(deserializer: Deserializer): EgressOnlyInternetGateway {
     val builder = EgressOnlyInternetGateway.builder()
     val ATTACHMENTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("attachmentSet"), XmlCollectionName("item"))
     val EGRESSONLYINTERNETGATEWAYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("egressOnlyInternetGatewayId"))

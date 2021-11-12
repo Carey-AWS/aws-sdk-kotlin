@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePrincipalIdFormatDocument(deserializer: Deserializer): PrincipalIdFormat {
+internal fun deserializePrincipalIdFormatDocument(deserializer: Deserializer): PrincipalIdFormat {
     val builder = PrincipalIdFormat.builder()
     val ARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("arn"))
     val STATUSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("statusSet"), XmlCollectionName("item"))

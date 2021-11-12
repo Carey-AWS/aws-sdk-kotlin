@@ -45,7 +45,7 @@ internal class ModifySecurityGroupRulesOperationDeserializer: HttpDeserialize<Mo
     }
 }
 
-private suspend fun deserializeModifySecurityGroupRulesOperationBody(builder: ModifySecurityGroupRulesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifySecurityGroupRulesOperationBody(builder: ModifySecurityGroupRulesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

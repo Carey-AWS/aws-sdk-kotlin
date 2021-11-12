@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchTemplateHibernationOptionsDocument(deserializer: Deserializer): LaunchTemplateHibernationOptions {
+internal fun deserializeLaunchTemplateHibernationOptionsDocument(deserializer: Deserializer): LaunchTemplateHibernationOptions {
     val builder = LaunchTemplateHibernationOptions.builder()
     val CONFIGURED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("configured"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

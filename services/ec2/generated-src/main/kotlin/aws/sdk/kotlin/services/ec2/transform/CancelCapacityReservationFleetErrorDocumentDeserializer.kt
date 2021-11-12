@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCancelCapacityReservationFleetErrorDocument(deserializer: Deserializer): CancelCapacityReservationFleetError {
+internal fun deserializeCancelCapacityReservationFleetErrorDocument(deserializer: Deserializer): CancelCapacityReservationFleetError {
     val builder = CancelCapacityReservationFleetError.builder()
     val CODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("code"))
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))

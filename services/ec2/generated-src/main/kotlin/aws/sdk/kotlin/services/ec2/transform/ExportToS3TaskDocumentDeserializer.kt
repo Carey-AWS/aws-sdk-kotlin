@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeExportToS3TaskDocument(deserializer: Deserializer): ExportToS3Task {
+internal fun deserializeExportToS3TaskDocument(deserializer: Deserializer): ExportToS3Task {
     val builder = ExportToS3Task.builder()
     val CONTAINERFORMAT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("containerFormat"))
     val DISKIMAGEFORMAT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("diskImageFormat"))

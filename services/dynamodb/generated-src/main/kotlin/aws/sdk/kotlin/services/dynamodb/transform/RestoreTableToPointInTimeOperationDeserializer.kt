@@ -44,7 +44,7 @@ internal class RestoreTableToPointInTimeOperationDeserializer: HttpDeserialize<R
     }
 }
 
-private suspend fun deserializeRestoreTableToPointInTimeOperationBody(builder: RestoreTableToPointInTimeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRestoreTableToPointInTimeOperationBody(builder: RestoreTableToPointInTimeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val TABLEDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("TableDescription"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

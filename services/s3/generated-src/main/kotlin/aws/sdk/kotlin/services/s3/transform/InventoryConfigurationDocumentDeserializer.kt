@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInventoryConfigurationDocument(deserializer: Deserializer): InventoryConfiguration {
+internal fun deserializeInventoryConfigurationDocument(deserializer: Deserializer): InventoryConfiguration {
     val builder = InventoryConfiguration.builder()
     val DESTINATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Destination"))
     val FILTER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Filter"))

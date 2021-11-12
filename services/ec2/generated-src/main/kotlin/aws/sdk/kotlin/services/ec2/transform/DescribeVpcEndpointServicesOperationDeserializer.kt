@@ -47,7 +47,7 @@ internal class DescribeVpcEndpointServicesOperationDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeDescribeVpcEndpointServicesOperationBody(builder: DescribeVpcEndpointServicesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeVpcEndpointServicesOperationBody(builder: DescribeVpcEndpointServicesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val SERVICEDETAILS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("serviceDetailSet"), XmlCollectionName("item"))

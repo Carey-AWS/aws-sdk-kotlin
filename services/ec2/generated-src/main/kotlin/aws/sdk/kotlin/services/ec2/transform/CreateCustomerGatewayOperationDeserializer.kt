@@ -45,7 +45,7 @@ internal class CreateCustomerGatewayOperationDeserializer: HttpDeserialize<Creat
     }
 }
 
-private suspend fun deserializeCreateCustomerGatewayOperationBody(builder: CreateCustomerGatewayResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateCustomerGatewayOperationBody(builder: CreateCustomerGatewayResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CUSTOMERGATEWAY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("customerGateway"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

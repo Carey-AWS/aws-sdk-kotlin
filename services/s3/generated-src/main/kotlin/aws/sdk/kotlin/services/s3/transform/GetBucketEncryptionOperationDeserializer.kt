@@ -35,7 +35,7 @@ internal class GetBucketEncryptionOperationDeserializer: HttpDeserialize<GetBuck
     }
 }
 
-private suspend fun deserializeGetBucketEncryptionOperationBody(builder: GetBucketEncryptionResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketEncryptionOperationBody(builder: GetBucketEncryptionResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.serverSideEncryptionConfiguration = deserializeServerSideEncryptionConfigurationDocument(deserializer)
 }

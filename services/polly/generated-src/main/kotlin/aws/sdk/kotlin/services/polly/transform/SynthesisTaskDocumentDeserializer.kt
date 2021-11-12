@@ -27,7 +27,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeSynthesisTaskDocument(deserializer: Deserializer): SynthesisTask {
+internal fun deserializeSynthesisTaskDocument(deserializer: Deserializer): SynthesisTask {
     val builder = SynthesisTask.builder()
     val CREATIONTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, JsonSerialName("CreationTime"))
     val ENGINE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Engine"))

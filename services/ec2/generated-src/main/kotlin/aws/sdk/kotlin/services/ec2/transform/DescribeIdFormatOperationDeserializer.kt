@@ -47,7 +47,7 @@ internal class DescribeIdFormatOperationDeserializer: HttpDeserialize<DescribeId
     }
 }
 
-private suspend fun deserializeDescribeIdFormatOperationBody(builder: DescribeIdFormatResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeIdFormatOperationBody(builder: DescribeIdFormatResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val STATUSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("statusSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

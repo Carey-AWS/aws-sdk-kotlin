@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeUnsuccessfulItemDocument(deserializer: Deserializer): UnsuccessfulItem {
+internal fun deserializeUnsuccessfulItemDocument(deserializer: Deserializer): UnsuccessfulItem {
     val builder = UnsuccessfulItem.builder()
     val ERROR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("error"))
     val RESOURCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("resourceId"))

@@ -35,7 +35,7 @@ internal class ReplicaNotFoundExceptionDeserializer: HttpDeserialize<ReplicaNotF
     }
 }
 
-private suspend fun deserializeReplicaNotFoundExceptionError(builder: ReplicaNotFoundException.DslBuilder, payload: ByteArray) {
+private fun deserializeReplicaNotFoundExceptionError(builder: ReplicaNotFoundException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

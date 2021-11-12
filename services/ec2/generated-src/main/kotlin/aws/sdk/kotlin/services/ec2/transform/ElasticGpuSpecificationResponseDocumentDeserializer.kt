@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeElasticGpuSpecificationResponseDocument(deserializer: Deserializer): ElasticGpuSpecificationResponse {
+internal fun deserializeElasticGpuSpecificationResponseDocument(deserializer: Deserializer): ElasticGpuSpecificationResponse {
     val builder = ElasticGpuSpecificationResponse.builder()
     val TYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("type"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

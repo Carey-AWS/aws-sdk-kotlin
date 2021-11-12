@@ -47,7 +47,7 @@ internal class DescribeExportTasksOperationDeserializer: HttpDeserialize<Describ
     }
 }
 
-private suspend fun deserializeDescribeExportTasksOperationBody(builder: DescribeExportTasksResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeExportTasksOperationBody(builder: DescribeExportTasksResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val EXPORTTASKS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("exportTaskSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

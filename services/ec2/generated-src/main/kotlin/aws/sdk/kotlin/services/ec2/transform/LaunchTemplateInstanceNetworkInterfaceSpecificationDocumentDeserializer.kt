@@ -25,7 +25,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchTemplateInstanceNetworkInterfaceSpecificationDocument(deserializer: Deserializer): LaunchTemplateInstanceNetworkInterfaceSpecification {
+internal fun deserializeLaunchTemplateInstanceNetworkInterfaceSpecificationDocument(deserializer: Deserializer): LaunchTemplateInstanceNetworkInterfaceSpecification {
     val builder = LaunchTemplateInstanceNetworkInterfaceSpecification.builder()
     val ASSOCIATECARRIERIPADDRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("associateCarrierIpAddress"))
     val ASSOCIATEPUBLICIPADDRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("associatePublicIpAddress"))

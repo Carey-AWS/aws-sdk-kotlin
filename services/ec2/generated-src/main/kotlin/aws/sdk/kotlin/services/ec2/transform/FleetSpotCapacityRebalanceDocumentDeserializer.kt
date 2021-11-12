@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeFleetSpotCapacityRebalanceDocument(deserializer: Deserializer): FleetSpotCapacityRebalance {
+internal fun deserializeFleetSpotCapacityRebalanceDocument(deserializer: Deserializer): FleetSpotCapacityRebalance {
     val builder = FleetSpotCapacityRebalance.builder()
     val REPLACEMENTSTRATEGY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("replacementStrategy"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

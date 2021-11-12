@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeVCpuInfoDocument(deserializer: Deserializer): VCpuInfo {
+internal fun deserializeVCpuInfoDocument(deserializer: Deserializer): VCpuInfo {
     val builder = VCpuInfo.builder()
     val DEFAULTCORES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("defaultCores"))
     val DEFAULTTHREADSPERCORE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("defaultThreadsPerCore"))

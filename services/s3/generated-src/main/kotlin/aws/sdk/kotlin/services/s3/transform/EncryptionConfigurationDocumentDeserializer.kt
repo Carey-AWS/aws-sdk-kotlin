@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeEncryptionConfigurationDocument(deserializer: Deserializer): EncryptionConfiguration {
+internal fun deserializeEncryptionConfigurationDocument(deserializer: Deserializer): EncryptionConfiguration {
     val builder = EncryptionConfiguration.builder()
     val REPLICAKMSKEYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ReplicaKmsKeyID"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

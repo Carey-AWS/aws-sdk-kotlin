@@ -45,7 +45,7 @@ internal class ModifyFpgaImageAttributeOperationDeserializer: HttpDeserialize<Mo
     }
 }
 
-private suspend fun deserializeModifyFpgaImageAttributeOperationBody(builder: ModifyFpgaImageAttributeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyFpgaImageAttributeOperationBody(builder: ModifyFpgaImageAttributeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val FPGAIMAGEATTRIBUTE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("fpgaImageAttribute"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

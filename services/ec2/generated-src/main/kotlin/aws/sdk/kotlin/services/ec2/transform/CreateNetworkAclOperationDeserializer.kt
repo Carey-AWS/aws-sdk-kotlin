@@ -45,7 +45,7 @@ internal class CreateNetworkAclOperationDeserializer: HttpDeserialize<CreateNetw
     }
 }
 
-private suspend fun deserializeCreateNetworkAclOperationBody(builder: CreateNetworkAclResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateNetworkAclOperationBody(builder: CreateNetworkAclResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NETWORKACL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("networkAcl"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

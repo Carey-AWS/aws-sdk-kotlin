@@ -47,7 +47,7 @@ internal class GetAssociatedEnclaveCertificateIamRolesOperationDeserializer: Htt
     }
 }
 
-private suspend fun deserializeGetAssociatedEnclaveCertificateIamRolesOperationBody(builder: GetAssociatedEnclaveCertificateIamRolesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetAssociatedEnclaveCertificateIamRolesOperationBody(builder: GetAssociatedEnclaveCertificateIamRolesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ASSOCIATEDROLES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("associatedRoleSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

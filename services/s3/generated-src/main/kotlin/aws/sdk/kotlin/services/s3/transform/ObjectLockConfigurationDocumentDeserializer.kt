@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeObjectLockConfigurationDocument(deserializer: Deserializer): ObjectLockConfiguration {
+internal fun deserializeObjectLockConfigurationDocument(deserializer: Deserializer): ObjectLockConfiguration {
     val builder = ObjectLockConfiguration.builder()
     val OBJECTLOCKENABLED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ObjectLockEnabled"))
     val RULE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Rule"))

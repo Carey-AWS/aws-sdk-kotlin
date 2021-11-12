@@ -45,7 +45,7 @@ internal class CreateVpcEndpointConnectionNotificationOperationDeserializer: Htt
     }
 }
 
-private suspend fun deserializeCreateVpcEndpointConnectionNotificationOperationBody(builder: CreateVpcEndpointConnectionNotificationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateVpcEndpointConnectionNotificationOperationBody(builder: CreateVpcEndpointConnectionNotificationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientToken"))
     val CONNECTIONNOTIFICATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("connectionNotification"))

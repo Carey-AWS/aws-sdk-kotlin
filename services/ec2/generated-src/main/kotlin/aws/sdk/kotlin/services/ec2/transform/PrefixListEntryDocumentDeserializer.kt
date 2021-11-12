@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePrefixListEntryDocument(deserializer: Deserializer): PrefixListEntry {
+internal fun deserializePrefixListEntryDocument(deserializer: Deserializer): PrefixListEntry {
     val builder = PrefixListEntry.builder()
     val CIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("cidr"))
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))

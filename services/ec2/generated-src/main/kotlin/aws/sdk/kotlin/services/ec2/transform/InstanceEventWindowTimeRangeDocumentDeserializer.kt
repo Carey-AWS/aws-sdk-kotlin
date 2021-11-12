@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceEventWindowTimeRangeDocument(deserializer: Deserializer): InstanceEventWindowTimeRange {
+internal fun deserializeInstanceEventWindowTimeRangeDocument(deserializer: Deserializer): InstanceEventWindowTimeRange {
     val builder = InstanceEventWindowTimeRange.builder()
     val ENDHOUR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("endHour"))
     val ENDWEEKDAY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("endWeekDay"))

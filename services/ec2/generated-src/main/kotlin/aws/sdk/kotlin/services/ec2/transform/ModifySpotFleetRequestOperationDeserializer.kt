@@ -45,7 +45,7 @@ internal class ModifySpotFleetRequestOperationDeserializer: HttpDeserialize<Modi
     }
 }
 
-private suspend fun deserializeModifySpotFleetRequestOperationBody(builder: ModifySpotFleetRequestResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifySpotFleetRequestOperationBody(builder: ModifySpotFleetRequestResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

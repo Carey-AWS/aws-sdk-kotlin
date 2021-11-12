@@ -47,7 +47,7 @@ internal class DescribeHostReservationsOperationDeserializer: HttpDeserialize<De
     }
 }
 
-private suspend fun deserializeDescribeHostReservationsOperationBody(builder: DescribeHostReservationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeHostReservationsOperationBody(builder: DescribeHostReservationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val HOSTRESERVATIONSET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("hostReservationSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

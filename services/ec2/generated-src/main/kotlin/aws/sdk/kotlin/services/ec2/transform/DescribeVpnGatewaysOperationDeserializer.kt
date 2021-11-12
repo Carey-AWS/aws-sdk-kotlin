@@ -47,7 +47,7 @@ internal class DescribeVpnGatewaysOperationDeserializer: HttpDeserialize<Describ
     }
 }
 
-private suspend fun deserializeDescribeVpnGatewaysOperationBody(builder: DescribeVpnGatewaysResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeVpnGatewaysOperationBody(builder: DescribeVpnGatewaysResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val VPNGATEWAYS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("vpnGatewaySet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

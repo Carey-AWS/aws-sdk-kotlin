@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeFleetLaunchTemplateOverridesDocument(deserializer: Deserializer): FleetLaunchTemplateOverrides {
+internal fun deserializeFleetLaunchTemplateOverridesDocument(deserializer: Deserializer): FleetLaunchTemplateOverrides {
     val builder = FleetLaunchTemplateOverrides.builder()
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))
     val INSTANCETYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceType"))

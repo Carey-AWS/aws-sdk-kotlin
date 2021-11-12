@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSubnetCidrReservationDocument(deserializer: Deserializer): SubnetCidrReservation {
+internal fun deserializeSubnetCidrReservationDocument(deserializer: Deserializer): SubnetCidrReservation {
     val builder = SubnetCidrReservation.builder()
     val CIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("cidr"))
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceUsageDocument(deserializer: Deserializer): InstanceUsage {
+internal fun deserializeInstanceUsageDocument(deserializer: Deserializer): InstanceUsage {
     val builder = InstanceUsage.builder()
     val ACCOUNTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("accountId"))
     val USEDINSTANCECOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("usedInstanceCount"))

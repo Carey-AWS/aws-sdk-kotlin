@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeReplicaSettingsDescriptionDocument(deserializer: Deserializer): ReplicaSettingsDescription {
+internal fun deserializeReplicaSettingsDescriptionDocument(deserializer: Deserializer): ReplicaSettingsDescription {
     val builder = ReplicaSettingsDescription.builder()
     val REGIONNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("RegionName"))
     val REPLICABILLINGMODESUMMARY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("ReplicaBillingModeSummary"))

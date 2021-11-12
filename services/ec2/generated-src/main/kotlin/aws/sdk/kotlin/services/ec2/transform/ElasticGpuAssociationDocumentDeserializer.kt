@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeElasticGpuAssociationDocument(deserializer: Deserializer): ElasticGpuAssociation {
+internal fun deserializeElasticGpuAssociationDocument(deserializer: Deserializer): ElasticGpuAssociation {
     val builder = ElasticGpuAssociation.builder()
     val ELASTICGPUASSOCIATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("elasticGpuAssociationId"))
     val ELASTICGPUASSOCIATIONSTATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("elasticGpuAssociationState"))

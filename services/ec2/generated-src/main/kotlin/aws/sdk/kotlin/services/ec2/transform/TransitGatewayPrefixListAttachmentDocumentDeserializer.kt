@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayPrefixListAttachmentDocument(deserializer: Deserializer): TransitGatewayPrefixListAttachment {
+internal fun deserializeTransitGatewayPrefixListAttachmentDocument(deserializer: Deserializer): TransitGatewayPrefixListAttachment {
     val builder = TransitGatewayPrefixListAttachment.builder()
     val RESOURCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("resourceId"))
     val RESOURCETYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("resourceType"))

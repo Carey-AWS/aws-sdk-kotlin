@@ -45,7 +45,7 @@ internal class ModifyInstanceCapacityReservationAttributesOperationDeserializer:
     }
 }
 
-private suspend fun deserializeModifyInstanceCapacityReservationAttributesOperationBody(builder: ModifyInstanceCapacityReservationAttributesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyInstanceCapacityReservationAttributesOperationBody(builder: ModifyInstanceCapacityReservationAttributesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

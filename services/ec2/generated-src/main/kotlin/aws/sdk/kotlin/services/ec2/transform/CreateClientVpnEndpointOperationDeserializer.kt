@@ -45,7 +45,7 @@ internal class CreateClientVpnEndpointOperationDeserializer: HttpDeserialize<Cre
     }
 }
 
-private suspend fun deserializeCreateClientVpnEndpointOperationBody(builder: CreateClientVpnEndpointResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateClientVpnEndpointOperationBody(builder: CreateClientVpnEndpointResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTVPNENDPOINTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientVpnEndpointId"))
     val DNSNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("dnsName"))

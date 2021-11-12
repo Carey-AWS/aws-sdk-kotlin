@@ -47,7 +47,7 @@ internal class DescribeScheduledInstanceAvailabilityOperationDeserializer: HttpD
     }
 }
 
-private suspend fun deserializeDescribeScheduledInstanceAvailabilityOperationBody(builder: DescribeScheduledInstanceAvailabilityResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeScheduledInstanceAvailabilityOperationBody(builder: DescribeScheduledInstanceAvailabilityResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val SCHEDULEDINSTANCEAVAILABILITYSET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("scheduledInstanceAvailabilitySet"), XmlCollectionName("item"))

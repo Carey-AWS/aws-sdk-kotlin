@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeServerSideEncryptionByDefaultDocument(deserializer: Deserializer): ServerSideEncryptionByDefault {
+internal fun deserializeServerSideEncryptionByDefaultDocument(deserializer: Deserializer): ServerSideEncryptionByDefault {
     val builder = ServerSideEncryptionByDefault.builder()
     val KMSMASTERKEYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("KMSMasterKeyID"))
     val SSEALGORITHM_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("SSEAlgorithm"))

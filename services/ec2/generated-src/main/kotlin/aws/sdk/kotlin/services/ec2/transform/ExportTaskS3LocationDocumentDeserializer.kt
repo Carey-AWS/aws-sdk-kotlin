@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeExportTaskS3LocationDocument(deserializer: Deserializer): ExportTaskS3Location {
+internal fun deserializeExportTaskS3LocationDocument(deserializer: Deserializer): ExportTaskS3Location {
     val builder = ExportTaskS3Location.builder()
     val S3BUCKET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("s3Bucket"))
     val S3PREFIX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("s3Prefix"))

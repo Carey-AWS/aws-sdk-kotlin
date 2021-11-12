@@ -45,7 +45,7 @@ internal class DeleteClientVpnEndpointOperationDeserializer: HttpDeserialize<Del
     }
 }
 
-private suspend fun deserializeDeleteClientVpnEndpointOperationBody(builder: DeleteClientVpnEndpointResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteClientVpnEndpointOperationBody(builder: DeleteClientVpnEndpointResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("status"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

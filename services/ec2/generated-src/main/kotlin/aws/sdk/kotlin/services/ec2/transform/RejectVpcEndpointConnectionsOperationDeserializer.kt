@@ -47,7 +47,7 @@ internal class RejectVpcEndpointConnectionsOperationDeserializer: HttpDeserializ
     }
 }
 
-private suspend fun deserializeRejectVpcEndpointConnectionsOperationBody(builder: RejectVpcEndpointConnectionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRejectVpcEndpointConnectionsOperationBody(builder: RejectVpcEndpointConnectionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val UNSUCCESSFUL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("unsuccessful"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -51,7 +51,7 @@ internal class CreateVolumeOperationDeserializer: HttpDeserialize<CreateVolumeRe
     }
 }
 
-private suspend fun deserializeCreateVolumeOperationBody(builder: CreateVolumeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateVolumeOperationBody(builder: CreateVolumeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ATTACHMENTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("attachmentSet"), XmlCollectionName("item"))
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))

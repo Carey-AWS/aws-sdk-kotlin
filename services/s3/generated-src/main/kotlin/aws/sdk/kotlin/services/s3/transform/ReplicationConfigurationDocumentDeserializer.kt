@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeReplicationConfigurationDocument(deserializer: Deserializer): ReplicationConfiguration {
+internal fun deserializeReplicationConfigurationDocument(deserializer: Deserializer): ReplicationConfiguration {
     val builder = ReplicationConfiguration.builder()
     val ROLE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Role"))
     val RULES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("Rule"), Flattened)

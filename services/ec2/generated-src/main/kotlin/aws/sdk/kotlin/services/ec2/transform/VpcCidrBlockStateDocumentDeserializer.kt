@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeVpcCidrBlockStateDocument(deserializer: Deserializer): VpcCidrBlockState {
+internal fun deserializeVpcCidrBlockStateDocument(deserializer: Deserializer): VpcCidrBlockState {
     val builder = VpcCidrBlockState.builder()
     val STATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("state"))
     val STATUSMESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("statusMessage"))

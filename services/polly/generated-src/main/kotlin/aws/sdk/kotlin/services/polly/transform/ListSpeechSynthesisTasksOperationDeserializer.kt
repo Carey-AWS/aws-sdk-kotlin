@@ -45,7 +45,7 @@ internal class ListSpeechSynthesisTasksOperationDeserializer: HttpDeserialize<Li
     }
 }
 
-private suspend fun deserializeListSpeechSynthesisTasksOperationBody(builder: ListSpeechSynthesisTasksResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListSpeechSynthesisTasksOperationBody(builder: ListSpeechSynthesisTasksResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("NextToken"))
     val SYNTHESISTASKS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("SynthesisTasks"))

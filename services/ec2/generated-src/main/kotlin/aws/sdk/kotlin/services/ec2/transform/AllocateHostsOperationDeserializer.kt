@@ -46,7 +46,7 @@ internal class AllocateHostsOperationDeserializer: HttpDeserialize<AllocateHosts
     }
 }
 
-private suspend fun deserializeAllocateHostsOperationBody(builder: AllocateHostsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAllocateHostsOperationBody(builder: AllocateHostsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val HOSTIDS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("hostIdSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

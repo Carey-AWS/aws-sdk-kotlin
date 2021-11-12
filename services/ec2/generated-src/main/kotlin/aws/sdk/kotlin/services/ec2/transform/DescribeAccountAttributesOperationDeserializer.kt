@@ -47,7 +47,7 @@ internal class DescribeAccountAttributesOperationDeserializer: HttpDeserialize<D
     }
 }
 
-private suspend fun deserializeDescribeAccountAttributesOperationBody(builder: DescribeAccountAttributesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeAccountAttributesOperationBody(builder: DescribeAccountAttributesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ACCOUNTATTRIBUTES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("accountAttributeSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -47,7 +47,7 @@ internal class MonitorInstancesOperationDeserializer: HttpDeserialize<MonitorIns
     }
 }
 
-private suspend fun deserializeMonitorInstancesOperationBody(builder: MonitorInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeMonitorInstancesOperationBody(builder: MonitorInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCEMONITORINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instancesSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

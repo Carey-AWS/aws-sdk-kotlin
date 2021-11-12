@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeNetworkAclEntryDocument(deserializer: Deserializer): NetworkAclEntry {
+internal fun deserializeNetworkAclEntryDocument(deserializer: Deserializer): NetworkAclEntry {
     val builder = NetworkAclEntry.builder()
     val CIDRBLOCK_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("cidrBlock"))
     val EGRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("egress"))

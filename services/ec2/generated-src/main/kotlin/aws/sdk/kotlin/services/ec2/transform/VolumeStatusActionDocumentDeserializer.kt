@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeVolumeStatusActionDocument(deserializer: Deserializer): VolumeStatusAction {
+internal fun deserializeVolumeStatusActionDocument(deserializer: Deserializer): VolumeStatusAction {
     val builder = VolumeStatusAction.builder()
     val CODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("code"))
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))

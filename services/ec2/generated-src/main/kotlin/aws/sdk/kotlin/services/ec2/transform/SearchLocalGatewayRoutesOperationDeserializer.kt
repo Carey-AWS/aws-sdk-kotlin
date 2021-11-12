@@ -47,7 +47,7 @@ internal class SearchLocalGatewayRoutesOperationDeserializer: HttpDeserialize<Se
     }
 }
 
-private suspend fun deserializeSearchLocalGatewayRoutesOperationBody(builder: SearchLocalGatewayRoutesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeSearchLocalGatewayRoutesOperationBody(builder: SearchLocalGatewayRoutesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val ROUTES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("routeSet"), XmlCollectionName("item"))

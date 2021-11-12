@@ -45,7 +45,7 @@ internal class CreateNatGatewayOperationDeserializer: HttpDeserialize<CreateNatG
     }
 }
 
-private suspend fun deserializeCreateNatGatewayOperationBody(builder: CreateNatGatewayResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateNatGatewayOperationBody(builder: CreateNatGatewayResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientToken"))
     val NATGATEWAY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("natGateway"))

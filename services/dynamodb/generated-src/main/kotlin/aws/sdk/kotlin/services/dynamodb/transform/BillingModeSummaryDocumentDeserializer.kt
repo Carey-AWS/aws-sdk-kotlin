@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeBillingModeSummaryDocument(deserializer: Deserializer): BillingModeSummary {
+internal fun deserializeBillingModeSummaryDocument(deserializer: Deserializer): BillingModeSummary {
     val builder = BillingModeSummary.builder()
     val BILLINGMODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("BillingMode"))
     val LASTUPDATETOPAYPERREQUESTDATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, JsonSerialName("LastUpdateToPayPerRequestDateTime"))

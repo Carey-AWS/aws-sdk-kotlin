@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeTimeToLiveDescriptionDocument(deserializer: Deserializer): TimeToLiveDescription {
+internal fun deserializeTimeToLiveDescriptionDocument(deserializer: Deserializer): TimeToLiveDescription {
     val builder = TimeToLiveDescription.builder()
     val ATTRIBUTENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("AttributeName"))
     val TIMETOLIVESTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("TimeToLiveStatus"))

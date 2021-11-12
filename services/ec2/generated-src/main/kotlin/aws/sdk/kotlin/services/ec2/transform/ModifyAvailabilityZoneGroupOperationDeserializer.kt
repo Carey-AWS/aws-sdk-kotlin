@@ -45,7 +45,7 @@ internal class ModifyAvailabilityZoneGroupOperationDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeModifyAvailabilityZoneGroupOperationBody(builder: ModifyAvailabilityZoneGroupResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyAvailabilityZoneGroupOperationBody(builder: ModifyAvailabilityZoneGroupResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

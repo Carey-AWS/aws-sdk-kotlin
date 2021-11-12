@@ -35,7 +35,7 @@ internal class GetObjectRetentionOperationDeserializer: HttpDeserialize<GetObjec
     }
 }
 
-private suspend fun deserializeGetObjectRetentionOperationBody(builder: GetObjectRetentionResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetObjectRetentionOperationBody(builder: GetObjectRetentionResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.retention = deserializeObjectLockRetentionDocument(deserializer)
 }

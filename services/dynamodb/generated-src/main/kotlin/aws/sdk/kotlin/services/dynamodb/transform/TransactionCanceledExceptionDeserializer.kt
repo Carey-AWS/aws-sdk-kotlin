@@ -36,7 +36,7 @@ internal class TransactionCanceledExceptionDeserializer: HttpDeserialize<Transac
     }
 }
 
-private suspend fun deserializeTransactionCanceledExceptionError(builder: TransactionCanceledException.DslBuilder, payload: ByteArray) {
+private fun deserializeTransactionCanceledExceptionError(builder: TransactionCanceledException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val CANCELLATIONREASONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("CancellationReasons"))
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Message"))

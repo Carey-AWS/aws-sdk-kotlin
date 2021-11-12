@@ -45,7 +45,7 @@ internal class DisassociateIamInstanceProfileOperationDeserializer: HttpDeserial
     }
 }
 
-private suspend fun deserializeDisassociateIamInstanceProfileOperationBody(builder: DisassociateIamInstanceProfileResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisassociateIamInstanceProfileOperationBody(builder: DisassociateIamInstanceProfileResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IAMINSTANCEPROFILEASSOCIATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("iamInstanceProfileAssociation"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -45,7 +45,7 @@ internal class CreateTransitGatewayRouteTableOperationDeserializer: HttpDeserial
     }
 }
 
-private suspend fun deserializeCreateTransitGatewayRouteTableOperationBody(builder: CreateTransitGatewayRouteTableResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateTransitGatewayRouteTableOperationBody(builder: CreateTransitGatewayRouteTableResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val TRANSITGATEWAYROUTETABLE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("transitGatewayRouteTable"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

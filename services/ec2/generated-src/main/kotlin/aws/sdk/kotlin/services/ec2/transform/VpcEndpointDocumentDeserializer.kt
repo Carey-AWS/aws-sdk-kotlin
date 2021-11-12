@@ -27,7 +27,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeVpcEndpointDocument(deserializer: Deserializer): VpcEndpoint {
+internal fun deserializeVpcEndpointDocument(deserializer: Deserializer): VpcEndpoint {
     val builder = VpcEndpoint.builder()
     val CREATIONTIMESTAMP_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("creationTimestamp"))
     val DNSENTRIES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("dnsEntrySet"), XmlCollectionName("item"))

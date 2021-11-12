@@ -47,7 +47,7 @@ internal class TerminateInstancesOperationDeserializer: HttpDeserialize<Terminat
     }
 }
 
-private suspend fun deserializeTerminateInstancesOperationBody(builder: TerminateInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeTerminateInstancesOperationBody(builder: TerminateInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val TERMINATINGINSTANCES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instancesSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

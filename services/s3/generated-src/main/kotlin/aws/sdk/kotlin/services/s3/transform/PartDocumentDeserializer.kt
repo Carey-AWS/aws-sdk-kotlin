@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializePartDocument(deserializer: Deserializer): Part {
+internal fun deserializePartDocument(deserializer: Deserializer): Part {
     val builder = Part.builder()
     val ETAG_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ETag"))
     val LASTMODIFIED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("LastModified"))

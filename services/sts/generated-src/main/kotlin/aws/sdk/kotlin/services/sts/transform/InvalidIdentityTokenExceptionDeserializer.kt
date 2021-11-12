@@ -37,7 +37,7 @@ internal class InvalidIdentityTokenExceptionDeserializer: HttpDeserialize<Invali
     }
 }
 
-private suspend fun deserializeInvalidIdentityTokenExceptionError(builder: InvalidIdentityTokenException.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidIdentityTokenExceptionError(builder: InvalidIdentityTokenException.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

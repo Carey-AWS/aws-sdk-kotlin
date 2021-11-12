@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeRestoreSummaryDocument(deserializer: Deserializer): RestoreSummary {
+internal fun deserializeRestoreSummaryDocument(deserializer: Deserializer): RestoreSummary {
     val builder = RestoreSummary.builder()
     val RESTOREDATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, JsonSerialName("RestoreDateTime"))
     val RESTOREINPROGRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, JsonSerialName("RestoreInProgress"))

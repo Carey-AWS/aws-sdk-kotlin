@@ -45,7 +45,7 @@ internal class CreateCapacityReservationOperationDeserializer: HttpDeserialize<C
     }
 }
 
-private suspend fun deserializeCreateCapacityReservationOperationBody(builder: CreateCapacityReservationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateCapacityReservationOperationBody(builder: CreateCapacityReservationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CAPACITYRESERVATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("capacityReservation"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

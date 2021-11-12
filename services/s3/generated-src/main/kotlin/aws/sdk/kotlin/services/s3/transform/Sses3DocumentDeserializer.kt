@@ -10,7 +10,7 @@ import aws.smithy.kotlin.runtime.serde.SerialKind
 import aws.smithy.kotlin.runtime.serde.deserializeStruct
 
 
-internal suspend fun deserializeSses3Document(deserializer: Deserializer): Sses3 {
+internal fun deserializeSses3Document(deserializer: Deserializer): Sses3 {
     val builder = Sses3.builder()
     deserializer.deserializeStruct(SdkObjectDescriptor.build {}) {
         loop@while (true) {

@@ -35,7 +35,7 @@ internal class ConditionalCheckFailedExceptionDeserializer: HttpDeserialize<Cond
     }
 }
 
-private suspend fun deserializeConditionalCheckFailedExceptionError(builder: ConditionalCheckFailedException.DslBuilder, payload: ByteArray) {
+private fun deserializeConditionalCheckFailedExceptionError(builder: ConditionalCheckFailedException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

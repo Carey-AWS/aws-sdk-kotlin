@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeConversionTaskDocument(deserializer: Deserializer): ConversionTask {
+internal fun deserializeConversionTaskDocument(deserializer: Deserializer): ConversionTask {
     val builder = ConversionTask.builder()
     val CONVERSIONTASKID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("conversionTaskId"))
     val EXPIRATIONTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("expirationTime"))

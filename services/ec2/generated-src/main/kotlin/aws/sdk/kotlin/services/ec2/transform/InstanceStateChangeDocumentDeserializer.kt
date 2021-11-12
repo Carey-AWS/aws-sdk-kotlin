@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceStateChangeDocument(deserializer: Deserializer): InstanceStateChange {
+internal fun deserializeInstanceStateChangeDocument(deserializer: Deserializer): InstanceStateChange {
     val builder = InstanceStateChange.builder()
     val CURRENTSTATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("currentState"))
     val INSTANCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceId"))

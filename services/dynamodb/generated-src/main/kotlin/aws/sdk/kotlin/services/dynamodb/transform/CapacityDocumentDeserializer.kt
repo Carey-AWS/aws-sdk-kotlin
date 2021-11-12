@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeCapacityDocument(deserializer: Deserializer): Capacity {
+internal fun deserializeCapacityDocument(deserializer: Deserializer): Capacity {
     val builder = Capacity.builder()
     val CAPACITYUNITS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Double, JsonSerialName("CapacityUnits"))
     val READCAPACITYUNITS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Double, JsonSerialName("ReadCapacityUnits"))

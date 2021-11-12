@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeMetricsAndOperatorDocument(deserializer: Deserializer): MetricsAndOperator {
+internal fun deserializeMetricsAndOperatorDocument(deserializer: Deserializer): MetricsAndOperator {
     val builder = MetricsAndOperator.builder()
     val ACCESSPOINTARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("AccessPointArn"))
     val PREFIX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Prefix"))

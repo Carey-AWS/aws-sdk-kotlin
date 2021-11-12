@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeUserBucketDetailsDocument(deserializer: Deserializer): UserBucketDetails {
+internal fun deserializeUserBucketDetailsDocument(deserializer: Deserializer): UserBucketDetails {
     val builder = UserBucketDetails.builder()
     val S3BUCKET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("s3Bucket"))
     val S3KEY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("s3Key"))

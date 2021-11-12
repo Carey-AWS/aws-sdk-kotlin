@@ -47,7 +47,7 @@ internal class DescribeAddressesOperationDeserializer: HttpDeserialize<DescribeA
     }
 }
 
-private suspend fun deserializeDescribeAddressesOperationBody(builder: DescribeAddressesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeAddressesOperationBody(builder: DescribeAddressesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ADDRESSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("addressesSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

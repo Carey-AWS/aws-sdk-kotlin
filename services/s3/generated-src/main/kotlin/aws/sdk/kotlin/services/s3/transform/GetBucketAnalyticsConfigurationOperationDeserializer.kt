@@ -35,7 +35,7 @@ internal class GetBucketAnalyticsConfigurationOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeGetBucketAnalyticsConfigurationOperationBody(builder: GetBucketAnalyticsConfigurationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketAnalyticsConfigurationOperationBody(builder: GetBucketAnalyticsConfigurationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.analyticsConfiguration = deserializeAnalyticsConfigurationDocument(deserializer)
 }

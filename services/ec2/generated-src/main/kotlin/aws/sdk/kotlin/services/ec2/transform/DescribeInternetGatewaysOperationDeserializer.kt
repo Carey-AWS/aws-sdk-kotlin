@@ -47,7 +47,7 @@ internal class DescribeInternetGatewaysOperationDeserializer: HttpDeserialize<De
     }
 }
 
-private suspend fun deserializeDescribeInternetGatewaysOperationBody(builder: DescribeInternetGatewaysResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeInternetGatewaysOperationBody(builder: DescribeInternetGatewaysResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INTERNETGATEWAYS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("internetGatewaySet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

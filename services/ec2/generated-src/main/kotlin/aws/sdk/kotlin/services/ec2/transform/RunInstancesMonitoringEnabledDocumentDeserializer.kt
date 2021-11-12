@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeRunInstancesMonitoringEnabledDocument(deserializer: Deserializer): RunInstancesMonitoringEnabled {
+internal fun deserializeRunInstancesMonitoringEnabledDocument(deserializer: Deserializer): RunInstancesMonitoringEnabled {
     val builder = RunInstancesMonitoringEnabled.builder()
     val ENABLED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("enabled"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

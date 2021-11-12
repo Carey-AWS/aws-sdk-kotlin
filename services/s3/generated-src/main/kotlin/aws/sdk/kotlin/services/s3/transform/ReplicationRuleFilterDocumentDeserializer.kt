@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeReplicationRuleFilterDocument(deserializer: Deserializer): ReplicationRuleFilter {
+internal fun deserializeReplicationRuleFilterDocument(deserializer: Deserializer): ReplicationRuleFilter {
     var value: ReplicationRuleFilter? = null
     val AND_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("And"))
     val PREFIX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Prefix"))

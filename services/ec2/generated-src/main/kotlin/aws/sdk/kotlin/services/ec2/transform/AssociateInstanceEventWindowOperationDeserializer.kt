@@ -45,7 +45,7 @@ internal class AssociateInstanceEventWindowOperationDeserializer: HttpDeserializ
     }
 }
 
-private suspend fun deserializeAssociateInstanceEventWindowOperationBody(builder: AssociateInstanceEventWindowResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAssociateInstanceEventWindowOperationBody(builder: AssociateInstanceEventWindowResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCEEVENTWINDOW_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("instanceEventWindow"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

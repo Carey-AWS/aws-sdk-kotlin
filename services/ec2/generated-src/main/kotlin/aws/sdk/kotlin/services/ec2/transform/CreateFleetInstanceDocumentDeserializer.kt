@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCreateFleetInstanceDocument(deserializer: Deserializer): CreateFleetInstance {
+internal fun deserializeCreateFleetInstanceDocument(deserializer: Deserializer): CreateFleetInstance {
     val builder = CreateFleetInstance.builder()
     val INSTANCEIDS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instanceIds"), XmlCollectionName("item"))
     val INSTANCETYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceType"))

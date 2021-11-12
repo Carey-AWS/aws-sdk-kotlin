@@ -47,7 +47,7 @@ internal class CreateReservedInstancesListingOperationDeserializer: HttpDeserial
     }
 }
 
-private suspend fun deserializeCreateReservedInstancesListingOperationBody(builder: CreateReservedInstancesListingResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateReservedInstancesListingOperationBody(builder: CreateReservedInstancesListingResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RESERVEDINSTANCESLISTINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("reservedInstancesListingsSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

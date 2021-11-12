@@ -45,7 +45,7 @@ internal class DescribeGlobalTableSettingsOperationDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeDescribeGlobalTableSettingsOperationBody(builder: DescribeGlobalTableSettingsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeGlobalTableSettingsOperationBody(builder: DescribeGlobalTableSettingsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val GLOBALTABLENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("GlobalTableName"))
     val REPLICASETTINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("ReplicaSettings"))

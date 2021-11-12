@@ -47,7 +47,7 @@ internal class DescribeByoipCidrsOperationDeserializer: HttpDeserialize<Describe
     }
 }
 
-private suspend fun deserializeDescribeByoipCidrsOperationBody(builder: DescribeByoipCidrsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeByoipCidrsOperationBody(builder: DescribeByoipCidrsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BYOIPCIDRS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("byoipCidrSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

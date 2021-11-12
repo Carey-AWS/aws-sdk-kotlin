@@ -44,7 +44,7 @@ internal class DescribeTableOperationDeserializer: HttpDeserialize<DescribeTable
     }
 }
 
-private suspend fun deserializeDescribeTableOperationBody(builder: DescribeTableResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeTableOperationBody(builder: DescribeTableResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val TABLE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("Table"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

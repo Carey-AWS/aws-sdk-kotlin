@@ -35,7 +35,7 @@ internal class TableInUseExceptionDeserializer: HttpDeserialize<TableInUseExcept
     }
 }
 
-private suspend fun deserializeTableInUseExceptionError(builder: TableInUseException.DslBuilder, payload: ByteArray) {
+private fun deserializeTableInUseExceptionError(builder: TableInUseException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeNatGatewayAddressDocument(deserializer: Deserializer): NatGatewayAddress {
+internal fun deserializeNatGatewayAddressDocument(deserializer: Deserializer): NatGatewayAddress {
     val builder = NatGatewayAddress.builder()
     val ALLOCATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allocationId"))
     val NETWORKINTERFACEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("networkInterfaceId"))

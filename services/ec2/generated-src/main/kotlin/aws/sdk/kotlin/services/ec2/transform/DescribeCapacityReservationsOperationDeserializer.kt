@@ -47,7 +47,7 @@ internal class DescribeCapacityReservationsOperationDeserializer: HttpDeserializ
     }
 }
 
-private suspend fun deserializeDescribeCapacityReservationsOperationBody(builder: DescribeCapacityReservationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeCapacityReservationsOperationBody(builder: DescribeCapacityReservationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CAPACITYRESERVATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("capacityReservationSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

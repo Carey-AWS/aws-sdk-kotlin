@@ -45,7 +45,7 @@ internal class DeleteTrafficMirrorSessionOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeDeleteTrafficMirrorSessionOperationBody(builder: DeleteTrafficMirrorSessionResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteTrafficMirrorSessionOperationBody(builder: DeleteTrafficMirrorSessionResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val TRAFFICMIRRORSESSIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("trafficMirrorSessionId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCommonPrefixDocument(deserializer: Deserializer): CommonPrefix {
+internal fun deserializeCommonPrefixDocument(deserializer: Deserializer): CommonPrefix {
     val builder = CommonPrefix.builder()
     val PREFIX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Prefix"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSecurityGroupDocument(deserializer: Deserializer): SecurityGroup {
+internal fun deserializeSecurityGroupDocument(deserializer: Deserializer): SecurityGroup {
     val builder = SecurityGroup.builder()
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("groupDescription"))
     val GROUPID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("groupId"))

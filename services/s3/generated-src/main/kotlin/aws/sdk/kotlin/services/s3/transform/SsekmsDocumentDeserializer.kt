@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSsekmsDocument(deserializer: Deserializer): Ssekms {
+internal fun deserializeSsekmsDocument(deserializer: Deserializer): Ssekms {
     val builder = Ssekms.builder()
     val KEYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("KeyId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

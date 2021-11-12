@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeHistoryRecordDocument(deserializer: Deserializer): HistoryRecord {
+internal fun deserializeHistoryRecordDocument(deserializer: Deserializer): HistoryRecord {
     val builder = HistoryRecord.builder()
     val EVENTINFORMATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("eventInformation"))
     val EVENTTYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("eventType"))

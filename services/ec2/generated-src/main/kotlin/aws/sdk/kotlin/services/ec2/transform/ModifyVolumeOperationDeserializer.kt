@@ -45,7 +45,7 @@ internal class ModifyVolumeOperationDeserializer: HttpDeserialize<ModifyVolumeRe
     }
 }
 
-private suspend fun deserializeModifyVolumeOperationBody(builder: ModifyVolumeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyVolumeOperationBody(builder: ModifyVolumeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val VOLUMEMODIFICATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("volumeModification"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

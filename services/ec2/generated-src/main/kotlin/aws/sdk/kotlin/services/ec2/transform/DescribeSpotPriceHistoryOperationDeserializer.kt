@@ -47,7 +47,7 @@ internal class DescribeSpotPriceHistoryOperationDeserializer: HttpDeserialize<De
     }
 }
 
-private suspend fun deserializeDescribeSpotPriceHistoryOperationBody(builder: DescribeSpotPriceHistoryResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeSpotPriceHistoryOperationBody(builder: DescribeSpotPriceHistoryResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val SPOTPRICEHISTORY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("spotPriceHistorySet"), XmlCollectionName("item"))

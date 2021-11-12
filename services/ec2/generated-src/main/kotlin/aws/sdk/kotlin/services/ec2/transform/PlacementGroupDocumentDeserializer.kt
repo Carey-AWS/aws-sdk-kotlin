@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePlacementGroupDocument(deserializer: Deserializer): PlacementGroup {
+internal fun deserializePlacementGroupDocument(deserializer: Deserializer): PlacementGroup {
     val builder = PlacementGroup.builder()
     val GROUPID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("groupId"))
     val GROUPNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("groupName"))

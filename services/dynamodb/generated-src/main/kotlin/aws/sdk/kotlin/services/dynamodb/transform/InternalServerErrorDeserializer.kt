@@ -35,7 +35,7 @@ internal class InternalServerErrorDeserializer: HttpDeserialize<InternalServerEr
     }
 }
 
-private suspend fun deserializeInternalServerErrorError(builder: InternalServerError.DslBuilder, payload: ByteArray) {
+private fun deserializeInternalServerErrorError(builder: InternalServerError.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

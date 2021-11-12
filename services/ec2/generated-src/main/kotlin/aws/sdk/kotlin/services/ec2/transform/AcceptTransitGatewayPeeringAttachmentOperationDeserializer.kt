@@ -45,7 +45,7 @@ internal class AcceptTransitGatewayPeeringAttachmentOperationDeserializer: HttpD
     }
 }
 
-private suspend fun deserializeAcceptTransitGatewayPeeringAttachmentOperationBody(builder: AcceptTransitGatewayPeeringAttachmentResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAcceptTransitGatewayPeeringAttachmentOperationBody(builder: AcceptTransitGatewayPeeringAttachmentResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val TRANSITGATEWAYPEERINGATTACHMENT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("transitGatewayPeeringAttachment"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

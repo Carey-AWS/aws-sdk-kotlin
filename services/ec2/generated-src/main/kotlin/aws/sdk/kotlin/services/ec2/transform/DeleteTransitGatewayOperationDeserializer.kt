@@ -45,7 +45,7 @@ internal class DeleteTransitGatewayOperationDeserializer: HttpDeserialize<Delete
     }
 }
 
-private suspend fun deserializeDeleteTransitGatewayOperationBody(builder: DeleteTransitGatewayResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteTransitGatewayOperationBody(builder: DeleteTransitGatewayResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val TRANSITGATEWAY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("transitGateway"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

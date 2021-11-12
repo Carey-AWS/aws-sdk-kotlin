@@ -2,14 +2,23 @@
 
 package aws.sdk.kotlin.services.s3
 
+import aws.sdk.kotlin.runtime.auth.signing.AwsSigV4SigningMiddleware
+import aws.sdk.kotlin.runtime.auth.signing.AwsSignedBodyHeaderType
 import aws.sdk.kotlin.runtime.client.AwsClientOption
 import aws.sdk.kotlin.runtime.execution.AuthAttributes
+import aws.sdk.kotlin.runtime.http.ApiMetadata
+import aws.sdk.kotlin.runtime.http.AwsUserAgentMetadata
 import aws.sdk.kotlin.runtime.http.engine.crt.CrtHttpEngine
+import aws.sdk.kotlin.runtime.http.middleware.ResolveAwsEndpoint
+import aws.sdk.kotlin.runtime.http.middleware.UserAgent
+import aws.sdk.kotlin.runtime.http.retries.AwsDefaultRetryPolicy
 import aws.sdk.kotlin.services.s3.model.*
 import aws.sdk.kotlin.services.s3.transform.*
 import aws.smithy.kotlin.runtime.client.ExecutionContext
 import aws.smithy.kotlin.runtime.client.SdkClientOption
 import aws.smithy.kotlin.runtime.http.SdkHttpClient
+import aws.smithy.kotlin.runtime.http.middleware.Md5Checksum
+import aws.smithy.kotlin.runtime.http.middleware.RetryFeature
 import aws.smithy.kotlin.runtime.http.operation.SdkHttpOperation
 import aws.smithy.kotlin.runtime.http.operation.context
 import aws.smithy.kotlin.runtime.http.operation.execute
@@ -28,6 +37,7 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
         val httpClientEngine = config.httpClientEngine ?: CrtHttpEngine()
         client = sdkHttpClient(httpClientEngine, manageEngine = config.httpClientEngine == null)
     }
+    private val awsUserAgentMetadata = AwsUserAgentMetadata.fromEnvironment(ApiMetadata(ServiceId, SdkVersion))
 
     /**
      * This action aborts a multipart upload. After a multipart upload is aborted, no
@@ -58,8 +68,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "AbortMultipartUpload"
             }
         }
-        registerAbortMultipartUploadMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -121,8 +148,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "CompleteMultipartUpload"
             }
         }
-        registerCompleteMultipartUploadMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -240,8 +284,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "CopyObject"
             }
         }
-        registerCopyObjectMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -319,8 +380,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "CreateBucket"
             }
         }
-        registerCreateBucketMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -467,8 +545,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "CreateMultipartUpload"
             }
         }
-        registerCreateMultipartUploadMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -490,8 +585,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucket"
             }
         }
-        registerDeleteBucketMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -521,8 +633,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketAnalyticsConfiguration"
             }
         }
-        registerDeleteBucketAnalyticsConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -548,8 +677,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketCors"
             }
         }
-        registerDeleteBucketCorsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -577,8 +723,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketEncryption"
             }
         }
-        registerDeleteBucketEncryptionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -603,8 +766,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketIntelligentTieringConfiguration"
             }
         }
-        registerDeleteBucketIntelligentTieringConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -632,8 +812,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketInventoryConfiguration"
             }
         }
-        registerDeleteBucketInventoryConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -663,8 +860,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketLifecycle"
             }
         }
-        registerDeleteBucketLifecycleMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -696,8 +910,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketMetricsConfiguration"
             }
         }
-        registerDeleteBucketMetricsConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -722,8 +953,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketOwnershipControls"
             }
         }
-        registerDeleteBucketOwnershipControlsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -756,8 +1004,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketPolicy"
             }
         }
-        registerDeleteBucketPolicyMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -785,8 +1050,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketReplication"
             }
         }
-        registerDeleteBucketReplicationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -809,8 +1091,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketTagging"
             }
         }
-        registerDeleteBucketTaggingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -840,8 +1139,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteBucketWebsite"
             }
         }
-        registerDeleteBucketWebsiteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -877,8 +1193,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteObject"
             }
         }
-        registerDeleteObjectMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -906,8 +1239,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteObjectTagging"
             }
         }
-        registerDeleteObjectTaggingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -953,8 +1303,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeleteObjects"
             }
         }
-        registerDeleteObjectsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -980,8 +1348,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "DeletePublicAccessBlock"
             }
         }
-        registerDeletePublicAccessBlockMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1016,8 +1401,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketAccelerateConfiguration"
             }
         }
-        registerGetBucketAccelerateConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1041,8 +1443,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketAcl"
             }
         }
-        registerGetBucketAclMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1072,8 +1491,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketAnalyticsConfiguration"
             }
         }
-        registerGetBucketAnalyticsConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1097,8 +1533,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketCors"
             }
         }
-        registerGetBucketCorsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1126,8 +1579,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketEncryption"
             }
         }
-        registerGetBucketEncryptionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1152,8 +1622,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketIntelligentTieringConfiguration"
             }
         }
-        registerGetBucketIntelligentTieringConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1182,8 +1669,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketInventoryConfiguration"
             }
         }
-        registerGetBucketInventoryConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1223,8 +1727,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketLifecycleConfiguration"
             }
         }
-        registerGetBucketLifecycleConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1248,8 +1769,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketLocation"
             }
         }
-        registerGetBucketLocationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1270,8 +1808,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketLogging"
             }
         }
-        registerGetBucketLoggingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1303,8 +1858,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketMetricsConfiguration"
             }
         }
-        registerGetBucketMetricsConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1332,8 +1904,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketNotificationConfiguration"
             }
         }
-        registerGetBucketNotificationConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1357,8 +1946,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketOwnershipControls"
             }
         }
-        registerGetBucketOwnershipControlsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1389,8 +1995,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketPolicy"
             }
         }
-        registerGetBucketPolicyMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1417,8 +2040,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketPolicyStatus"
             }
         }
-        registerGetBucketPolicyStatusMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1451,8 +2091,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketReplication"
             }
         }
-        registerGetBucketReplicationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1472,8 +2129,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketRequestPayment"
             }
         }
-        registerGetBucketRequestPaymentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1499,8 +2173,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketTagging"
             }
         }
-        registerGetBucketTaggingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1525,8 +2216,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketVersioning"
             }
         }
-        registerGetBucketVersioningMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1553,8 +2261,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetBucketWebsite"
             }
         }
-        registerGetBucketWebsiteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1662,8 +2387,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetObject"
             }
         }
-        registerGetObjectMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.execute(client, input, block)
     }
 
@@ -1689,8 +2431,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetObjectAcl"
             }
         }
-        registerGetObjectAclMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1708,8 +2467,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetObjectLegalHold"
             }
         }
-        registerGetObjectLegalHoldMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1729,8 +2505,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetObjectLockConfiguration"
             }
         }
-        registerGetObjectLockConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1748,8 +2541,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetObjectRetention"
             }
         }
-        registerGetObjectRetentionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1779,8 +2589,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetObjectTagging"
             }
         }
-        registerGetObjectTaggingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1805,8 +2632,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetObjectTorrent"
             }
         }
-        registerGetObjectTorrentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.execute(client, input, block)
     }
 
@@ -1839,8 +2683,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "GetPublicAccessBlock"
             }
         }
-        registerGetPublicAccessBlockMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1867,8 +2728,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "HeadBucket"
             }
         }
-        registerHeadBucketMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1936,8 +2814,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "HeadObject"
             }
         }
-        registerHeadObjectMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -1975,8 +2870,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "ListBucketAnalyticsConfigurations"
             }
         }
-        registerListBucketAnalyticsConfigurationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2001,8 +2913,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "ListBucketIntelligentTieringConfigurations"
             }
         }
-        registerListBucketIntelligentTieringConfigurationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2038,8 +2967,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "ListBucketInventoryConfigurations"
             }
         }
-        registerListBucketInventoryConfigurationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2078,8 +3024,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "ListBucketMetricsConfigurations"
             }
         }
-        registerListBucketMetricsConfigurationsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2096,8 +3059,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "ListBuckets"
             }
         }
-        registerListBucketsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2137,8 +3117,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "ListMultipartUploads"
             }
         }
-        registerListMultipartUploadsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2169,8 +3166,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "ListObjectVersions"
             }
         }
-        registerListObjectVersionsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2198,8 +3212,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "ListObjects"
             }
         }
-        registerListObjectsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2236,8 +3267,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "ListObjectsV2"
             }
         }
-        registerListObjectsV2Middleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2273,8 +3321,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "ListParts"
             }
         }
-        registerListPartsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2312,8 +3377,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketAccelerateConfiguration"
             }
         }
-        registerPutBucketAccelerateConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2411,8 +3493,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketAcl"
             }
         }
-        registerPutBucketAclMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -2465,8 +3565,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketAnalyticsConfiguration"
             }
         }
-        registerPutBucketAnalyticsConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2514,8 +3631,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketCors"
             }
         }
-        registerPutBucketCorsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -2550,8 +3685,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketEncryption"
             }
         }
-        registerPutBucketEncryptionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -2597,8 +3750,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketIntelligentTieringConfiguration"
             }
         }
-        registerPutBucketIntelligentTieringConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2660,8 +3830,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketInventoryConfiguration"
             }
         }
-        registerPutBucketInventoryConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2720,8 +3907,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketLifecycleConfiguration"
             }
         }
-        registerPutBucketLifecycleConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -2772,8 +3977,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketLogging"
             }
         }
-        registerPutBucketLoggingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -2810,8 +4033,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketMetricsConfiguration"
             }
         }
-        registerPutBucketMetricsConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2866,8 +4106,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketNotificationConfiguration"
             }
         }
-        registerPutBucketNotificationConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -2890,8 +4147,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketOwnershipControls"
             }
         }
-        registerPutBucketOwnershipControlsMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -2922,8 +4197,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketPolicy"
             }
         }
-        registerPutBucketPolicyMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -2981,8 +4274,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketReplication"
             }
         }
-        registerPutBucketReplicationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -3006,8 +4317,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketRequestPayment"
             }
         }
-        registerPutBucketRequestPaymentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -3054,8 +4383,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketTagging"
             }
         }
-        registerPutBucketTaggingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -3095,8 +4442,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketVersioning"
             }
         }
-        registerPutBucketVersioningMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -3150,8 +4515,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutBucketWebsite"
             }
         }
-        registerPutBucketWebsiteMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -3223,8 +4606,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutObject"
             }
         }
-        registerPutObjectMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3322,8 +4722,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutObjectAcl"
             }
         }
-        registerPutObjectAclMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -3343,8 +4761,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutObjectLegalHold"
             }
         }
-        registerPutObjectLegalHoldMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -3370,8 +4806,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutObjectLockConfiguration"
             }
         }
-        registerPutObjectLockConfigurationMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -3396,8 +4850,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutObjectRetention"
             }
         }
-        registerPutObjectRetentionMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -3443,8 +4915,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutObjectTagging"
             }
         }
-        registerPutObjectTaggingMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -3478,8 +4968,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "PutPublicAccessBlock"
             }
         }
-        registerPutPublicAccessBlockMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
+        op.install(Md5Checksum)
         return op.roundTrip(client, input)
     }
 
@@ -3646,8 +5154,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "RestoreObject"
             }
         }
-        registerRestoreObjectMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3726,8 +5251,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "SelectObjectContent"
             }
         }
-        registerSelectObjectContentMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.execute(client, input, block)
     }
 
@@ -3805,8 +5347,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "UploadPart"
             }
         }
-        registerUploadPartMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3898,8 +5457,25 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 operationName = "UploadPartCopy"
             }
         }
-        registerUploadPartCopyMiddleware(config, op)
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 
@@ -3939,9 +5515,26 @@ internal class DefaultS3Client(override val config: S3Client.Config) : S3Client 
                 hostPrefix = "${input.requestRoute}."
             }
         }
-        registerWriteGetObjectResponseMiddleware(config, op)
         op.context[AuthAttributes.UnsignedPayload] = true
         mergeServiceDefaults(op.context)
+        op.install(ResolveAwsEndpoint) {
+            serviceId = ServiceId
+            resolver = config.endpointResolver
+        }
+        op.install(RetryFeature) {
+            strategy = config.retryStrategy
+            policy = AwsDefaultRetryPolicy
+        }
+        op.install(UserAgent) {
+            staticMetadata = awsUserAgentMetadata
+        }
+        op.install(AwsSigV4SigningMiddleware) {
+            this.credentialsProvider = config.credentialsProvider
+            this.signingService = "s3"
+            signedBodyHeaderType = AwsSignedBodyHeaderType.X_AMZ_CONTENT_SHA256
+            useDoubleUriEncode = false
+            normalizeUriPath = false
+        }
         return op.roundTrip(client, input)
     }
 

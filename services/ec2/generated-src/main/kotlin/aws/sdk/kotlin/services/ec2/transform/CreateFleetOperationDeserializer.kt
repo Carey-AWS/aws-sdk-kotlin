@@ -48,7 +48,7 @@ internal class CreateFleetOperationDeserializer: HttpDeserialize<CreateFleetResp
     }
 }
 
-private suspend fun deserializeCreateFleetOperationBody(builder: CreateFleetResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateFleetOperationBody(builder: CreateFleetResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ERRORS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("errorSet"), XmlCollectionName("item"))
     val FLEETID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("fleetId"))

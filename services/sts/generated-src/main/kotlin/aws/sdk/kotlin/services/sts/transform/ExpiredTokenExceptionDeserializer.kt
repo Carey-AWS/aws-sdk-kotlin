@@ -37,7 +37,7 @@ internal class ExpiredTokenExceptionDeserializer: HttpDeserialize<ExpiredTokenEx
     }
 }
 
-private suspend fun deserializeExpiredTokenExceptionError(builder: ExpiredTokenException.DslBuilder, payload: ByteArray) {
+private fun deserializeExpiredTokenExceptionError(builder: ExpiredTokenException.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

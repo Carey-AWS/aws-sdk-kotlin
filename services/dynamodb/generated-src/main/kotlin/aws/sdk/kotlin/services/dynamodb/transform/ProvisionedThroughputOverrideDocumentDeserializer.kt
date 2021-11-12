@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeProvisionedThroughputOverrideDocument(deserializer: Deserializer): ProvisionedThroughputOverride {
+internal fun deserializeProvisionedThroughputOverrideDocument(deserializer: Deserializer): ProvisionedThroughputOverride {
     val builder = ProvisionedThroughputOverride.builder()
     val READCAPACITYUNITS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, JsonSerialName("ReadCapacityUnits"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

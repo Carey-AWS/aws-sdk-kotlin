@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeIdFormatDocument(deserializer: Deserializer): IdFormat {
+internal fun deserializeIdFormatDocument(deserializer: Deserializer): IdFormat {
     val builder = IdFormat.builder()
     val DEADLINE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("deadline"))
     val RESOURCE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("resource"))

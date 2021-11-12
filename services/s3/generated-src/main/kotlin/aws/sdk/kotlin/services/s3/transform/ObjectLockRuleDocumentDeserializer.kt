@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeObjectLockRuleDocument(deserializer: Deserializer): ObjectLockRule {
+internal fun deserializeObjectLockRuleDocument(deserializer: Deserializer): ObjectLockRule {
     val builder = ObjectLockRule.builder()
     val DEFAULTRETENTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("DefaultRetention"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

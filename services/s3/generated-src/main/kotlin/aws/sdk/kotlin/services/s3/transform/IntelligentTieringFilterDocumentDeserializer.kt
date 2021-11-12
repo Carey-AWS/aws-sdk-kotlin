@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeIntelligentTieringFilterDocument(deserializer: Deserializer): IntelligentTieringFilter {
+internal fun deserializeIntelligentTieringFilterDocument(deserializer: Deserializer): IntelligentTieringFilter {
     val builder = IntelligentTieringFilter.builder()
     val AND_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("And"))
     val PREFIX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Prefix"))

@@ -48,7 +48,7 @@ internal class ExportImageOperationDeserializer: HttpDeserialize<ExportImageResp
     }
 }
 
-private suspend fun deserializeExportImageOperationBody(builder: ExportImageResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeExportImageOperationBody(builder: ExportImageResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val DISKIMAGEFORMAT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("diskImageFormat"))

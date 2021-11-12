@@ -35,7 +35,7 @@ internal class EngineNotSupportedExceptionDeserializer: HttpDeserialize<EngineNo
     }
 }
 
-private suspend fun deserializeEngineNotSupportedExceptionError(builder: EngineNotSupportedException.DslBuilder, payload: ByteArray) {
+private fun deserializeEngineNotSupportedExceptionError(builder: EngineNotSupportedException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

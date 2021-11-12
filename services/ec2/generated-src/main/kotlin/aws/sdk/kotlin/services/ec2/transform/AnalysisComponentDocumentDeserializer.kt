@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAnalysisComponentDocument(deserializer: Deserializer): AnalysisComponent {
+internal fun deserializeAnalysisComponentDocument(deserializer: Deserializer): AnalysisComponent {
     val builder = AnalysisComponent.builder()
     val ARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("arn"))
     val ID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("id"))

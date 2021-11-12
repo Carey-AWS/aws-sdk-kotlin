@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLocalGatewayRouteTableVirtualInterfaceGroupAssociationDocument(deserializer: Deserializer): LocalGatewayRouteTableVirtualInterfaceGroupAssociation {
+internal fun deserializeLocalGatewayRouteTableVirtualInterfaceGroupAssociationDocument(deserializer: Deserializer): LocalGatewayRouteTableVirtualInterfaceGroupAssociation {
     val builder = LocalGatewayRouteTableVirtualInterfaceGroupAssociation.builder()
     val LOCALGATEWAYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("localGatewayId"))
     val LOCALGATEWAYROUTETABLEARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("localGatewayRouteTableArn"))

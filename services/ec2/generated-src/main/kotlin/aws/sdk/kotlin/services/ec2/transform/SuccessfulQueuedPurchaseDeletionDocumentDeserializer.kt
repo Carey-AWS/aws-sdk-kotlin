@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSuccessfulQueuedPurchaseDeletionDocument(deserializer: Deserializer): SuccessfulQueuedPurchaseDeletion {
+internal fun deserializeSuccessfulQueuedPurchaseDeletionDocument(deserializer: Deserializer): SuccessfulQueuedPurchaseDeletion {
     val builder = SuccessfulQueuedPurchaseDeletion.builder()
     val RESERVEDINSTANCESID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("reservedInstancesId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

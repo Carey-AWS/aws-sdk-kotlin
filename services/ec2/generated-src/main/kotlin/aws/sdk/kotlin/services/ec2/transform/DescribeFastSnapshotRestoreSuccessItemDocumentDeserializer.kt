@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeDescribeFastSnapshotRestoreSuccessItemDocument(deserializer: Deserializer): DescribeFastSnapshotRestoreSuccessItem {
+internal fun deserializeDescribeFastSnapshotRestoreSuccessItemDocument(deserializer: Deserializer): DescribeFastSnapshotRestoreSuccessItem {
     val builder = DescribeFastSnapshotRestoreSuccessItem.builder()
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))
     val DISABLEDTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("disabledTime"))

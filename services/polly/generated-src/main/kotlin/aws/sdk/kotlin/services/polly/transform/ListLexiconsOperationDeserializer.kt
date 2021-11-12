@@ -45,7 +45,7 @@ internal class ListLexiconsOperationDeserializer: HttpDeserialize<ListLexiconsRe
     }
 }
 
-private suspend fun deserializeListLexiconsOperationBody(builder: ListLexiconsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListLexiconsOperationBody(builder: ListLexiconsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val LEXICONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("Lexicons"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("NextToken"))

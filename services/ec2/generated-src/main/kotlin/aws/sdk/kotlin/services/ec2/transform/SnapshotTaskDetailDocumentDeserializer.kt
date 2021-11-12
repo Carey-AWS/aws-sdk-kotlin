@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSnapshotTaskDetailDocument(deserializer: Deserializer): SnapshotTaskDetail {
+internal fun deserializeSnapshotTaskDetailDocument(deserializer: Deserializer): SnapshotTaskDetail {
     val builder = SnapshotTaskDetail.builder()
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val DISKIMAGESIZE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Double, XmlSerialName("diskImageSize"))

@@ -48,7 +48,7 @@ internal class GetBucketLocationOperationDeserializer: HttpDeserialize<GetBucket
     }
 }
 
-private suspend fun deserializeGetBucketLocationOperationBody(builder: GetBucketLocationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketLocationOperationBody(builder: GetBucketLocationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val LOCATIONCONSTRAINT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("LocationConstraint"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -35,7 +35,7 @@ internal class TableNotFoundExceptionDeserializer: HttpDeserialize<TableNotFound
     }
 }
 
-private suspend fun deserializeTableNotFoundExceptionError(builder: TableNotFoundException.DslBuilder, payload: ByteArray) {
+private fun deserializeTableNotFoundExceptionError(builder: TableNotFoundException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

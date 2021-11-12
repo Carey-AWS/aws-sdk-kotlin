@@ -32,7 +32,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeReservedInstancesDocument(deserializer: Deserializer): ReservedInstances {
+internal fun deserializeReservedInstancesDocument(deserializer: Deserializer): ReservedInstances {
     val builder = ReservedInstances.builder()
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))
     val CURRENCYCODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("currencyCode"))

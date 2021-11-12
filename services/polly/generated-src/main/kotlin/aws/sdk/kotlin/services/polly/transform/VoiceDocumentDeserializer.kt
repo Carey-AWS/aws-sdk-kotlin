@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeVoiceDocument(deserializer: Deserializer): Voice {
+internal fun deserializeVoiceDocument(deserializer: Deserializer): Voice {
     val builder = Voice.builder()
     val ADDITIONALLANGUAGECODES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("AdditionalLanguageCodes"))
     val GENDER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Gender"))

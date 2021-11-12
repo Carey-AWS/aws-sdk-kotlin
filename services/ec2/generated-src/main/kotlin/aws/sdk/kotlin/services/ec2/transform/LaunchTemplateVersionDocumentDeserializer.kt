@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeLaunchTemplateVersionDocument(deserializer: Deserializer): LaunchTemplateVersion {
+internal fun deserializeLaunchTemplateVersionDocument(deserializer: Deserializer): LaunchTemplateVersion {
     val builder = LaunchTemplateVersion.builder()
     val CREATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("createTime"))
     val CREATEDBY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("createdBy"))

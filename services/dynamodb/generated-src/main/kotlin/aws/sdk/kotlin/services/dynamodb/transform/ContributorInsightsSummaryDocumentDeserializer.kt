@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeContributorInsightsSummaryDocument(deserializer: Deserializer): ContributorInsightsSummary {
+internal fun deserializeContributorInsightsSummaryDocument(deserializer: Deserializer): ContributorInsightsSummary {
     val builder = ContributorInsightsSummary.builder()
     val CONTRIBUTORINSIGHTSSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("ContributorInsightsStatus"))
     val INDEXNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("IndexName"))

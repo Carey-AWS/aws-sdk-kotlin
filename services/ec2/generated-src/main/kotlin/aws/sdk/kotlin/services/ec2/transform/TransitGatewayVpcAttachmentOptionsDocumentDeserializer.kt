@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayVpcAttachmentOptionsDocument(deserializer: Deserializer): TransitGatewayVpcAttachmentOptions {
+internal fun deserializeTransitGatewayVpcAttachmentOptionsDocument(deserializer: Deserializer): TransitGatewayVpcAttachmentOptions {
     val builder = TransitGatewayVpcAttachmentOptions.builder()
     val APPLIANCEMODESUPPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("applianceModeSupport"))
     val DNSSUPPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("dnsSupport"))

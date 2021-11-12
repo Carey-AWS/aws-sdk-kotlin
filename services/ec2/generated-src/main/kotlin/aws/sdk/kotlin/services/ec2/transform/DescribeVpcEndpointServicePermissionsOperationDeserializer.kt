@@ -47,7 +47,7 @@ internal class DescribeVpcEndpointServicePermissionsOperationDeserializer: HttpD
     }
 }
 
-private suspend fun deserializeDescribeVpcEndpointServicePermissionsOperationBody(builder: DescribeVpcEndpointServicePermissionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeVpcEndpointServicePermissionsOperationBody(builder: DescribeVpcEndpointServicePermissionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ALLOWEDPRINCIPALS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("allowedPrincipals"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

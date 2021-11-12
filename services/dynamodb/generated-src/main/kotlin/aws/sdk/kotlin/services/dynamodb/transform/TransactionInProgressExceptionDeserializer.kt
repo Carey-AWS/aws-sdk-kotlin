@@ -35,7 +35,7 @@ internal class TransactionInProgressExceptionDeserializer: HttpDeserialize<Trans
     }
 }
 
-private suspend fun deserializeTransactionInProgressExceptionError(builder: TransactionInProgressException.DslBuilder, payload: ByteArray) {
+private fun deserializeTransactionInProgressExceptionError(builder: TransactionInProgressException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -26,7 +26,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeHostReservationDocument(deserializer: Deserializer): HostReservation {
+internal fun deserializeHostReservationDocument(deserializer: Deserializer): HostReservation {
     val builder = HostReservation.builder()
     val COUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("count"))
     val CURRENCYCODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("currencyCode"))

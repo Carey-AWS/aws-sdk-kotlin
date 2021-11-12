@@ -25,7 +25,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchSpecificationDocument(deserializer: Deserializer): LaunchSpecification {
+internal fun deserializeLaunchSpecificationDocument(deserializer: Deserializer): LaunchSpecification {
     val builder = LaunchSpecification.builder()
     val ADDRESSINGTYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("addressingType"))
     val BLOCKDEVICEMAPPINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("blockDeviceMapping"), XmlCollectionName("item"))

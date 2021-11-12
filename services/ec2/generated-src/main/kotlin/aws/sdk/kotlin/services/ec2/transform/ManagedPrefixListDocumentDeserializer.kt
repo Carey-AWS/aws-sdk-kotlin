@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeManagedPrefixListDocument(deserializer: Deserializer): ManagedPrefixList {
+internal fun deserializeManagedPrefixListDocument(deserializer: Deserializer): ManagedPrefixList {
     val builder = ManagedPrefixList.builder()
     val ADDRESSFAMILY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("addressFamily"))
     val MAXENTRIES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("maxEntries"))

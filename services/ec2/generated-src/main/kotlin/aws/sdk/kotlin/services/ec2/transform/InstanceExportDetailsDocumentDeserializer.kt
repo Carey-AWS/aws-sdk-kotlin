@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceExportDetailsDocument(deserializer: Deserializer): InstanceExportDetails {
+internal fun deserializeInstanceExportDetailsDocument(deserializer: Deserializer): InstanceExportDetails {
     val builder = InstanceExportDetails.builder()
     val INSTANCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceId"))
     val TARGETENVIRONMENT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("targetEnvironment"))

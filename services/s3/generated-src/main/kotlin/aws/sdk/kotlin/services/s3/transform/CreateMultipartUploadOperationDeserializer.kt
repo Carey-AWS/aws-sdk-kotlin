@@ -60,7 +60,7 @@ internal class CreateMultipartUploadOperationDeserializer: HttpDeserialize<Creat
     }
 }
 
-private suspend fun deserializeCreateMultipartUploadOperationBody(builder: CreateMultipartUploadResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateMultipartUploadOperationBody(builder: CreateMultipartUploadResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BUCKET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Bucket"))
     val KEY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Key"))

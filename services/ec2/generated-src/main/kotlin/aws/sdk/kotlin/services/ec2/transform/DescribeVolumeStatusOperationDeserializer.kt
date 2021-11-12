@@ -47,7 +47,7 @@ internal class DescribeVolumeStatusOperationDeserializer: HttpDeserialize<Descri
     }
 }
 
-private suspend fun deserializeDescribeVolumeStatusOperationBody(builder: DescribeVolumeStatusResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeVolumeStatusOperationBody(builder: DescribeVolumeStatusResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val VOLUMESTATUSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("volumeStatusSet"), XmlCollectionName("item"))

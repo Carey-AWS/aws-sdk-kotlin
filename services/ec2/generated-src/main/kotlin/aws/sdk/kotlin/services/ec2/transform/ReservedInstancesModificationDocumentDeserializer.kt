@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeReservedInstancesModificationDocument(deserializer: Deserializer): ReservedInstancesModification {
+internal fun deserializeReservedInstancesModificationDocument(deserializer: Deserializer): ReservedInstancesModification {
     val builder = ReservedInstancesModification.builder()
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientToken"))
     val CREATEDATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("createDate"))

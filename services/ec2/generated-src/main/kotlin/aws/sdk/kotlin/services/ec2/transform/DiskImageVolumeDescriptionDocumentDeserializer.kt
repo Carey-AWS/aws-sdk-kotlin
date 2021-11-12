@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDiskImageVolumeDescriptionDocument(deserializer: Deserializer): DiskImageVolumeDescription {
+internal fun deserializeDiskImageVolumeDescriptionDocument(deserializer: Deserializer): DiskImageVolumeDescription {
     val builder = DiskImageVolumeDescription.builder()
     val ID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("id"))
     val SIZE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, XmlSerialName("size"))

@@ -45,7 +45,7 @@ internal class CreateVpcOperationDeserializer: HttpDeserialize<CreateVpcResponse
     }
 }
 
-private suspend fun deserializeCreateVpcOperationBody(builder: CreateVpcResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateVpcOperationBody(builder: CreateVpcResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val VPC_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("vpc"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

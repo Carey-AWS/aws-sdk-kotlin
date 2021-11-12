@@ -45,7 +45,7 @@ internal class DeleteSubnetCidrReservationOperationDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeDeleteSubnetCidrReservationOperationBody(builder: DeleteSubnetCidrReservationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteSubnetCidrReservationOperationBody(builder: DeleteSubnetCidrReservationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val DELETEDSUBNETCIDRRESERVATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("deletedSubnetCidrReservation"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

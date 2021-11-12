@@ -52,7 +52,7 @@ internal class CreateCapacityReservationFleetOperationDeserializer: HttpDeserial
     }
 }
 
-private suspend fun deserializeCreateCapacityReservationFleetOperationBody(builder: CreateCapacityReservationFleetResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateCapacityReservationFleetOperationBody(builder: CreateCapacityReservationFleetResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ALLOCATIONSTRATEGY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allocationStrategy"))
     val CAPACITYRESERVATIONFLEETID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("capacityReservationFleetId"))

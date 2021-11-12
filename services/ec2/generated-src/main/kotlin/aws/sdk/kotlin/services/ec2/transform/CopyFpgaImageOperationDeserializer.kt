@@ -45,7 +45,7 @@ internal class CopyFpgaImageOperationDeserializer: HttpDeserialize<CopyFpgaImage
     }
 }
 
-private suspend fun deserializeCopyFpgaImageOperationBody(builder: CopyFpgaImageResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCopyFpgaImageOperationBody(builder: CopyFpgaImageResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val FPGAIMAGEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("fpgaImageId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

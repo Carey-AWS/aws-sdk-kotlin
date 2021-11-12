@@ -47,7 +47,7 @@ internal class DescribeNatGatewaysOperationDeserializer: HttpDeserialize<Describ
     }
 }
 
-private suspend fun deserializeDescribeNatGatewaysOperationBody(builder: DescribeNatGatewaysResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeNatGatewaysOperationBody(builder: DescribeNatGatewaysResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NATGATEWAYS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("natGatewaySet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

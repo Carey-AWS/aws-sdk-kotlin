@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePrefixListAssociationDocument(deserializer: Deserializer): PrefixListAssociation {
+internal fun deserializePrefixListAssociationDocument(deserializer: Deserializer): PrefixListAssociation {
     val builder = PrefixListAssociation.builder()
     val RESOURCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("resourceId"))
     val RESOURCEOWNER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("resourceOwner"))

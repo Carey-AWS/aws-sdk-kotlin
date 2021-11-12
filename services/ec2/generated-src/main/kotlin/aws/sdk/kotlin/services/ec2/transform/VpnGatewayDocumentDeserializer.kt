@@ -25,7 +25,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeVpnGatewayDocument(deserializer: Deserializer): VpnGateway {
+internal fun deserializeVpnGatewayDocument(deserializer: Deserializer): VpnGateway {
     val builder = VpnGateway.builder()
     val AMAZONSIDEASN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, XmlSerialName("amazonSideAsn"))
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))

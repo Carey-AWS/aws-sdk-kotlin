@@ -47,7 +47,7 @@ internal class DescribeTransitGatewayRouteTablesOperationDeserializer: HttpDeser
     }
 }
 
-private suspend fun deserializeDescribeTransitGatewayRouteTablesOperationBody(builder: DescribeTransitGatewayRouteTablesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeTransitGatewayRouteTablesOperationBody(builder: DescribeTransitGatewayRouteTablesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val TRANSITGATEWAYROUTETABLES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("transitGatewayRouteTables"), XmlCollectionName("item"))

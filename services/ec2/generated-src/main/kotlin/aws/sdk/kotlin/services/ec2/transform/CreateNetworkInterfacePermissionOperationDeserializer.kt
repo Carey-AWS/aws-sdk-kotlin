@@ -45,7 +45,7 @@ internal class CreateNetworkInterfacePermissionOperationDeserializer: HttpDeseri
     }
 }
 
-private suspend fun deserializeCreateNetworkInterfacePermissionOperationBody(builder: CreateNetworkInterfacePermissionResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateNetworkInterfacePermissionOperationBody(builder: CreateNetworkInterfacePermissionResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INTERFACEPERMISSION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("interfacePermission"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

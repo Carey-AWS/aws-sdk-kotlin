@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeTagDocument(deserializer: Deserializer): Tag {
+internal fun deserializeTagDocument(deserializer: Deserializer): Tag {
     val builder = Tag.builder()
     val KEY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Key"))
     val VALUE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Value"))

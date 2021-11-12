@@ -37,7 +37,7 @@ internal class PackedPolicyTooLargeExceptionDeserializer: HttpDeserialize<Packed
     }
 }
 
-private suspend fun deserializePackedPolicyTooLargeExceptionError(builder: PackedPolicyTooLargeException.DslBuilder, payload: ByteArray) {
+private fun deserializePackedPolicyTooLargeExceptionError(builder: PackedPolicyTooLargeException.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -47,7 +47,7 @@ internal class PurchaseScheduledInstancesOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializePurchaseScheduledInstancesOperationBody(builder: PurchaseScheduledInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializePurchaseScheduledInstancesOperationBody(builder: PurchaseScheduledInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SCHEDULEDINSTANCESET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("scheduledInstanceSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

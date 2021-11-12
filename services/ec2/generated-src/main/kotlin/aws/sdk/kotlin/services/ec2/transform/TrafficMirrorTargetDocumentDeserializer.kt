@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTrafficMirrorTargetDocument(deserializer: Deserializer): TrafficMirrorTarget {
+internal fun deserializeTrafficMirrorTargetDocument(deserializer: Deserializer): TrafficMirrorTarget {
     val builder = TrafficMirrorTarget.builder()
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val NETWORKINTERFACEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("networkInterfaceId"))

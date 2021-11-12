@@ -47,7 +47,7 @@ internal class DescribeIpv6PoolsOperationDeserializer: HttpDeserialize<DescribeI
     }
 }
 
-private suspend fun deserializeDescribeIpv6PoolsOperationBody(builder: DescribeIpv6PoolsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeIpv6PoolsOperationBody(builder: DescribeIpv6PoolsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IPV6POOLS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("ipv6PoolSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

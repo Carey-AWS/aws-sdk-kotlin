@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAssociatedTargetNetworkDocument(deserializer: Deserializer): AssociatedTargetNetwork {
+internal fun deserializeAssociatedTargetNetworkDocument(deserializer: Deserializer): AssociatedTargetNetwork {
     val builder = AssociatedTargetNetwork.builder()
     val NETWORKID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("networkId"))
     val NETWORKTYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("networkType"))

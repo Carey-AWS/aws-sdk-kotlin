@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayMulticastDeregisteredGroupSourcesDocument(deserializer: Deserializer): TransitGatewayMulticastDeregisteredGroupSources {
+internal fun deserializeTransitGatewayMulticastDeregisteredGroupSourcesDocument(deserializer: Deserializer): TransitGatewayMulticastDeregisteredGroupSources {
     val builder = TransitGatewayMulticastDeregisteredGroupSources.builder()
     val DEREGISTEREDNETWORKINTERFACEIDS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("deregisteredNetworkInterfaceIds"), XmlCollectionName("item"))
     val GROUPIPADDRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("groupIpAddress"))

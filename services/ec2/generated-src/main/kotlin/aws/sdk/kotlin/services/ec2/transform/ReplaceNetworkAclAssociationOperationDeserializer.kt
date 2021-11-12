@@ -45,7 +45,7 @@ internal class ReplaceNetworkAclAssociationOperationDeserializer: HttpDeserializ
     }
 }
 
-private suspend fun deserializeReplaceNetworkAclAssociationOperationBody(builder: ReplaceNetworkAclAssociationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeReplaceNetworkAclAssociationOperationBody(builder: ReplaceNetworkAclAssociationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEWASSOCIATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("newAssociationId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

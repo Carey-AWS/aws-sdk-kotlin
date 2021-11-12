@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeEbsInstanceBlockDeviceDocument(deserializer: Deserializer): EbsInstanceBlockDevice {
+internal fun deserializeEbsInstanceBlockDeviceDocument(deserializer: Deserializer): EbsInstanceBlockDevice {
     val builder = EbsInstanceBlockDevice.builder()
     val ATTACHTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("attachTime"))
     val DELETEONTERMINATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("deleteOnTermination"))

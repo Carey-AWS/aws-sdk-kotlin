@@ -35,7 +35,7 @@ internal class GetPublicAccessBlockOperationDeserializer: HttpDeserialize<GetPub
     }
 }
 
-private suspend fun deserializeGetPublicAccessBlockOperationBody(builder: GetPublicAccessBlockResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetPublicAccessBlockOperationBody(builder: GetPublicAccessBlockResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.publicAccessBlockConfiguration = deserializePublicAccessBlockConfigurationDocument(deserializer)
 }

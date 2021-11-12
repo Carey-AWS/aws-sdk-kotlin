@@ -53,7 +53,7 @@ internal class DeleteObjectsOperationDeserializer: HttpDeserialize<DeleteObjects
     }
 }
 
-private suspend fun deserializeDeleteObjectsOperationBody(builder: DeleteObjectsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteObjectsOperationBody(builder: DeleteObjectsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val DELETED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("Deleted"), Flattened)
     val ERRORS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("Error"), Flattened)

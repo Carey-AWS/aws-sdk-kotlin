@@ -45,7 +45,7 @@ internal class CreateManagedPrefixListOperationDeserializer: HttpDeserialize<Cre
     }
 }
 
-private suspend fun deserializeCreateManagedPrefixListOperationBody(builder: CreateManagedPrefixListResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateManagedPrefixListOperationBody(builder: CreateManagedPrefixListResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val PREFIXLIST_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("prefixList"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

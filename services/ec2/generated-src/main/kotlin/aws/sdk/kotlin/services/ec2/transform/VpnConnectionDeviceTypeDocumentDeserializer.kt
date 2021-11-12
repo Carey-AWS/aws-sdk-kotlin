@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeVpnConnectionDeviceTypeDocument(deserializer: Deserializer): VpnConnectionDeviceType {
+internal fun deserializeVpnConnectionDeviceTypeDocument(deserializer: Deserializer): VpnConnectionDeviceType {
     val builder = VpnConnectionDeviceType.builder()
     val PLATFORM_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("platform"))
     val SOFTWARE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("software"))

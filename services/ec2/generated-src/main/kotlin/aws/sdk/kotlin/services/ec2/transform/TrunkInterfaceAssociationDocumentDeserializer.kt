@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTrunkInterfaceAssociationDocument(deserializer: Deserializer): TrunkInterfaceAssociation {
+internal fun deserializeTrunkInterfaceAssociationDocument(deserializer: Deserializer): TrunkInterfaceAssociation {
     val builder = TrunkInterfaceAssociation.builder()
     val ASSOCIATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("associationId"))
     val BRANCHINTERFACEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("branchInterfaceId"))

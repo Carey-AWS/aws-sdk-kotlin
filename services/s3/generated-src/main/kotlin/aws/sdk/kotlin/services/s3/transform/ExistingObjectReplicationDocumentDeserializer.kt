@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeExistingObjectReplicationDocument(deserializer: Deserializer): ExistingObjectReplication {
+internal fun deserializeExistingObjectReplicationDocument(deserializer: Deserializer): ExistingObjectReplication {
     val builder = ExistingObjectReplication.builder()
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Status"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

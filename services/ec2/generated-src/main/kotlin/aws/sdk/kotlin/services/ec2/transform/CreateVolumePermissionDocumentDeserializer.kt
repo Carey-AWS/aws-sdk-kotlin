@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCreateVolumePermissionDocument(deserializer: Deserializer): CreateVolumePermission {
+internal fun deserializeCreateVolumePermissionDocument(deserializer: Deserializer): CreateVolumePermission {
     val builder = CreateVolumePermission.builder()
     val GROUP_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("group"))
     val USERID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("userId"))

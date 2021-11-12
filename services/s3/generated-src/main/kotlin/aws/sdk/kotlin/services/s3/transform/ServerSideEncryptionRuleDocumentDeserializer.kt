@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeServerSideEncryptionRuleDocument(deserializer: Deserializer): ServerSideEncryptionRule {
+internal fun deserializeServerSideEncryptionRuleDocument(deserializer: Deserializer): ServerSideEncryptionRule {
     val builder = ServerSideEncryptionRule.builder()
     val APPLYSERVERSIDEENCRYPTIONBYDEFAULT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("ApplyServerSideEncryptionByDefault"))
     val BUCKETKEYENABLED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("BucketKeyEnabled"))

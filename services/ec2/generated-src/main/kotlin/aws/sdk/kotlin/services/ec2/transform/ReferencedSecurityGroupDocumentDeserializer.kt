@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeReferencedSecurityGroupDocument(deserializer: Deserializer): ReferencedSecurityGroup {
+internal fun deserializeReferencedSecurityGroupDocument(deserializer: Deserializer): ReferencedSecurityGroup {
     val builder = ReferencedSecurityGroup.builder()
     val GROUPID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("groupId"))
     val PEERINGSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("peeringStatus"))

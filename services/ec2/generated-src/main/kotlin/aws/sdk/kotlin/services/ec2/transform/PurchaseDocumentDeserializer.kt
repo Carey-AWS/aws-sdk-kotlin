@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePurchaseDocument(deserializer: Deserializer): Purchase {
+internal fun deserializePurchaseDocument(deserializer: Deserializer): Purchase {
     val builder = Purchase.builder()
     val CURRENCYCODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("currencyCode"))
     val DURATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("duration"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeDirectoryServiceAuthenticationDocument(deserializer: Deserializer): DirectoryServiceAuthentication {
+internal fun deserializeDirectoryServiceAuthenticationDocument(deserializer: Deserializer): DirectoryServiceAuthentication {
     val builder = DirectoryServiceAuthentication.builder()
     val DIRECTORYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("directoryId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -47,7 +47,7 @@ internal class DescribeBundleTasksOperationDeserializer: HttpDeserialize<Describ
     }
 }
 
-private suspend fun deserializeDescribeBundleTasksOperationBody(builder: DescribeBundleTasksResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeBundleTasksOperationBody(builder: DescribeBundleTasksResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BUNDLETASKS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("bundleInstanceTasksSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

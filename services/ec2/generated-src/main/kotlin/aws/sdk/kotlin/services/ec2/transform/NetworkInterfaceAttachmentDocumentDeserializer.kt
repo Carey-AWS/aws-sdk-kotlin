@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeNetworkInterfaceAttachmentDocument(deserializer: Deserializer): NetworkInterfaceAttachment {
+internal fun deserializeNetworkInterfaceAttachmentDocument(deserializer: Deserializer): NetworkInterfaceAttachment {
     val builder = NetworkInterfaceAttachment.builder()
     val ATTACHTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("attachTime"))
     val ATTACHMENTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("attachmentId"))

@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeBackupDetailsDocument(deserializer: Deserializer): BackupDetails {
+internal fun deserializeBackupDetailsDocument(deserializer: Deserializer): BackupDetails {
     val builder = BackupDetails.builder()
     val BACKUPARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("BackupArn"))
     val BACKUPCREATIONDATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, JsonSerialName("BackupCreationDateTime"))

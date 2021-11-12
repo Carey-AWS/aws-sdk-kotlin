@@ -44,7 +44,7 @@ internal class DeleteBackupOperationDeserializer: HttpDeserialize<DeleteBackupRe
     }
 }
 
-private suspend fun deserializeDeleteBackupOperationBody(builder: DeleteBackupResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteBackupOperationBody(builder: DeleteBackupResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val BACKUPDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("BackupDescription"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

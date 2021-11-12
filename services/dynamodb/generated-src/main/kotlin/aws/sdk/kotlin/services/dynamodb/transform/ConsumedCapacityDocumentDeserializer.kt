@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeConsumedCapacityDocument(deserializer: Deserializer): ConsumedCapacity {
+internal fun deserializeConsumedCapacityDocument(deserializer: Deserializer): ConsumedCapacity {
     val builder = ConsumedCapacity.builder()
     val CAPACITYUNITS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Double, JsonSerialName("CapacityUnits"))
     val GLOBALSECONDARYINDEXES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Map, JsonSerialName("GlobalSecondaryIndexes"))

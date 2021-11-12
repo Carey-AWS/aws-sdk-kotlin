@@ -45,7 +45,7 @@ internal class ModifyVpnTunnelOptionsOperationDeserializer: HttpDeserialize<Modi
     }
 }
 
-private suspend fun deserializeModifyVpnTunnelOptionsOperationBody(builder: ModifyVpnTunnelOptionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyVpnTunnelOptionsOperationBody(builder: ModifyVpnTunnelOptionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val VPNCONNECTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("vpnConnection"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

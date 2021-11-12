@@ -35,7 +35,7 @@ internal class TableAlreadyExistsExceptionDeserializer: HttpDeserialize<TableAlr
     }
 }
 
-private suspend fun deserializeTableAlreadyExistsExceptionError(builder: TableAlreadyExistsException.DslBuilder, payload: ByteArray) {
+private fun deserializeTableAlreadyExistsExceptionError(builder: TableAlreadyExistsException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

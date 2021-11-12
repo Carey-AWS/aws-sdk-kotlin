@@ -35,7 +35,7 @@ internal class ExportNotFoundExceptionDeserializer: HttpDeserialize<ExportNotFou
     }
 }
 
-private suspend fun deserializeExportNotFoundExceptionError(builder: ExportNotFoundException.DslBuilder, payload: ByteArray) {
+private fun deserializeExportNotFoundExceptionError(builder: ExportNotFoundException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

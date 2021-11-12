@@ -37,7 +37,7 @@ internal class IdpRejectedClaimExceptionDeserializer: HttpDeserialize<IdpRejecte
     }
 }
 
-private suspend fun deserializeIdpRejectedClaimExceptionError(builder: IdpRejectedClaimException.DslBuilder, payload: ByteArray) {
+private fun deserializeIdpRejectedClaimExceptionError(builder: IdpRejectedClaimException.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

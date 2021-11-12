@@ -35,7 +35,7 @@ internal class InvalidExportTimeExceptionDeserializer: HttpDeserialize<InvalidEx
     }
 }
 
-private suspend fun deserializeInvalidExportTimeExceptionError(builder: InvalidExportTimeException.DslBuilder, payload: ByteArray) {
+private fun deserializeInvalidExportTimeExceptionError(builder: InvalidExportTimeException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

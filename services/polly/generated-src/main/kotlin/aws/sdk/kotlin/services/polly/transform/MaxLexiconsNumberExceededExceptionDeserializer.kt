@@ -35,7 +35,7 @@ internal class MaxLexiconsNumberExceededExceptionDeserializer: HttpDeserialize<M
     }
 }
 
-private suspend fun deserializeMaxLexiconsNumberExceededExceptionError(builder: MaxLexiconsNumberExceededException.DslBuilder, payload: ByteArray) {
+private fun deserializeMaxLexiconsNumberExceededExceptionError(builder: MaxLexiconsNumberExceededException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

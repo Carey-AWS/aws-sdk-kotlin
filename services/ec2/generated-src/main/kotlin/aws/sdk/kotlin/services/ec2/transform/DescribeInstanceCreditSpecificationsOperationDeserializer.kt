@@ -47,7 +47,7 @@ internal class DescribeInstanceCreditSpecificationsOperationDeserializer: HttpDe
     }
 }
 
-private suspend fun deserializeDescribeInstanceCreditSpecificationsOperationBody(builder: DescribeInstanceCreditSpecificationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeInstanceCreditSpecificationsOperationBody(builder: DescribeInstanceCreditSpecificationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCECREDITSPECIFICATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instanceCreditSpecificationSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

@@ -45,7 +45,7 @@ internal class DeregisterTransitGatewayMulticastGroupSourcesOperationDeserialize
     }
 }
 
-private suspend fun deserializeDeregisterTransitGatewayMulticastGroupSourcesOperationBody(builder: DeregisterTransitGatewayMulticastGroupSourcesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeregisterTransitGatewayMulticastGroupSourcesOperationBody(builder: DeregisterTransitGatewayMulticastGroupSourcesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val DEREGISTEREDMULTICASTGROUPSOURCES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("deregisteredMulticastGroupSources"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

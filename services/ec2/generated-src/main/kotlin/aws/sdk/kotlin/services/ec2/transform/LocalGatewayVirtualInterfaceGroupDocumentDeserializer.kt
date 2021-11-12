@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLocalGatewayVirtualInterfaceGroupDocument(deserializer: Deserializer): LocalGatewayVirtualInterfaceGroup {
+internal fun deserializeLocalGatewayVirtualInterfaceGroupDocument(deserializer: Deserializer): LocalGatewayVirtualInterfaceGroup {
     val builder = LocalGatewayVirtualInterfaceGroup.builder()
     val LOCALGATEWAYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("localGatewayId"))
     val LOCALGATEWAYVIRTUALINTERFACEGROUPID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("localGatewayVirtualInterfaceGroupId"))

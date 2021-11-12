@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTransitGatewayPrefixListReferenceDocument(deserializer: Deserializer): TransitGatewayPrefixListReference {
+internal fun deserializeTransitGatewayPrefixListReferenceDocument(deserializer: Deserializer): TransitGatewayPrefixListReference {
     val builder = TransitGatewayPrefixListReference.builder()
     val BLACKHOLE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("blackhole"))
     val PREFIXLISTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("prefixListId"))

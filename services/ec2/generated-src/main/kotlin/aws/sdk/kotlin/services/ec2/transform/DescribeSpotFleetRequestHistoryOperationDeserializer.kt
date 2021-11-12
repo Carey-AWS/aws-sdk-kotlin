@@ -48,7 +48,7 @@ internal class DescribeSpotFleetRequestHistoryOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeDescribeSpotFleetRequestHistoryOperationBody(builder: DescribeSpotFleetRequestHistoryResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeSpotFleetRequestHistoryOperationBody(builder: DescribeSpotFleetRequestHistoryResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val HISTORYRECORDS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("historyRecordSet"), XmlCollectionName("item"))
     val LASTEVALUATEDTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("lastEvaluatedTime"))

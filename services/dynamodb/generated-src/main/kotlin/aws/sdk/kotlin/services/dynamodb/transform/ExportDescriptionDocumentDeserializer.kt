@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeExportDescriptionDocument(deserializer: Deserializer): ExportDescription {
+internal fun deserializeExportDescriptionDocument(deserializer: Deserializer): ExportDescription {
     val builder = ExportDescription.builder()
     val BILLEDSIZEBYTES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Long, JsonSerialName("BilledSizeBytes"))
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("ClientToken"))

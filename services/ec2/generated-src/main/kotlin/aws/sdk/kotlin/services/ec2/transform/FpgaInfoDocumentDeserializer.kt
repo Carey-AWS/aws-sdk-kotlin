@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeFpgaInfoDocument(deserializer: Deserializer): FpgaInfo {
+internal fun deserializeFpgaInfoDocument(deserializer: Deserializer): FpgaInfo {
     val builder = FpgaInfo.builder()
     val FPGAS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("fpgas"), XmlCollectionName("item"))
     val TOTALFPGAMEMORYINMIB_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("totalFpgaMemoryInMiB"))

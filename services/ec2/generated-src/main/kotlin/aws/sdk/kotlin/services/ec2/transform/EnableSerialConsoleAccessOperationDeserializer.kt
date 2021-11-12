@@ -45,7 +45,7 @@ internal class EnableSerialConsoleAccessOperationDeserializer: HttpDeserialize<E
     }
 }
 
-private suspend fun deserializeEnableSerialConsoleAccessOperationBody(builder: EnableSerialConsoleAccessResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeEnableSerialConsoleAccessOperationBody(builder: EnableSerialConsoleAccessResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SERIALCONSOLEACCESSENABLED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("serialConsoleAccessEnabled"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

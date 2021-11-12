@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeConditionDocument(deserializer: Deserializer): Condition {
+internal fun deserializeConditionDocument(deserializer: Deserializer): Condition {
     val builder = Condition.builder()
     val HTTPERRORCODERETURNEDEQUALS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("HttpErrorCodeReturnedEquals"))
     val KEYPREFIXEQUALS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("KeyPrefixEquals"))

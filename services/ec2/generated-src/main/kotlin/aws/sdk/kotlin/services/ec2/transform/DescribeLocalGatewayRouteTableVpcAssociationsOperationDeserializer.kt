@@ -47,7 +47,7 @@ internal class DescribeLocalGatewayRouteTableVpcAssociationsOperationDeserialize
     }
 }
 
-private suspend fun deserializeDescribeLocalGatewayRouteTableVpcAssociationsOperationBody(builder: DescribeLocalGatewayRouteTableVpcAssociationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeLocalGatewayRouteTableVpcAssociationsOperationBody(builder: DescribeLocalGatewayRouteTableVpcAssociationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val LOCALGATEWAYROUTETABLEVPCASSOCIATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("localGatewayRouteTableVpcAssociationSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

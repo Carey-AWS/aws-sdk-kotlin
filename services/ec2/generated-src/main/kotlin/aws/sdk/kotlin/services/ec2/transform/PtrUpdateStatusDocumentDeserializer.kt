@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePtrUpdateStatusDocument(deserializer: Deserializer): PtrUpdateStatus {
+internal fun deserializePtrUpdateStatusDocument(deserializer: Deserializer): PtrUpdateStatus {
     val builder = PtrUpdateStatus.builder()
     val REASON_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("reason"))
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("status"))

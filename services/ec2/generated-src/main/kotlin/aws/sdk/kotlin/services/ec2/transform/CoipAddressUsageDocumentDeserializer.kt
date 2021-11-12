@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCoipAddressUsageDocument(deserializer: Deserializer): CoipAddressUsage {
+internal fun deserializeCoipAddressUsageDocument(deserializer: Deserializer): CoipAddressUsage {
     val builder = CoipAddressUsage.builder()
     val ALLOCATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allocationId"))
     val AWSACCOUNTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("awsAccountId"))

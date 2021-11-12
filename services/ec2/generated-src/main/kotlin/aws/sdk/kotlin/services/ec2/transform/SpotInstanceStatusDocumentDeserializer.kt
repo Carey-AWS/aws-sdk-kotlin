@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeSpotInstanceStatusDocument(deserializer: Deserializer): SpotInstanceStatus {
+internal fun deserializeSpotInstanceStatusDocument(deserializer: Deserializer): SpotInstanceStatus {
     val builder = SpotInstanceStatus.builder()
     val CODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("code"))
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))

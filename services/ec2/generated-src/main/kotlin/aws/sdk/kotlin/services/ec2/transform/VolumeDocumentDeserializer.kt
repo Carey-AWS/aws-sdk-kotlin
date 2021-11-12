@@ -26,7 +26,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeVolumeDocument(deserializer: Deserializer): Volume {
+internal fun deserializeVolumeDocument(deserializer: Deserializer): Volume {
     val builder = Volume.builder()
     val ATTACHMENTS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("attachmentSet"), XmlCollectionName("item"))
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))

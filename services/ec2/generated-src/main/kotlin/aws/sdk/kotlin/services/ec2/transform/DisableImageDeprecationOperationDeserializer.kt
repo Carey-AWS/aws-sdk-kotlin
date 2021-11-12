@@ -45,7 +45,7 @@ internal class DisableImageDeprecationOperationDeserializer: HttpDeserialize<Dis
     }
 }
 
-private suspend fun deserializeDisableImageDeprecationOperationBody(builder: DisableImageDeprecationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisableImageDeprecationOperationBody(builder: DisableImageDeprecationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

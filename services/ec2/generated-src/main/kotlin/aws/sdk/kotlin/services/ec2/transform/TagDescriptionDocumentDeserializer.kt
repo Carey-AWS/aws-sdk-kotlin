@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeTagDescriptionDocument(deserializer: Deserializer): TagDescription {
+internal fun deserializeTagDescriptionDocument(deserializer: Deserializer): TagDescription {
     val builder = TagDescription.builder()
     val KEY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("key"))
     val RESOURCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("resourceId"))

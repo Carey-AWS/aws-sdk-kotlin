@@ -29,7 +29,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeNetworkInterfaceDocument(deserializer: Deserializer): NetworkInterface {
+internal fun deserializeNetworkInterfaceDocument(deserializer: Deserializer): NetworkInterface {
     val builder = NetworkInterface.builder()
     val ASSOCIATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("association"))
     val ATTACHMENT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("attachment"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeIamInstanceProfileSpecificationDocument(deserializer: Deserializer): IamInstanceProfileSpecification {
+internal fun deserializeIamInstanceProfileSpecificationDocument(deserializer: Deserializer): IamInstanceProfileSpecification {
     val builder = IamInstanceProfileSpecification.builder()
     val ARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("arn"))
     val NAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("name"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeDeleteRequestDocument(deserializer: Deserializer): DeleteRequest {
+internal fun deserializeDeleteRequestDocument(deserializer: Deserializer): DeleteRequest {
     val builder = DeleteRequest.builder()
     val KEY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Map, JsonSerialName("Key"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

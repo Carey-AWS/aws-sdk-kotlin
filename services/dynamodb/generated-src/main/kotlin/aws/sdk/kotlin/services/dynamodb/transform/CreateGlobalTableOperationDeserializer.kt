@@ -44,7 +44,7 @@ internal class CreateGlobalTableOperationDeserializer: HttpDeserialize<CreateGlo
     }
 }
 
-private suspend fun deserializeCreateGlobalTableOperationBody(builder: CreateGlobalTableResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateGlobalTableOperationBody(builder: CreateGlobalTableResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val GLOBALTABLEDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("GlobalTableDescription"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

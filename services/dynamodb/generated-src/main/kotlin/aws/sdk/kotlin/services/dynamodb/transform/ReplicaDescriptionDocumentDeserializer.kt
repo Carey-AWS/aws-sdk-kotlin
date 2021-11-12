@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeReplicaDescriptionDocument(deserializer: Deserializer): ReplicaDescription {
+internal fun deserializeReplicaDescriptionDocument(deserializer: Deserializer): ReplicaDescription {
     val builder = ReplicaDescription.builder()
     val GLOBALSECONDARYINDEXES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("GlobalSecondaryIndexes"))
     val KMSMASTERKEYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("KMSMasterKeyId"))

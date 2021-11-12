@@ -26,7 +26,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSpotFleetLaunchSpecificationDocument(deserializer: Deserializer): SpotFleetLaunchSpecification {
+internal fun deserializeSpotFleetLaunchSpecificationDocument(deserializer: Deserializer): SpotFleetLaunchSpecification {
     val builder = SpotFleetLaunchSpecification.builder()
     val ADDRESSINGTYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("addressingType"))
     val BLOCKDEVICEMAPPINGS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("blockDeviceMapping"), XmlCollectionName("item"))

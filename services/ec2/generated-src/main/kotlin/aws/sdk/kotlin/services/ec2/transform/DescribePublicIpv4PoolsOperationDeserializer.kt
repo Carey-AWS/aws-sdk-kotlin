@@ -47,7 +47,7 @@ internal class DescribePublicIpv4PoolsOperationDeserializer: HttpDeserialize<Des
     }
 }
 
-private suspend fun deserializeDescribePublicIpv4PoolsOperationBody(builder: DescribePublicIpv4PoolsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribePublicIpv4PoolsOperationBody(builder: DescribePublicIpv4PoolsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val PUBLICIPV4POOLS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("publicIpv4PoolSet"), XmlCollectionName("item"))

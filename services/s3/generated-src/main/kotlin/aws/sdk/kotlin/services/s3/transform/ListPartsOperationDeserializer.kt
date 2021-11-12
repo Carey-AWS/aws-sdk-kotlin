@@ -56,7 +56,7 @@ internal class ListPartsOperationDeserializer: HttpDeserialize<ListPartsResponse
     }
 }
 
-private suspend fun deserializeListPartsOperationBody(builder: ListPartsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListPartsOperationBody(builder: ListPartsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BUCKET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Bucket"))
     val INITIATOR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("Initiator"))

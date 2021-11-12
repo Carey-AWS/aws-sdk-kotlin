@@ -44,7 +44,7 @@ internal class DescribeExportOperationDeserializer: HttpDeserialize<DescribeExpo
     }
 }
 
-private suspend fun deserializeDescribeExportOperationBody(builder: DescribeExportResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeExportOperationBody(builder: DescribeExportResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val EXPORTDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("ExportDescription"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

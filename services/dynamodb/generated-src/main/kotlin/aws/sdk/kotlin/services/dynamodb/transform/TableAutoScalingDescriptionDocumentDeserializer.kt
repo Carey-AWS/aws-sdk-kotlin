@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeTableAutoScalingDescriptionDocument(deserializer: Deserializer): TableAutoScalingDescription {
+internal fun deserializeTableAutoScalingDescriptionDocument(deserializer: Deserializer): TableAutoScalingDescription {
     val builder = TableAutoScalingDescription.builder()
     val REPLICAS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("Replicas"))
     val TABLENAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("TableName"))

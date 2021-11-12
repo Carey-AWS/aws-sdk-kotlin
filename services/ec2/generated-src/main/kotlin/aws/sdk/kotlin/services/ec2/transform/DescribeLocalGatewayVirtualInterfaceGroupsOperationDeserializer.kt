@@ -47,7 +47,7 @@ internal class DescribeLocalGatewayVirtualInterfaceGroupsOperationDeserializer: 
     }
 }
 
-private suspend fun deserializeDescribeLocalGatewayVirtualInterfaceGroupsOperationBody(builder: DescribeLocalGatewayVirtualInterfaceGroupsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeLocalGatewayVirtualInterfaceGroupsOperationBody(builder: DescribeLocalGatewayVirtualInterfaceGroupsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val LOCALGATEWAYVIRTUALINTERFACEGROUPS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("localGatewayVirtualInterfaceGroupSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

@@ -46,7 +46,7 @@ internal class RestoreAddressToClassicOperationDeserializer: HttpDeserialize<Res
     }
 }
 
-private suspend fun deserializeRestoreAddressToClassicOperationBody(builder: RestoreAddressToClassicResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRestoreAddressToClassicOperationBody(builder: RestoreAddressToClassicResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val PUBLICIP_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("publicIp"))
     val STATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("status"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeClassicLinkDnsSupportDocument(deserializer: Deserializer): ClassicLinkDnsSupport {
+internal fun deserializeClassicLinkDnsSupportDocument(deserializer: Deserializer): ClassicLinkDnsSupport {
     val builder = ClassicLinkDnsSupport.builder()
     val CLASSICLINKDNSSUPPORTED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("classicLinkDnsSupported"))
     val VPCID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("vpcId"))

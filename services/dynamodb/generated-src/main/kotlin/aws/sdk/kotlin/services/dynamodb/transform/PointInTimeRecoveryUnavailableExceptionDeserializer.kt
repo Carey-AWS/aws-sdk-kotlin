@@ -35,7 +35,7 @@ internal class PointInTimeRecoveryUnavailableExceptionDeserializer: HttpDeserial
     }
 }
 
-private suspend fun deserializePointInTimeRecoveryUnavailableExceptionError(builder: PointInTimeRecoveryUnavailableException.DslBuilder, payload: ByteArray) {
+private fun deserializePointInTimeRecoveryUnavailableExceptionError(builder: PointInTimeRecoveryUnavailableException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

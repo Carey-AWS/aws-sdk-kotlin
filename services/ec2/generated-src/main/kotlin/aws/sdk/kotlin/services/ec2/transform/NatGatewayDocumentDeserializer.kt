@@ -26,7 +26,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeNatGatewayDocument(deserializer: Deserializer): NatGateway {
+internal fun deserializeNatGatewayDocument(deserializer: Deserializer): NatGateway {
     val builder = NatGateway.builder()
     val CONNECTIVITYTYPE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("connectivityType"))
     val CREATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("createTime"))

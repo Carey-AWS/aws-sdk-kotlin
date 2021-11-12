@@ -46,7 +46,7 @@ internal class DecodeAuthorizationMessageOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeDecodeAuthorizationMessageOperationBody(builder: DecodeAuthorizationMessageResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDecodeAuthorizationMessageOperationBody(builder: DecodeAuthorizationMessageResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
 
     val resultDescriptor = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("DecodeAuthorizationMessageResult"))

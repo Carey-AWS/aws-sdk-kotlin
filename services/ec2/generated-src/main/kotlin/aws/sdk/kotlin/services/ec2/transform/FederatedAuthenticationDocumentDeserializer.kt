@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeFederatedAuthenticationDocument(deserializer: Deserializer): FederatedAuthentication {
+internal fun deserializeFederatedAuthenticationDocument(deserializer: Deserializer): FederatedAuthentication {
     val builder = FederatedAuthentication.builder()
     val SAMLPROVIDERARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("samlProviderArn"))
     val SELFSERVICESAMLPROVIDERARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("selfServiceSamlProviderArn"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeErrorDocumentDocument(deserializer: Deserializer): ErrorDocument {
+internal fun deserializeErrorDocumentDocument(deserializer: Deserializer): ErrorDocument {
     val builder = ErrorDocument.builder()
     val KEY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Key"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

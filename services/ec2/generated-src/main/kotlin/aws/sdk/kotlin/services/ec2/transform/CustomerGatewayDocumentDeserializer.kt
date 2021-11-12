@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCustomerGatewayDocument(deserializer: Deserializer): CustomerGateway {
+internal fun deserializeCustomerGatewayDocument(deserializer: Deserializer): CustomerGateway {
     val builder = CustomerGateway.builder()
     val BGPASN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("bgpAsn"))
     val CERTIFICATEARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("certificateArn"))

@@ -45,7 +45,7 @@ internal class CreateEgressOnlyInternetGatewayOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeCreateEgressOnlyInternetGatewayOperationBody(builder: CreateEgressOnlyInternetGatewayResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateEgressOnlyInternetGatewayOperationBody(builder: CreateEgressOnlyInternetGatewayResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientToken"))
     val EGRESSONLYINTERNETGATEWAY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("egressOnlyInternetGateway"))

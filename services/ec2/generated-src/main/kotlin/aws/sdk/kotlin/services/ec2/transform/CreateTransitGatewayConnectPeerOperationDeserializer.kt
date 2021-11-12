@@ -45,7 +45,7 @@ internal class CreateTransitGatewayConnectPeerOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeCreateTransitGatewayConnectPeerOperationBody(builder: CreateTransitGatewayConnectPeerResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateTransitGatewayConnectPeerOperationBody(builder: CreateTransitGatewayConnectPeerResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val TRANSITGATEWAYCONNECTPEER_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("transitGatewayConnectPeer"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

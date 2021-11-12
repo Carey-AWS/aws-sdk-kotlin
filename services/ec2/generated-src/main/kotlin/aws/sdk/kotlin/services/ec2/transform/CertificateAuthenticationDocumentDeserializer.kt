@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCertificateAuthenticationDocument(deserializer: Deserializer): CertificateAuthentication {
+internal fun deserializeCertificateAuthenticationDocument(deserializer: Deserializer): CertificateAuthentication {
     val builder = CertificateAuthentication.builder()
     val CLIENTROOTCERTIFICATECHAIN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientRootCertificateChain"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -48,7 +48,7 @@ internal class DisableFastSnapshotRestoresOperationDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeDisableFastSnapshotRestoresOperationBody(builder: DisableFastSnapshotRestoresResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDisableFastSnapshotRestoresOperationBody(builder: DisableFastSnapshotRestoresResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SUCCESSFUL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("successful"), XmlCollectionName("item"))
     val UNSUCCESSFUL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("unsuccessful"), XmlCollectionName("item"))

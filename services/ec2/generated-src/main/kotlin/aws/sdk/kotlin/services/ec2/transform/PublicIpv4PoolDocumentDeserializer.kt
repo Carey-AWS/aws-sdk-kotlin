@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePublicIpv4PoolDocument(deserializer: Deserializer): PublicIpv4Pool {
+internal fun deserializePublicIpv4PoolDocument(deserializer: Deserializer): PublicIpv4Pool {
     val builder = PublicIpv4Pool.builder()
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val NETWORKBORDERGROUP_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("networkBorderGroup"))

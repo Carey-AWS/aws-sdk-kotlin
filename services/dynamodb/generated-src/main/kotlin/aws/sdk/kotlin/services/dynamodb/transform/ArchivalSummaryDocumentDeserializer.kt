@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeArchivalSummaryDocument(deserializer: Deserializer): ArchivalSummary {
+internal fun deserializeArchivalSummaryDocument(deserializer: Deserializer): ArchivalSummary {
     val builder = ArchivalSummary.builder()
     val ARCHIVALBACKUPARN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("ArchivalBackupArn"))
     val ARCHIVALDATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, JsonSerialName("ArchivalDateTime"))

@@ -45,7 +45,7 @@ internal class CreateStoreImageTaskOperationDeserializer: HttpDeserialize<Create
     }
 }
 
-private suspend fun deserializeCreateStoreImageTaskOperationBody(builder: CreateStoreImageTaskResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateStoreImageTaskOperationBody(builder: CreateStoreImageTaskResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val OBJECTKEY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("objectKey"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

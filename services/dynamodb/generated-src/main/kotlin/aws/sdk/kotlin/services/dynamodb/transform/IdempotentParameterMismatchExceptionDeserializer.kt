@@ -35,7 +35,7 @@ internal class IdempotentParameterMismatchExceptionDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeIdempotentParameterMismatchExceptionError(builder: IdempotentParameterMismatchException.DslBuilder, payload: ByteArray) {
+private fun deserializeIdempotentParameterMismatchExceptionError(builder: IdempotentParameterMismatchException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("Message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

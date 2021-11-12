@@ -45,7 +45,7 @@ internal class EnableEbsEncryptionByDefaultOperationDeserializer: HttpDeserializ
     }
 }
 
-private suspend fun deserializeEnableEbsEncryptionByDefaultOperationBody(builder: EnableEbsEncryptionByDefaultResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeEnableEbsEncryptionByDefaultOperationBody(builder: EnableEbsEncryptionByDefaultResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val EBSENCRYPTIONBYDEFAULT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("ebsEncryptionByDefault"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

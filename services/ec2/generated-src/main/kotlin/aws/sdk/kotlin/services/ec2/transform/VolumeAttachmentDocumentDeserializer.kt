@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeVolumeAttachmentDocument(deserializer: Deserializer): VolumeAttachment {
+internal fun deserializeVolumeAttachmentDocument(deserializer: Deserializer): VolumeAttachment {
     val builder = VolumeAttachment.builder()
     val ATTACHTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("attachTime"))
     val DELETEONTERMINATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("deleteOnTermination"))

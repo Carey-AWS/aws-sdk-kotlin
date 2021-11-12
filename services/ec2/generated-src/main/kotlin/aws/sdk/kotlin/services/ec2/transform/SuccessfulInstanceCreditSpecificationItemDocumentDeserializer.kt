@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSuccessfulInstanceCreditSpecificationItemDocument(deserializer: Deserializer): SuccessfulInstanceCreditSpecificationItem {
+internal fun deserializeSuccessfulInstanceCreditSpecificationItemDocument(deserializer: Deserializer): SuccessfulInstanceCreditSpecificationItem {
     val builder = SuccessfulInstanceCreditSpecificationItem.builder()
     val INSTANCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("instanceId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

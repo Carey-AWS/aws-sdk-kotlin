@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeAnalysisSecurityGroupRuleDocument(deserializer: Deserializer): AnalysisSecurityGroupRule {
+internal fun deserializeAnalysisSecurityGroupRuleDocument(deserializer: Deserializer): AnalysisSecurityGroupRule {
     val builder = AnalysisSecurityGroupRule.builder()
     val CIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("cidr"))
     val DIRECTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("direction"))

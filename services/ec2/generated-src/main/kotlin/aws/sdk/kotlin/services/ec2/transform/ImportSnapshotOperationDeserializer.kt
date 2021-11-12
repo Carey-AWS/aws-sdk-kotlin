@@ -47,7 +47,7 @@ internal class ImportSnapshotOperationDeserializer: HttpDeserialize<ImportSnapsh
     }
 }
 
-private suspend fun deserializeImportSnapshotOperationBody(builder: ImportSnapshotResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeImportSnapshotOperationBody(builder: ImportSnapshotResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val IMPORTTASKID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("importTaskId"))

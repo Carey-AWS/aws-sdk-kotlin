@@ -35,7 +35,7 @@ internal class ServiceFailureExceptionDeserializer: HttpDeserialize<ServiceFailu
     }
 }
 
-private suspend fun deserializeServiceFailureExceptionError(builder: ServiceFailureException.DslBuilder, payload: ByteArray) {
+private fun deserializeServiceFailureExceptionError(builder: ServiceFailureException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

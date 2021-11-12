@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializePublicIpv4PoolRangeDocument(deserializer: Deserializer): PublicIpv4PoolRange {
+internal fun deserializePublicIpv4PoolRangeDocument(deserializer: Deserializer): PublicIpv4PoolRange {
     val builder = PublicIpv4PoolRange.builder()
     val ADDRESSCOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("addressCount"))
     val AVAILABLEADDRESSCOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("availableAddressCount"))

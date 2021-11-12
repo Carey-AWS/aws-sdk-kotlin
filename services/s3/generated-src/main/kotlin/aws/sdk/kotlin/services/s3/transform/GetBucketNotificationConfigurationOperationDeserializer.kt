@@ -51,7 +51,7 @@ internal class GetBucketNotificationConfigurationOperationDeserializer: HttpDese
     }
 }
 
-private suspend fun deserializeGetBucketNotificationConfigurationOperationBody(builder: GetBucketNotificationConfigurationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketNotificationConfigurationOperationBody(builder: GetBucketNotificationConfigurationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val LAMBDAFUNCTIONCONFIGURATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("CloudFunctionConfiguration"), Flattened)
     val QUEUECONFIGURATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("QueueConfiguration"), Flattened)

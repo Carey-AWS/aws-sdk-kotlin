@@ -45,7 +45,7 @@ internal class ModifyCapacityReservationFleetOperationDeserializer: HttpDeserial
     }
 }
 
-private suspend fun deserializeModifyCapacityReservationFleetOperationBody(builder: ModifyCapacityReservationFleetResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyCapacityReservationFleetOperationBody(builder: ModifyCapacityReservationFleetResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -45,7 +45,7 @@ internal class ModifyReservedInstancesOperationDeserializer: HttpDeserialize<Mod
     }
 }
 
-private suspend fun deserializeModifyReservedInstancesOperationBody(builder: ModifyReservedInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyReservedInstancesOperationBody(builder: ModifyReservedInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RESERVEDINSTANCESMODIFICATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("reservedInstancesModificationId"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

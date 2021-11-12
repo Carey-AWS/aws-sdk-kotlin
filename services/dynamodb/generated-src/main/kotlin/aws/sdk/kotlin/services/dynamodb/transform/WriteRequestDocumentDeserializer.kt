@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeWriteRequestDocument(deserializer: Deserializer): WriteRequest {
+internal fun deserializeWriteRequestDocument(deserializer: Deserializer): WriteRequest {
     val builder = WriteRequest.builder()
     val DELETEREQUEST_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("DeleteRequest"))
     val PUTREQUEST_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("PutRequest"))

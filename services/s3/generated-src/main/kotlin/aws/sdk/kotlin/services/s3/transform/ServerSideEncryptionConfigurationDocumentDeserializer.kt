@@ -22,7 +22,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeServerSideEncryptionConfigurationDocument(deserializer: Deserializer): ServerSideEncryptionConfiguration {
+internal fun deserializeServerSideEncryptionConfigurationDocument(deserializer: Deserializer): ServerSideEncryptionConfiguration {
     val builder = ServerSideEncryptionConfiguration.builder()
     val RULES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("Rule"), Flattened)
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

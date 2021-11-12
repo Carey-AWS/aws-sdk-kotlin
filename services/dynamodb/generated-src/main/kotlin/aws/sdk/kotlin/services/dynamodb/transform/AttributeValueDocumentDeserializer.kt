@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.serializeStruct
 import aws.smithy.kotlin.runtime.util.decodeBase64Bytes
 
 
-internal suspend fun deserializeAttributeValueDocument(deserializer: Deserializer): AttributeValue {
+internal fun deserializeAttributeValueDocument(deserializer: Deserializer): AttributeValue {
     var value: AttributeValue? = null
     val B_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Blob, JsonSerialName("B"))
     val BOOL_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, JsonSerialName("BOOL"))

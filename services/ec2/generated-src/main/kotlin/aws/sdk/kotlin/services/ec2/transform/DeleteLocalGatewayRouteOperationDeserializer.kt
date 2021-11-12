@@ -45,7 +45,7 @@ internal class DeleteLocalGatewayRouteOperationDeserializer: HttpDeserialize<Del
     }
 }
 
-private suspend fun deserializeDeleteLocalGatewayRouteOperationBody(builder: DeleteLocalGatewayRouteResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteLocalGatewayRouteOperationBody(builder: DeleteLocalGatewayRouteResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ROUTE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("route"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

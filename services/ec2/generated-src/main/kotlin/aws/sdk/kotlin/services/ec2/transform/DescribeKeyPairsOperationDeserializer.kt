@@ -47,7 +47,7 @@ internal class DescribeKeyPairsOperationDeserializer: HttpDeserialize<DescribeKe
     }
 }
 
-private suspend fun deserializeDescribeKeyPairsOperationBody(builder: DescribeKeyPairsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeKeyPairsOperationBody(builder: DescribeKeyPairsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val KEYPAIRS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("keySet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

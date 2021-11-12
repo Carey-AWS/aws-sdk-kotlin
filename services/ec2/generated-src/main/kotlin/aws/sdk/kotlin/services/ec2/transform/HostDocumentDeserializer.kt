@@ -28,7 +28,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeHostDocument(deserializer: Deserializer): Host {
+internal fun deserializeHostDocument(deserializer: Deserializer): Host {
     val builder = Host.builder()
     val ALLOCATIONTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("allocationTime"))
     val ALLOWSMULTIPLEINSTANCETYPES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allowsMultipleInstanceTypes"))

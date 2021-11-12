@@ -45,7 +45,7 @@ internal class StartVpcEndpointServicePrivateDnsVerificationOperationDeserialize
     }
 }
 
-private suspend fun deserializeStartVpcEndpointServicePrivateDnsVerificationOperationBody(builder: StartVpcEndpointServicePrivateDnsVerificationResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeStartVpcEndpointServicePrivateDnsVerificationOperationBody(builder: StartVpcEndpointServicePrivateDnsVerificationResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURNVALUE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

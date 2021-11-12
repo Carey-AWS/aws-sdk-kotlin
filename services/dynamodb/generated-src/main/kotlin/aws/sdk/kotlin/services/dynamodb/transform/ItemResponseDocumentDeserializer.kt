@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeItemResponseDocument(deserializer: Deserializer): ItemResponse {
+internal fun deserializeItemResponseDocument(deserializer: Deserializer): ItemResponse {
     val builder = ItemResponse.builder()
     val ITEM_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Map, JsonSerialName("Item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

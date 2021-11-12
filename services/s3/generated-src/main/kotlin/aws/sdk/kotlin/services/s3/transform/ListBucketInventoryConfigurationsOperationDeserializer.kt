@@ -49,7 +49,7 @@ internal class ListBucketInventoryConfigurationsOperationDeserializer: HttpDeser
     }
 }
 
-private suspend fun deserializeListBucketInventoryConfigurationsOperationBody(builder: ListBucketInventoryConfigurationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeListBucketInventoryConfigurationsOperationBody(builder: ListBucketInventoryConfigurationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CONTINUATIONTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("ContinuationToken"))
     val INVENTORYCONFIGURATIONLIST_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("InventoryConfiguration"), Flattened)

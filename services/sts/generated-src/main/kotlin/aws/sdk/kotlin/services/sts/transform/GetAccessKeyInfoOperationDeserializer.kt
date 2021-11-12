@@ -46,7 +46,7 @@ internal class GetAccessKeyInfoOperationDeserializer: HttpDeserialize<GetAccessK
     }
 }
 
-private suspend fun deserializeGetAccessKeyInfoOperationBody(builder: GetAccessKeyInfoResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetAccessKeyInfoOperationBody(builder: GetAccessKeyInfoResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
 
     val resultDescriptor = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("GetAccessKeyInfoResult"))

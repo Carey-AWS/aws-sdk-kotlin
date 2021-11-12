@@ -47,7 +47,7 @@ internal class DescribeClientVpnTargetNetworksOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeDescribeClientVpnTargetNetworksOperationBody(builder: DescribeClientVpnTargetNetworksResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeClientVpnTargetNetworksOperationBody(builder: DescribeClientVpnTargetNetworksResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CLIENTVPNTARGETNETWORKS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("clientVpnTargetNetworks"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

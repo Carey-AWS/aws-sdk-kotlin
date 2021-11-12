@@ -47,7 +47,7 @@ internal class GetAssociatedIpv6PoolCidrsOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeGetAssociatedIpv6PoolCidrsOperationBody(builder: GetAssociatedIpv6PoolCidrsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetAssociatedIpv6PoolCidrsOperationBody(builder: GetAssociatedIpv6PoolCidrsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IPV6CIDRASSOCIATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("ipv6CidrAssociationSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

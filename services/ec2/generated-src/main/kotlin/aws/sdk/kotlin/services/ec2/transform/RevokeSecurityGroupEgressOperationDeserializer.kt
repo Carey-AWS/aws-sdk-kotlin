@@ -47,7 +47,7 @@ internal class RevokeSecurityGroupEgressOperationDeserializer: HttpDeserialize<R
     }
 }
 
-private suspend fun deserializeRevokeSecurityGroupEgressOperationBody(builder: RevokeSecurityGroupEgressResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeRevokeSecurityGroupEgressOperationBody(builder: RevokeSecurityGroupEgressResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val RETURN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("return"))
     val UNKNOWNIPPERMISSIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("unknownIpPermissionSet"), XmlCollectionName("item"))

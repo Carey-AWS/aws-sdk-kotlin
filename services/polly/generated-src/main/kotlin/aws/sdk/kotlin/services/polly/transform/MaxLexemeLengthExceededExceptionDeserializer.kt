@@ -35,7 +35,7 @@ internal class MaxLexemeLengthExceededExceptionDeserializer: HttpDeserialize<Max
     }
 }
 
-private suspend fun deserializeMaxLexemeLengthExceededExceptionError(builder: MaxLexemeLengthExceededException.DslBuilder, payload: ByteArray) {
+private fun deserializeMaxLexemeLengthExceededExceptionError(builder: MaxLexemeLengthExceededException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

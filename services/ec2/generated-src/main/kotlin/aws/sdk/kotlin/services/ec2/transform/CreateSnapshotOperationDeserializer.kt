@@ -49,7 +49,7 @@ internal class CreateSnapshotOperationDeserializer: HttpDeserialize<CreateSnapsh
     }
 }
 
-private suspend fun deserializeCreateSnapshotOperationBody(builder: CreateSnapshotResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeCreateSnapshotOperationBody(builder: CreateSnapshotResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val DATAENCRYPTIONKEYID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("dataEncryptionKeyId"))
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))

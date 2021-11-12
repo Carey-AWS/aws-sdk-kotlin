@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInventoryEncryptionDocument(deserializer: Deserializer): InventoryEncryption {
+internal fun deserializeInventoryEncryptionDocument(deserializer: Deserializer): InventoryEncryption {
     val builder = InventoryEncryption.builder()
     val SSEKMS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("SSE-KMS"))
     val SSES3_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("SSE-S3"))

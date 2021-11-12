@@ -46,7 +46,7 @@ internal class UnassignIpv6AddressesOperationDeserializer: HttpDeserialize<Unass
     }
 }
 
-private suspend fun deserializeUnassignIpv6AddressesOperationBody(builder: UnassignIpv6AddressesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeUnassignIpv6AddressesOperationBody(builder: UnassignIpv6AddressesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NETWORKINTERFACEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("networkInterfaceId"))
     val UNASSIGNEDIPV6ADDRESSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("unassignedIpv6Addresses"), XmlCollectionName("item"))

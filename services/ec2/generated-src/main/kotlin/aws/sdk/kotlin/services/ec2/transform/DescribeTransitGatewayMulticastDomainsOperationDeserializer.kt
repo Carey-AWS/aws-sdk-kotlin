@@ -47,7 +47,7 @@ internal class DescribeTransitGatewayMulticastDomainsOperationDeserializer: Http
     }
 }
 
-private suspend fun deserializeDescribeTransitGatewayMulticastDomainsOperationBody(builder: DescribeTransitGatewayMulticastDomainsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeTransitGatewayMulticastDomainsOperationBody(builder: DescribeTransitGatewayMulticastDomainsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val TRANSITGATEWAYMULTICASTDOMAINS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("transitGatewayMulticastDomains"), XmlCollectionName("item"))

@@ -35,7 +35,7 @@ internal class GetBucketPolicyStatusOperationDeserializer: HttpDeserialize<GetBu
     }
 }
 
-private suspend fun deserializeGetBucketPolicyStatusOperationBody(builder: GetBucketPolicyStatusResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketPolicyStatusOperationBody(builder: GetBucketPolicyStatusResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.policyStatus = deserializePolicyStatusDocument(deserializer)
 }

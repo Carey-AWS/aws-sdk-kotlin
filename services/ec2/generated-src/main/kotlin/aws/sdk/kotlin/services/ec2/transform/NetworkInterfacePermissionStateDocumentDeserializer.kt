@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeNetworkInterfacePermissionStateDocument(deserializer: Deserializer): NetworkInterfacePermissionState {
+internal fun deserializeNetworkInterfacePermissionStateDocument(deserializer: Deserializer): NetworkInterfacePermissionState {
     val builder = NetworkInterfacePermissionState.builder()
     val STATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("state"))
     val STATUSMESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("statusMessage"))

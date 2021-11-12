@@ -46,7 +46,7 @@ internal class GetFederationTokenOperationDeserializer: HttpDeserialize<GetFeder
     }
 }
 
-private suspend fun deserializeGetFederationTokenOperationBody(builder: GetFederationTokenResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetFederationTokenOperationBody(builder: GetFederationTokenResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
 
     val resultDescriptor = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("GetFederationTokenResult"))

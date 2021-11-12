@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeReplicaAutoScalingDescriptionDocument(deserializer: Deserializer): ReplicaAutoScalingDescription {
+internal fun deserializeReplicaAutoScalingDescriptionDocument(deserializer: Deserializer): ReplicaAutoScalingDescription {
     val builder = ReplicaAutoScalingDescription.builder()
     val GLOBALSECONDARYINDEXES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, JsonSerialName("GlobalSecondaryIndexes"))
     val REGIONNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("RegionName"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeEnableFastSnapshotRestoreStateErrorDocument(deserializer: Deserializer): EnableFastSnapshotRestoreStateError {
+internal fun deserializeEnableFastSnapshotRestoreStateErrorDocument(deserializer: Deserializer): EnableFastSnapshotRestoreStateError {
     val builder = EnableFastSnapshotRestoreStateError.builder()
     val CODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("code"))
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("message"))

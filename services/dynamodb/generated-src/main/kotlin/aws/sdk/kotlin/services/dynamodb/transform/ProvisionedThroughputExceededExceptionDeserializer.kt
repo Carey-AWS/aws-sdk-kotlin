@@ -35,7 +35,7 @@ internal class ProvisionedThroughputExceededExceptionDeserializer: HttpDeseriali
     }
 }
 
-private suspend fun deserializeProvisionedThroughputExceededExceptionError(builder: ProvisionedThroughputExceededException.DslBuilder, payload: ByteArray) {
+private fun deserializeProvisionedThroughputExceededExceptionError(builder: ProvisionedThroughputExceededException.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val MESSAGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("message"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

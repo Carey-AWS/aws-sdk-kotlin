@@ -23,7 +23,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeIpv6PoolDocument(deserializer: Deserializer): Ipv6Pool {
+internal fun deserializeIpv6PoolDocument(deserializer: Deserializer): Ipv6Pool {
     val builder = Ipv6Pool.builder()
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val POOLCIDRBLOCKS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("poolCidrBlockSet"), XmlCollectionName("item"))

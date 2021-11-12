@@ -45,7 +45,7 @@ internal class AssociateEnclaveCertificateIamRoleOperationDeserializer: HttpDese
     }
 }
 
-private suspend fun deserializeAssociateEnclaveCertificateIamRoleOperationBody(builder: AssociateEnclaveCertificateIamRoleResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAssociateEnclaveCertificateIamRoleOperationBody(builder: AssociateEnclaveCertificateIamRoleResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CERTIFICATES3BUCKETNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("certificateS3BucketName"))
     val CERTIFICATES3OBJECTKEY_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("certificateS3ObjectKey"))

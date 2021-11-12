@@ -49,7 +49,7 @@ internal class GetBucketWebsiteOperationDeserializer: HttpDeserialize<GetBucketW
     }
 }
 
-private suspend fun deserializeGetBucketWebsiteOperationBody(builder: GetBucketWebsiteResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketWebsiteOperationBody(builder: GetBucketWebsiteResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ERRORDOCUMENT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("ErrorDocument"))
     val INDEXDOCUMENT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("IndexDocument"))

@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeLaunchTemplateCapacityReservationSpecificationResponseDocument(deserializer: Deserializer): LaunchTemplateCapacityReservationSpecificationResponse {
+internal fun deserializeLaunchTemplateCapacityReservationSpecificationResponseDocument(deserializer: Deserializer): LaunchTemplateCapacityReservationSpecificationResponse {
     val builder = LaunchTemplateCapacityReservationSpecificationResponse.builder()
     val CAPACITYRESERVATIONPREFERENCE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("capacityReservationPreference"))
     val CAPACITYRESERVATIONTARGET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("capacityReservationTarget"))

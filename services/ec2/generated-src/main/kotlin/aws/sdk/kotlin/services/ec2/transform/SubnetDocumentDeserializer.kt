@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSubnetDocument(deserializer: Deserializer): Subnet {
+internal fun deserializeSubnetDocument(deserializer: Deserializer): Subnet {
     val builder = Subnet.builder()
     val ASSIGNIPV6ADDRESSONCREATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("assignIpv6AddressOnCreation"))
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))

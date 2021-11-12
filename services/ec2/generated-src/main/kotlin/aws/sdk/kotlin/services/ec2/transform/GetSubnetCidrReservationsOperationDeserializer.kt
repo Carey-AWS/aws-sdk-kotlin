@@ -47,7 +47,7 @@ internal class GetSubnetCidrReservationsOperationDeserializer: HttpDeserialize<G
     }
 }
 
-private suspend fun deserializeGetSubnetCidrReservationsOperationBody(builder: GetSubnetCidrReservationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetSubnetCidrReservationsOperationBody(builder: GetSubnetCidrReservationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val SUBNETIPV4CIDRRESERVATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("subnetIpv4CidrReservationSet"), XmlCollectionName("item"))

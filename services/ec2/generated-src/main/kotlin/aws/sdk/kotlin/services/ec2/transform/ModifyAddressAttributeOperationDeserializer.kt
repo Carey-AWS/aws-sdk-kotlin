@@ -45,7 +45,7 @@ internal class ModifyAddressAttributeOperationDeserializer: HttpDeserialize<Modi
     }
 }
 
-private suspend fun deserializeModifyAddressAttributeOperationBody(builder: ModifyAddressAttributeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeModifyAddressAttributeOperationBody(builder: ModifyAddressAttributeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ADDRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("address"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

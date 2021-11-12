@@ -47,7 +47,7 @@ internal class DescribeSecurityGroupReferencesOperationDeserializer: HttpDeseria
     }
 }
 
-private suspend fun deserializeDescribeSecurityGroupReferencesOperationBody(builder: DescribeSecurityGroupReferencesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeSecurityGroupReferencesOperationBody(builder: DescribeSecurityGroupReferencesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val SECURITYGROUPREFERENCESET_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("securityGroupReferenceSet"), XmlCollectionName("item"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

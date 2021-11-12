@@ -49,7 +49,7 @@ internal class GetReservedInstancesExchangeQuoteOperationDeserializer: HttpDeser
     }
 }
 
-private suspend fun deserializeGetReservedInstancesExchangeQuoteOperationBody(builder: GetReservedInstancesExchangeQuoteResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetReservedInstancesExchangeQuoteOperationBody(builder: GetReservedInstancesExchangeQuoteResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CURRENCYCODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("currencyCode"))
     val ISVALIDEXCHANGE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("isValidExchange"))

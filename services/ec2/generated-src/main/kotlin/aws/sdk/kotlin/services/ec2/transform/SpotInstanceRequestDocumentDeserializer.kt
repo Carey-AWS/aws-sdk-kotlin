@@ -27,7 +27,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeSpotInstanceRequestDocument(deserializer: Deserializer): SpotInstanceRequest {
+internal fun deserializeSpotInstanceRequestDocument(deserializer: Deserializer): SpotInstanceRequest {
     val builder = SpotInstanceRequest.builder()
     val ACTUALBLOCKHOURLYPRICE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("actualBlockHourlyPrice"))
     val AVAILABILITYZONEGROUP_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZoneGroup"))

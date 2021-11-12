@@ -47,7 +47,7 @@ internal class DescribeReplaceRootVolumeTasksOperationDeserializer: HttpDeserial
     }
 }
 
-private suspend fun deserializeDescribeReplaceRootVolumeTasksOperationBody(builder: DescribeReplaceRootVolumeTasksResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeReplaceRootVolumeTasksOperationBody(builder: DescribeReplaceRootVolumeTasksResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val REPLACEROOTVOLUMETASKS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("replaceRootVolumeTaskSet"), XmlCollectionName("item"))

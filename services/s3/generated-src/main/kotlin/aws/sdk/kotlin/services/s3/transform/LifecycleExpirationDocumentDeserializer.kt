@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeLifecycleExpirationDocument(deserializer: Deserializer): LifecycleExpiration {
+internal fun deserializeLifecycleExpirationDocument(deserializer: Deserializer): LifecycleExpiration {
     val builder = LifecycleExpiration.builder()
     val DATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("Date"))
     val DAYS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("Days"))

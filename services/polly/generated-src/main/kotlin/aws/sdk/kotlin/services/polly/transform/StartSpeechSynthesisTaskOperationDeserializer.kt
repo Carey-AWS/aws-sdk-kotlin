@@ -44,7 +44,7 @@ internal class StartSpeechSynthesisTaskOperationDeserializer: HttpDeserialize<St
     }
 }
 
-private suspend fun deserializeStartSpeechSynthesisTaskOperationBody(builder: StartSpeechSynthesisTaskResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeStartSpeechSynthesisTaskOperationBody(builder: StartSpeechSynthesisTaskResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val SYNTHESISTASK_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("SynthesisTask"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

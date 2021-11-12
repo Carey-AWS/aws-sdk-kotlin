@@ -45,7 +45,7 @@ internal class AcceptVpcPeeringConnectionOperationDeserializer: HttpDeserialize<
     }
 }
 
-private suspend fun deserializeAcceptVpcPeeringConnectionOperationBody(builder: AcceptVpcPeeringConnectionResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAcceptVpcPeeringConnectionOperationBody(builder: AcceptVpcPeeringConnectionResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val VPCPEERINGCONNECTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("vpcPeeringConnection"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

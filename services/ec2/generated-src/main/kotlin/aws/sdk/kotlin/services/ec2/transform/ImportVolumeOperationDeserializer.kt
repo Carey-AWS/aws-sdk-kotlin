@@ -45,7 +45,7 @@ internal class ImportVolumeOperationDeserializer: HttpDeserialize<ImportVolumeRe
     }
 }
 
-private suspend fun deserializeImportVolumeOperationBody(builder: ImportVolumeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeImportVolumeOperationBody(builder: ImportVolumeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val CONVERSIONTASK_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("conversionTask"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

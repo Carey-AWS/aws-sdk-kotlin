@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeIndexDocumentDocument(deserializer: Deserializer): IndexDocument {
+internal fun deserializeIndexDocumentDocument(deserializer: Deserializer): IndexDocument {
     val builder = IndexDocument.builder()
     val SUFFIX_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("Suffix"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

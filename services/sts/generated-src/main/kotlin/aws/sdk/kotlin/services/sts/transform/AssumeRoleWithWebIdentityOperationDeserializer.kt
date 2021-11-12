@@ -46,7 +46,7 @@ internal class AssumeRoleWithWebIdentityOperationDeserializer: HttpDeserialize<A
     }
 }
 
-private suspend fun deserializeAssumeRoleWithWebIdentityOperationBody(builder: AssumeRoleWithWebIdentityResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAssumeRoleWithWebIdentityOperationBody(builder: AssumeRoleWithWebIdentityResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
 
     val resultDescriptor = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("AssumeRoleWithWebIdentityResult"))

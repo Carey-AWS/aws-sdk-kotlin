@@ -44,7 +44,7 @@ internal class DescribeContinuousBackupsOperationDeserializer: HttpDeserialize<D
     }
 }
 
-private suspend fun deserializeDescribeContinuousBackupsOperationBody(builder: DescribeContinuousBackupsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeContinuousBackupsOperationBody(builder: DescribeContinuousBackupsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val CONTINUOUSBACKUPSDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("ContinuousBackupsDescription"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -45,7 +45,7 @@ internal class AdvertiseByoipCidrOperationDeserializer: HttpDeserialize<Advertis
     }
 }
 
-private suspend fun deserializeAdvertiseByoipCidrOperationBody(builder: AdvertiseByoipCidrResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAdvertiseByoipCidrOperationBody(builder: AdvertiseByoipCidrResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val BYOIPCIDR_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("byoipCidr"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

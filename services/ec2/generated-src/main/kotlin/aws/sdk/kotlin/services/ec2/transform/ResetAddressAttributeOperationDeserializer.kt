@@ -45,7 +45,7 @@ internal class ResetAddressAttributeOperationDeserializer: HttpDeserialize<Reset
     }
 }
 
-private suspend fun deserializeResetAddressAttributeOperationBody(builder: ResetAddressAttributeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeResetAddressAttributeOperationBody(builder: ResetAddressAttributeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ADDRESS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("address"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

@@ -46,7 +46,7 @@ internal class AssignIpv6AddressesOperationDeserializer: HttpDeserialize<AssignI
     }
 }
 
-private suspend fun deserializeAssignIpv6AddressesOperationBody(builder: AssignIpv6AddressesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeAssignIpv6AddressesOperationBody(builder: AssignIpv6AddressesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ASSIGNEDIPV6ADDRESSES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("assignedIpv6Addresses"), XmlCollectionName("item"))
     val ASSIGNEDIPV6PREFIXES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("assignedIpv6PrefixSet"), XmlCollectionName("item"))

@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeVolumeStatusEventDocument(deserializer: Deserializer): VolumeStatusEvent {
+internal fun deserializeVolumeStatusEventDocument(deserializer: Deserializer): VolumeStatusEvent {
     val builder = VolumeStatusEvent.builder()
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))
     val EVENTID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("eventId"))

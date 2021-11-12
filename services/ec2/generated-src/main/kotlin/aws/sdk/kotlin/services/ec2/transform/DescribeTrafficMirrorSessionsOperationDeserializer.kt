@@ -47,7 +47,7 @@ internal class DescribeTrafficMirrorSessionsOperationDeserializer: HttpDeseriali
     }
 }
 
-private suspend fun deserializeDescribeTrafficMirrorSessionsOperationBody(builder: DescribeTrafficMirrorSessionsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeTrafficMirrorSessionsOperationBody(builder: DescribeTrafficMirrorSessionsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val TRAFFICMIRRORSESSIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("trafficMirrorSessionSet"), XmlCollectionName("item"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeEbsOptimizedInfoDocument(deserializer: Deserializer): EbsOptimizedInfo {
+internal fun deserializeEbsOptimizedInfoDocument(deserializer: Deserializer): EbsOptimizedInfo {
     val builder = EbsOptimizedInfo.builder()
     val BASELINEBANDWIDTHINMBPS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("baselineBandwidthInMbps"))
     val BASELINEIOPS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("baselineIops"))

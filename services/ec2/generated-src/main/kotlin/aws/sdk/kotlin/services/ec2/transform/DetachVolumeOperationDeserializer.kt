@@ -47,7 +47,7 @@ internal class DetachVolumeOperationDeserializer: HttpDeserialize<DetachVolumeRe
     }
 }
 
-private suspend fun deserializeDetachVolumeOperationBody(builder: DetachVolumeResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDetachVolumeOperationBody(builder: DetachVolumeResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ATTACHTIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("attachTime"))
     val DELETEONTERMINATION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("deleteOnTermination"))

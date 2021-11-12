@@ -45,7 +45,7 @@ internal class DeleteInstanceEventWindowOperationDeserializer: HttpDeserialize<D
     }
 }
 
-private suspend fun deserializeDeleteInstanceEventWindowOperationBody(builder: DeleteInstanceEventWindowResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteInstanceEventWindowOperationBody(builder: DeleteInstanceEventWindowResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val INSTANCEEVENTWINDOWSTATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("instanceEventWindowState"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

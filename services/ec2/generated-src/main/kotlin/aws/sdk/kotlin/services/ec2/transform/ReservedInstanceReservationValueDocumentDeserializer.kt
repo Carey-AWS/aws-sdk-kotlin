@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeReservedInstanceReservationValueDocument(deserializer: Deserializer): ReservedInstanceReservationValue {
+internal fun deserializeReservedInstanceReservationValueDocument(deserializer: Deserializer): ReservedInstanceReservationValue {
     val builder = ReservedInstanceReservationValue.builder()
     val RESERVATIONVALUE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("reservationValue"))
     val RESERVEDINSTANCEID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("reservedInstanceId"))

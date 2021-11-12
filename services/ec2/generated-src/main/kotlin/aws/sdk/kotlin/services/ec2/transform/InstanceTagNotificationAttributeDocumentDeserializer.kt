@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeInstanceTagNotificationAttributeDocument(deserializer: Deserializer): InstanceTagNotificationAttribute {
+internal fun deserializeInstanceTagNotificationAttributeDocument(deserializer: Deserializer): InstanceTagNotificationAttribute {
     val builder = InstanceTagNotificationAttribute.builder()
     val INCLUDEALLTAGSOFINSTANCE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("includeAllTagsOfInstance"))
     val INSTANCETAGKEYS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("instanceTagKeySet"), XmlCollectionName("item"))

@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeIkeVersionsListValueDocument(deserializer: Deserializer): IkeVersionsListValue {
+internal fun deserializeIkeVersionsListValueDocument(deserializer: Deserializer): IkeVersionsListValue {
     val builder = IkeVersionsListValue.builder()
     val VALUE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("value"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

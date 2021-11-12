@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeNetworkInterfaceAssociationDocument(deserializer: Deserializer): NetworkInterfaceAssociation {
+internal fun deserializeNetworkInterfaceAssociationDocument(deserializer: Deserializer): NetworkInterfaceAssociation {
     val builder = NetworkInterfaceAssociation.builder()
     val ALLOCATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("allocationId"))
     val ASSOCIATIONID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("associationId"))

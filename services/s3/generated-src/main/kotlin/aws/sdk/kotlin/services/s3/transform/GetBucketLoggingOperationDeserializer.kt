@@ -47,7 +47,7 @@ internal class GetBucketLoggingOperationDeserializer: HttpDeserialize<GetBucketL
     }
 }
 
-private suspend fun deserializeGetBucketLoggingOperationBody(builder: GetBucketLoggingResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetBucketLoggingOperationBody(builder: GetBucketLoggingResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val LOGGINGENABLED_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, XmlSerialName("LoggingEnabled"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

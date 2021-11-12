@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeIpRangeDocument(deserializer: Deserializer): IpRange {
+internal fun deserializeIpRangeDocument(deserializer: Deserializer): IpRange {
     val builder = IpRange.builder()
     val CIDRIP_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("cidrIp"))
     val DESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("description"))

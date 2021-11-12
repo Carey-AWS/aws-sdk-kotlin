@@ -35,7 +35,7 @@ internal class SelectObjectContentOperationDeserializer: HttpDeserialize<SelectO
     }
 }
 
-private suspend fun deserializeSelectObjectContentOperationBody(builder: SelectObjectContentResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeSelectObjectContentOperationBody(builder: SelectObjectContentResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     builder.payload = deserializeSelectObjectContentEventStreamDocument(deserializer)
 }

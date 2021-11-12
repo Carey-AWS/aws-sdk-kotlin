@@ -47,7 +47,7 @@ internal class DescribeImportSnapshotTasksOperationDeserializer: HttpDeserialize
     }
 }
 
-private suspend fun deserializeDescribeImportSnapshotTasksOperationBody(builder: DescribeImportSnapshotTasksResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeImportSnapshotTasksOperationBody(builder: DescribeImportSnapshotTasksResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val IMPORTSNAPSHOTTASKS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("importSnapshotTaskSet"), XmlCollectionName("item"))
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))

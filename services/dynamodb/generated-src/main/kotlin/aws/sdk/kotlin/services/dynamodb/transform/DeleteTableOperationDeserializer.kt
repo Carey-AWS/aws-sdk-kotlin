@@ -44,7 +44,7 @@ internal class DeleteTableOperationDeserializer: HttpDeserialize<DeleteTableResp
     }
 }
 
-private suspend fun deserializeDeleteTableOperationBody(builder: DeleteTableResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDeleteTableOperationBody(builder: DeleteTableResponse.DslBuilder, payload: ByteArray) {
     val deserializer = JsonDeserializer(payload)
     val TABLEDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Struct, JsonSerialName("TableDescription"))
     val OBJ_DESCRIPTOR = SdkObjectDescriptor.build {

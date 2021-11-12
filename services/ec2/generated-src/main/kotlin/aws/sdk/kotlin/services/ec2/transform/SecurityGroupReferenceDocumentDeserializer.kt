@@ -20,7 +20,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeSecurityGroupReferenceDocument(deserializer: Deserializer): SecurityGroupReference {
+internal fun deserializeSecurityGroupReferenceDocument(deserializer: Deserializer): SecurityGroupReference {
     val builder = SecurityGroupReference.builder()
     val GROUPID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("groupId"))
     val REFERENCINGVPCID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("referencingVpcId"))

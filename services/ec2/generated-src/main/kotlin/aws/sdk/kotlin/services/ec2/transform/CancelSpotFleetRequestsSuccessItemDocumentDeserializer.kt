@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeCancelSpotFleetRequestsSuccessItemDocument(deserializer: Deserializer): CancelSpotFleetRequestsSuccessItem {
+internal fun deserializeCancelSpotFleetRequestsSuccessItemDocument(deserializer: Deserializer): CancelSpotFleetRequestsSuccessItem {
     val builder = CancelSpotFleetRequestsSuccessItem.builder()
     val CURRENTSPOTFLEETREQUESTSTATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("currentSpotFleetRequestState"))
     val PREVIOUSSPOTFLEETREQUESTSTATE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("previousSpotFleetRequestState"))

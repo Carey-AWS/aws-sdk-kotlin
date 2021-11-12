@@ -21,7 +21,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeScheduledInstanceAvailabilityDocument(deserializer: Deserializer): ScheduledInstanceAvailability {
+internal fun deserializeScheduledInstanceAvailabilityDocument(deserializer: Deserializer): ScheduledInstanceAvailability {
     val builder = ScheduledInstanceAvailability.builder()
     val AVAILABILITYZONE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("availabilityZone"))
     val AVAILABLEINSTANCECOUNT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Integer, XmlSerialName("availableInstanceCount"))

@@ -47,7 +47,7 @@ internal class DescribeFleetInstancesOperationDeserializer: HttpDeserialize<Desc
     }
 }
 
-private suspend fun deserializeDescribeFleetInstancesOperationBody(builder: DescribeFleetInstancesResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeDescribeFleetInstancesOperationBody(builder: DescribeFleetInstancesResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val ACTIVEINSTANCES_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("activeInstanceSet"), XmlCollectionName("item"))
     val FLEETID_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("fleetId"))

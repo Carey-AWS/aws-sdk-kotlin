@@ -25,7 +25,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlNamespace
 import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 
 
-internal suspend fun deserializeImportImageTaskDocument(deserializer: Deserializer): ImportImageTask {
+internal fun deserializeImportImageTaskDocument(deserializer: Deserializer): ImportImageTask {
     val builder = ImportImageTask.builder()
     val ARCHITECTURE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("architecture"))
     val BOOTMODE_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("bootMode"))

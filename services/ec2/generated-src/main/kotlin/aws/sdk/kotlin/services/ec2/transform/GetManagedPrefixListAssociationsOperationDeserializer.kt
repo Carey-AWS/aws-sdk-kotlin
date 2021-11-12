@@ -47,7 +47,7 @@ internal class GetManagedPrefixListAssociationsOperationDeserializer: HttpDeseri
     }
 }
 
-private suspend fun deserializeGetManagedPrefixListAssociationsOperationBody(builder: GetManagedPrefixListAssociationsResponse.DslBuilder, payload: ByteArray) {
+private fun deserializeGetManagedPrefixListAssociationsOperationBody(builder: GetManagedPrefixListAssociationsResponse.DslBuilder, payload: ByteArray) {
     val deserializer = XmlDeserializer(payload)
     val NEXTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("nextToken"))
     val PREFIXLISTASSOCIATIONS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.List, XmlSerialName("prefixListAssociationSet"), XmlCollectionName("item"))

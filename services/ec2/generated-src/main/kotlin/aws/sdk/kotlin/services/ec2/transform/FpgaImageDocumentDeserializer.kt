@@ -24,7 +24,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeFpgaImageDocument(deserializer: Deserializer): FpgaImage {
+internal fun deserializeFpgaImageDocument(deserializer: Deserializer): FpgaImage {
     val builder = FpgaImage.builder()
     val CREATETIME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Timestamp, XmlSerialName("createTime"))
     val DATARETENTIONSUPPORT_DESCRIPTOR = SdkFieldDescriptor(SerialKind.Boolean, XmlSerialName("dataRetentionSupport"))

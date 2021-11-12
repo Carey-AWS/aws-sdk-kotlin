@@ -19,7 +19,7 @@ import aws.smithy.kotlin.runtime.serde.serializeMap
 import aws.smithy.kotlin.runtime.serde.serializeStruct
 
 
-internal suspend fun deserializeFailureExceptionDocument(deserializer: Deserializer): FailureException {
+internal fun deserializeFailureExceptionDocument(deserializer: Deserializer): FailureException {
     val builder = FailureException.builder()
     val EXCEPTIONDESCRIPTION_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("ExceptionDescription"))
     val EXCEPTIONNAME_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, JsonSerialName("ExceptionName"))

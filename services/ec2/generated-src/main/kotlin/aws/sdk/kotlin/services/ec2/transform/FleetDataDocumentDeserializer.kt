@@ -30,7 +30,7 @@ import aws.smithy.kotlin.runtime.serde.xml.XmlSerialName
 import aws.smithy.kotlin.runtime.time.Instant
 
 
-internal suspend fun deserializeFleetDataDocument(deserializer: Deserializer): FleetData {
+internal fun deserializeFleetDataDocument(deserializer: Deserializer): FleetData {
     val builder = FleetData.builder()
     val ACTIVITYSTATUS_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("activityStatus"))
     val CLIENTTOKEN_DESCRIPTOR = SdkFieldDescriptor(SerialKind.String, XmlSerialName("clientToken"))
